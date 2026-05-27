@@ -1,0 +1,68 @@
+{
+  "slug": "age-calculator",
+  "intro": "Age calculators help you determine your exact age in years, months, and days, and show how many days until your next birthday. While you might casually know you're 26 years old, understanding your precise age to the month and day is useful for legal documents, medical forms, and milestone celebrations. Age calculators also account for leap years and varying month lengths, ensuring accuracy that manual calculations often miss. Whether you're tracking age for health reasons, legal documentation, or simply celebrating milestones, knowing your precise age across different time units provides complete age information.",
+  "howItWorks": "The age calculator uses date arithmetic to subtract your birth date from today's date, accounting for leap years and varying month lengths. For example, someone born on January 1, 2000, as of May 27, 2026, is 26 years, 4 months, and 26 days old. The calculator counts complete years by checking if this year's birthday has passed. If it has, you've completed a full year; if not, you're still the previous age. The months calculation counts complete months since your birthday this year. The days calculation counts remaining days after complete months. The calculator also computes days to your next birthday by calculating the days remaining until your next annual birthday date.",
+  "interpretationGuide": "Your age in years is what you typically cite. Age in months and days provides precision for medical and legal purposes. Days to next birthday counts down to your anniversary, useful for planning celebrations. For ages under 1 year, months and days become more meaningful than years. The calculator handles leap years correctly, so someone born February 29 has an accurate birthday every non-leap year (March 1). Age calculations are exact because they account for all calendar irregularities including leap year variations in 100-year and 400-year cycles.",
+  "faqs": [
+    {
+      "question": "Why do leap years matter for age calculation?",
+      "answer": "Leap years add February 29 every 4 years, except for years divisible by 100 (unless also divisible by 400). Someone born February 29 (a leap year baby) technically has a birthday only every 4 years. Age calculators must account for this."
+    },
+    {
+      "question": "What about people born on February 29?",
+      "answer": "Leap year babies are born on February 29, which exists only every 4 years. For age calculation purposes, their birthday is typically celebrated March 1 in non-leap years. They're still aging each year, just the exact anniversary date moves."
+    },
+    {
+      "question": "How is age used legally?",
+      "answer": "Age determines legal rights and responsibilities: driving (16), voting (18), alcohol (21), retirement (67), etc. Precise age in years, months, and days matters for applications, eligibility, and legal documents. Birth certificates prove your exact age."
+    },
+    {
+      "question": "Why is age important for medical purposes?",
+      "answer": "Medical professionals use age to assess health risks, dosage for medications, screening recommendations, and developmental milestones. Age in years, months, and days is especially important for children and geriatric care where precise age significantly affects treatment."
+    },
+    {
+      "question": "What is the difference between age in years and gestational age?",
+      "answer": "For infants, gestational age (weeks in utero plus weeks since birth) is more relevant than chronological age for development assessment. An infant born premature might be 3 months old but only 1 month in gestational age."
+    },
+    {
+      "question": "How do different cultures celebrate age?",
+      "answer": "Some cultures count age differently. Korean age counts your birth year as age 1 and increments on New Year's rather than your birthday. Chinese age uses zodiac cycles (12 years). Western cultures count years since birth incrementing on birthdays."
+    },
+    {
+      "question": "What is chronological age vs. biological age?",
+      "answer": "Chronological age is years since birth (what this calculator computes). Biological age is how 'old' your body is based on health markers. Someone 60 might be biologically 50 (healthier) or 70 (less healthy) based on fitness and health conditions."
+    },
+    {
+      "question": "Why do some forms ask for date of birth instead of age?",
+      "answer": "Date of birth is permanent and unambiguous. Age changes every year, so forms requesting age quickly become outdated. Date of birth allows organizations to calculate age themselves, ensuring accuracy."
+    },
+    {
+      "question": "How does age affect life insurance and insurance rates?",
+      "answer": "Insurance premiums increase with age for life insurance, health insurance, and auto insurance. Precise age matters for underwriting. Older applicants face higher premiums because health risks increase with age."
+    },
+    {
+      "question": "What is a milestone birthday?",
+      "answer": "Milestone birthdays mark significant age achievements: 13 (teenager), 18 (adult), 21 (legal drinking age), 30, 40, 50, 65 (retirement age), etc. Cultures emphasize different milestones and celebrate accordingly."
+    },
+    {
+      "question": "How do I calculate age in different units?",
+      "answer": "This calculator converts between years, months, and days. To convert to weeks: multiply months by 4.3, add days, divide by 7. To convert to hours: multiply years by 365.25, then by 24. Different units suit different purposes."
+    },
+    {
+      "question": "What if my birth date is uncertain?",
+      "answer": "If you don't know your exact birth date, you can use an estimated date, but age becomes approximate. Some adoptees or refugees have uncertain birth dates and choose January 1 of the estimated birth year conventionally."
+    },
+    {
+      "question": "How does age affect retirement eligibility?",
+      "answer": "Full retirement age for Social Security is 66-67 depending on birth year. Early claiming at 62 reduces benefits 25-30%. Waiting until 70 increases benefits 24-32%. Age determines eligibility for retirement accounts, pensions, and government benefits."
+    },
+    {
+      "question": "What is the maximum human lifespan?",
+      "answer": "The confirmed longest-lived person was Jeanne Calment who lived 122 years, 164 days. The current human lifespan limit is unknown but likely 110-130 years. Average life expectancy is 76 for males, 81 for females in the US."
+    },
+    {
+      "question": "How does age affect life decisions?",
+      "answer": "Age influences education (school age, college age), career (entry, mid-career, late-career), family (childbearing years, empty nest), and health. Understanding your age in context helps plan major life decisions like buying a home or retiring."
+    }
+  ]
+}

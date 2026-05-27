@@ -1,0 +1,68 @@
+{
+  "slug": "paycheck-calculator",
+  "intro": "Understanding your paycheck breakdown is essential for budgeting and financial planning. Your gross salary—the amount before deductions—is significantly different from your net pay, the amount you actually receive. A paycheck calculator reveals exactly where your money goes: federal income taxes, Social Security, Medicare (FICA), and state taxes. By seeing these deductions transparently, you can better plan your household budget and understand why your take-home pay is less than your stated salary.",
+  "howItWorks": "The paycheck calculator computes your net income by starting with your gross annual salary and subtracting all applicable taxes. First, it calculates federal income tax using 2024 tax brackets and your filing status, applying a standard deduction before calculating tax liability. For example, a $50,000 annual salary becomes approximately $4,167 gross per month. FICA taxes (Social Security at 6.2% and Medicare at 1.45%, totaling 7.65%) are automatically deducted from your gross pay. A simplified 5% state income tax is also applied. Federal tax withholding uses standard deduction amounts ($14,600 for single filers in 2024), so only income above this threshold is taxed. This produces monthly deductions of approximately $980 in federal tax, $318 in FICA, and $208 in state tax, leaving a net monthly payment of around $2,661.",
+  "interpretationGuide": "Your gross income is your salary before any deductions. Net income is what you actually receive in your bank account. The difference between gross and net includes federal income taxes (which vary by bracket and filing status), FICA taxes (a fixed 7.65%), and state income taxes (which vary by state). Understanding each category helps you see that taxes aren't arbitrary but based on government formulas. The larger your salary, the larger your tax payments, but your tax rate may increase due to progressive tax brackets where higher incomes are taxed at higher rates.",
+  "faqs": [
+    {
+      "question": "What are tax brackets and how do they work?",
+      "answer": "Tax brackets are income ranges taxed at different rates. The US uses a progressive system where your income is taxed at increasing rates as it rises. In 2024, single filers pay 10% on income up to $11,600, 12% on income from $11,601-$47,150, and 22% on income from $47,151-$100,525. You don't pay the higher rate on all income, only on the portion in that bracket."
+    },
+    {
+      "question": "What is the standard deduction?",
+      "answer": "The standard deduction is an amount of income you don't have to pay federal tax on. For 2024, the standard deduction is $14,600 for single filers and $29,200 for married filing jointly. You can claim the standard deduction or itemize deductions (mortgage interest, charitable donations, etc.), whichever is larger."
+    },
+    {
+      "question": "What are FICA taxes?",
+      "answer": "FICA (Federal Insurance Contributions Act) consists of two parts: Social Security tax (6.2%) and Medicare tax (1.45%), totaling 7.65%. These are automatically deducted from your paycheck and matched by your employer. FICA funds Social Security retirement and Medicare healthcare benefits."
+    },
+    {
+      "question": "Why do I pay state income tax?",
+      "answer": "State income tax funds state government services like schools, roads, and emergency services. Tax rates vary significantly by state, from 0% in some states (like Texas and Florida) to over 10% in others (like California). Some states have no income tax but higher sales or property taxes."
+    },
+    {
+      "question": "What is a filing status and why does it matter?",
+      "answer": "Filing status (single, married filing jointly, head of household) determines your tax brackets and standard deduction. Married couples filing jointly typically have higher standard deductions and wider tax brackets, resulting in lower tax rates than filing single."
+    },
+    {
+      "question": "What are tax withholdings?",
+      "answer": "Tax withholdings are the federal, state, and sometimes local taxes your employer removes from each paycheck. Your employer uses your W-4 form to calculate withholdings. If too much is withheld, you get a refund; if too little, you owe at tax time."
+    },
+    {
+      "question": "What is the W-4 form and when should I update it?",
+      "answer": "The W-4 tells your employer how much federal tax to withhold. Update it if you change jobs, get married, have children, or have significant life changes. Incorrectly claiming dependents can result in underwithholding and owing taxes or overwithholding and losing money."
+    },
+    {
+      "question": "Why is federal withholding different from actual taxes owed?",
+      "answer": "Withholding is an estimate for the year. Your actual taxes depend on final income, deductions, and credits. You reconcile this annually on your tax return (Form 1040). If you owed more, you owe money; if too much was withheld, you get a refund."
+    },
+    {
+      "question": "What are tax deductions and credits?",
+      "answer": "Deductions (standard or itemized) reduce your taxable income. Credits directly reduce taxes owed. For example, a $1,000 deduction reduces taxable income by $1,000; a $1,000 credit reduces taxes by $1,000. Credits are generally more valuable."
+    },
+    {
+      "question": "What about retirement contributions like 401(k)?",
+      "answer": "Traditional 401(k) contributions are deducted before federal taxes, reducing your taxable income. You can contribute up to $23,500 in 2024. These contributions reduce your current taxes but are taxed when withdrawn in retirement."
+    },
+    {
+      "question": "How do dependents affect my taxes?",
+      "answer": "Each dependent you claim provides a tax exemption (no longer available) or dependent credit ($2,000 per child under 17). Having dependents reduces your tax liability and may increase your refund."
+    },
+    {
+      "question": "What if I'm self-employed or have a side gig?",
+      "answer": "Self-employed income requires you to pay the full 15.3% FICA (both employee and employer portions, called self-employment tax) plus federal and state income taxes. You must estimate quarterly taxes and file Schedule C with your tax return."
+    },
+    {
+      "question": "What is the Earned Income Tax Credit (EITC)?",
+      "answer": "The EITC is a refundable credit for lower-income workers. You can receive more in tax credits than you owe, resulting in a refund. The credit phases out as income increases, so it benefits those earning less than roughly $60,000 annually depending on filing status."
+    },
+    {
+      "question": "How do bonuses and overtime affect my taxes?",
+      "answer": "Bonuses and overtime are taxed as regular income at your marginal tax rate. Employers often withhold taxes at a flat 22% or 37% for bonuses, which may over or underwithold depending on your total income."
+    },
+    {
+      "question": "Can I reduce my tax burden?",
+      "answer": "Yes: maximize 401(k) contributions, use HSAs if eligible, claim all applicable credits, itemize if deductions exceed standard deduction, and consider tax-loss harvesting on investments. Consult a tax professional for personalized advice."
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "roi-calculator",
+  "intro": "Return on Investment (ROI) is a fundamental metric for evaluating whether your investments are profitable and comparing different investment opportunities. ROI tells you the percentage gain or loss on your invested capital, making it easy to compare a $5,000 stock investment with a $50,000 real estate investment on equal footing. Understanding your ROI helps you make informed decisions about where to allocate money and assess whether your past investments performed well. This ROI calculator quickly determines your return percentage and annualized return, enabling meaningful comparisons across different time periods and investment types.",
+  "howItWorks": "The ROI calculator uses the simple formula: ROI = (Gain / Initial Investment) × 100. For example, if you invest $10,000 and gain $2,000 over 2 years, your total ROI is 20% and your annualized ROI is 10% per year. The calculator divides your total ROI by the number of years to determine annualized return, which allows you to fairly compare investments held for different lengths of time. The final value is simply your initial investment plus your gain. A key benefit of annualized ROI is that it accounts for time: a 20% return over 5 years (4% annualized) is much weaker than a 20% return over 1 year (20% annualized), even though the total return percentage is identical.",
+  "interpretationGuide": "Your total ROI percentage shows your overall profit as a percentage of what you invested. Annualized ROI accounts for how long you held the investment, enabling fair comparison between investments held for different periods. A 20% total ROI over 2 years equals 10% annualized, meaning on average you earned 10% per year. The S&P 500 historically returns about 10% annualized over long periods, so you can use this as a benchmark. Negative ROI indicates a loss. Understanding annualized ROI is crucial because a 40% return over 4 years (10% annualized) underperforms a 15% return over 1 year (15% annualized).",
+  "faqs": [
+    {
+      "question": "What is the difference between ROI and annualized ROI?",
+      "answer": "ROI is your total profit percentage over the entire holding period. Annualized ROI divides this by the number of years held, showing average annual return. Annualized ROI allows fair comparison between investments held for different durations."
+    },
+    {
+      "question": "Why is annualized ROI important?",
+      "answer": "Annualized ROI lets you compare investments fairly regardless of holding period. A 50% return over 5 years (10% annualized) is weaker than 20% over 1 year (20% annualized). Without annualizing, you'd incorrectly conclude the 50% return is better."
+    },
+    {
+      "question": "What is a good ROI?",
+      "answer": "A 'good' ROI depends on investment type and time horizon. Stock market averages about 10% annually. Real estate might target 8-12% annual return. Bonds typically return 3-5%. High-risk investments should target higher ROIs to compensate for risk."
+    },
+    {
+      "question": "How does ROI differ from absolute profit?",
+      "answer": "Absolute profit is the dollar amount gained ($2,000). ROI is the percentage return (20%). ROI is more useful for comparison because it's relative to investment size. A $1,000 gain on a $10,000 investment (10% ROI) is better than $1,000 on a $100,000 investment (1% ROI)."
+    },
+    {
+      "question": "Can ROI be negative?",
+      "answer": "Yes, negative ROI means you lost money. If you invest $10,000 and it's worth $8,000, you have a -20% ROI. This is common in bear markets or failed investments."
+    },
+    {
+      "question": "What if I made contributions or withdrawals during the investment period?",
+      "answer": "Simple ROI doesn't account for contributions or withdrawals. For more accurate returns with deposits/withdrawals, use Modified Dietz method or Internal Rate of Return (IRR), which this calculator doesn't compute."
+    },
+    {
+      "question": "How do I compare investments with different time periods?",
+      "answer": "Use annualized ROI. Divide total ROI by years held to get annual return. This lets you directly compare a 2-year investment with a 5-year investment on equal footing."
+    },
+    {
+      "question": "Does ROI account for risk?",
+      "answer": "No, simple ROI ignores risk. Two investments can have identical 15% ROI, but one might be a stable blue-chip stock while the other is a volatile tech startup. High-risk investments should target higher ROIs to justify the risk."
+    },
+    {
+      "question": "What is the difference between ROI and return on equity?",
+      "answer": "ROI is a general return metric for any investment. Return on Equity (ROE) is specifically how much profit a company generates per dollar of shareholder equity. ROE is used for stock analysis."
+    },
+    {
+      "question": "How does inflation affect ROI?",
+      "answer": "Inflation erodes purchasing power, so a 10% nominal ROI might be only 7% in real terms if inflation is 3%. This calculator shows nominal ROI. Subtract expected inflation for real ROI."
+    },
+    {
+      "question": "What is a capital gain vs. dividend?",
+      "answer": "Capital gain is profit from selling an asset for more than you paid. Dividends are payments companies make to shareholders. Both contribute to total gain. This calculator treats them the same."
+    },
+    {
+      "question": "How do taxes affect ROI?",
+      "answer": "ROI shown here is pre-tax. Long-term capital gains are taxed at 15-20%, short-term at ordinary income rates. Dividend taxes vary (qualified dividends at 15%). Your after-tax ROI will be lower than pre-tax."
+    },
+    {
+      "question": "What is compound annual growth rate (CAGR)?",
+      "answer": "CAGR is similar to annualized ROI but uses a compounding formula: CAGR = (Final Value / Initial Value)^(1/Years) - 1. It accounts for compounding and is more accurate for growth investments than simple annualized ROI."
+    },
+    {
+      "question": "Should I reinvest dividends?",
+      "answer": "Typically yes. Reinvesting dividends compounds your returns over time. Most dividend-focused portfolios reinvest automatically, significantly increasing long-term returns."
+    },
+    {
+      "question": "What benchmark should I compare ROI to?",
+      "answer": "Compare to market benchmarks: S&P 500 (stocks, ~10% annual), bond indices (bonds, ~4-5%), real estate indices, or savings accounts (0.5-1%). Your ROI should beat at least the inflation rate to preserve purchasing power."
+    }
+  ]
+}

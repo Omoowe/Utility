@@ -1,0 +1,68 @@
+{
+  "slug": "loan-calculator",
+  "intro": "A loan calculator helps you understand the true cost of borrowing by showing your monthly payment, total interest charges, and payoff timeline. Whether you're considering an auto loan, personal loan, or student loan, knowing your exact payment obligation is essential for budgeting and financial planning. This loan calculator reveals how much interest you'll pay over the life of the loan and demonstrates the powerful impact of making extra principal payments to reduce both interest and payoff time. Transparent loan calculations empower you to negotiate better terms and make informed borrowing decisions.",
+  "howItWorks": "The loan calculator uses the same standard amortization formula as mortgages: Monthly Payment = P[r(1+r)^n] / [(1+r)^n-1], where P is principal, r is monthly interest rate, and n is total payments. For example, a $50,000 loan at 5% annual interest over 5 years produces a monthly payment of approximately $943.56, totaling $56,599 paid with $6,599 in interest. If you add extra monthly payments, the calculator recalculates your payoff timeline, showing how much you save. Adding just $100 extra per month to this loan could save thousands in interest and reduce your payoff time significantly. The calculator computes total interest by multiplying your monthly payment by the number of months, then subtracting the principal.",
+  "interpretationGuide": "Your monthly payment is the fixed amount due each month. Interest is what the lender charges for lending you money. The payoff timeline shows how many months until you've paid off the loan. A key insight is that early payments contain mostly interest; later payments contain mostly principal. Making extra principal payments immediately reduces your balance, thereby reducing future interest charges dramatically. Understanding your payoff timeline helps you see how long you're obligated to the loan and motivates extra payments to become debt-free faster.",
+  "faqs": [
+    {
+      "question": "What is the difference between a personal loan and a secured loan?",
+      "answer": "A personal loan is unsecured (no collateral), so it has higher interest rates. A secured loan (like an auto loan) is backed by the asset, so it has lower rates. The lender can repossess the asset if you default."
+    },
+    {
+      "question": "How do interest rates affect my monthly payment?",
+      "answer": "Higher interest rates significantly increase monthly payments. A 1% rate increase on a $50,000 loan typically increases your monthly payment by $50-100. Shopping around for the best rate can save thousands over the loan term."
+    },
+    {
+      "question": "What is the difference between APR and interest rate?",
+      "answer": "Interest rate is the percentage of principal charged annually. APR (Annual Percentage Rate) includes interest plus fees and other costs, giving you a true cost. APR is usually higher than the stated interest rate."
+    },
+    {
+      "question": "Should I choose a shorter loan term for faster payoff?",
+      "answer": "Shorter terms (3-5 years) have higher monthly payments but much less total interest. Longer terms (10+ years) have lower payments but you pay significantly more interest. Choose based on your monthly budget."
+    },
+    {
+      "question": "What is the impact of making extra payments?",
+      "answer": "Extra principal payments directly reduce your remaining balance, saving interest on future months. Adding $100/month to a $50,000 loan at 5% could save $5,000+ in interest and cut 1-2 years off the loan term."
+    },
+    {
+      "question": "Can I pay off my loan early without penalty?",
+      "answer": "Most personal loans allow early repayment without penalty. However, some loans (especially older auto loans) may have prepayment penalties. Always check your loan documents or contact your lender."
+    },
+    {
+      "question": "Why should I make a larger down payment?",
+      "answer": "A larger down payment reduces the loan principal, which lowers monthly payments and total interest. It also improves your loan-to-value ratio, potentially qualifying you for better interest rates."
+    },
+    {
+      "question": "What are common loan types and their rates?",
+      "answer": "Auto loans typically range 3-10%, personal loans 6-36%, student loans 4-8%, and payday loans 300%+. Credit score, loan term, down payment, and current market conditions all affect your rate."
+    },
+    {
+      "question": "How does my credit score affect loan approval and rates?",
+      "answer": "Higher credit scores (700+) qualify for lower interest rates. Scores below 620 may be denied or face very high rates. Even a 50-point credit score improvement can lower your rate by 1-2%, saving thousands."
+    },
+    {
+      "question": "What is an amortization schedule?",
+      "answer": "An amortization schedule is a detailed month-by-month breakdown showing your payment, principal paid, interest paid, and remaining balance. Early payments are mostly interest; later payments are mostly principal."
+    },
+    {
+      "question": "Should I consolidate multiple loans?",
+      "answer": "Loan consolidation combines multiple debts into one loan, potentially with a lower rate. This simplifies payments but may extend your payoff timeline. Calculate total interest before and after to decide if it saves money."
+    },
+    {
+      "question": "What happens if I miss a payment?",
+      "answer": "Missing a payment damages your credit score, incurs late fees, and may trigger default. Default can result in asset repossession (auto loans) or wage garnishment. Always contact your lender if you can't pay on time."
+    },
+    {
+      "question": "Can I refinance my loan?",
+      "answer": "Yes, refinancing lets you get a new loan to pay off the existing one, usually at a better rate or with different terms. Refinancing costs money, so ensure interest savings exceed refinancing fees."
+    },
+    {
+      "question": "What is debt-to-income ratio and why does it matter?",
+      "answer": "DTI is your monthly debt payments divided by gross monthly income. Lenders typically require DTI below 43% (some go higher). Lower DTI qualifies you for better rates and larger loans."
+    },
+    {
+      "question": "How can I get the best loan terms?",
+      "answer": "Improve your credit score, save for a larger down payment, compare rates from multiple lenders, choose the shortest term you can afford, and consider a co-signer if you have poor credit. Shopping around can save thousands."
+    }
+  ]
+}

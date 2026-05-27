@@ -1,0 +1,68 @@
+{
+  "slug": "mortgage-calculator",
+  "intro": "A mortgage calculator helps you understand the true cost of homeownership by breaking down monthly payments, total interest, and total amounts paid over the loan term. Whether you're a first-time homebuyer or refinancing an existing mortgage, knowing your exact monthly obligation is critical for budgeting and financial planning. This mortgage calculator uses the standard amortization formula to show you precisely how much you'll pay in principal and interest throughout your loan term.",
+  "howItWorks": "The mortgage calculator uses the standard amortization formula to determine your monthly payment: M = P[r(1+r)^n] / [(1+r)^n-1], where P is the loan principal, r is the monthly interest rate, and n is the total number of monthly payments. For example, if you borrow $300,000 at a 6% annual interest rate over 30 years, your monthly payment would be approximately $1,799.43. Over the full 30-year term, you'll pay about $647,515 total, which includes $347,515 in interest charges. The calculator works by converting your annual interest rate to a monthly rate, then using this formula to determine the fixed payment amount that will pay off the entire loan over your specified term. It then multiplies your monthly payment by the total number of payments to show total paid and subtracts your original principal to reveal total interest.",
+  "interpretationGuide": "Your monthly payment is the amount you'll pay every month for the life of the loan. The total interest is the extra amount the lender charges for borrowing money, typically the largest expense in homeownership. For a $300,000 mortgage at 6% over 30 years, you'll pay an additional $347,515 in interest alone. Understanding this helps you see the value of making extra principal payments or refinancing if rates drop. An amortization schedule shows that early payments go mostly toward interest, while later payments pay down principal faster.",
+  "faqs": [
+    {
+      "question": "What's the difference between principal and interest?",
+      "answer": "Principal is the original amount you borrowed. Interest is the fee the lender charges for lending you that money. Early mortgage payments contain mostly interest; later payments contain mostly principal."
+    },
+    {
+      "question": "Can I pay off my mortgage early?",
+      "answer": "Yes, most mortgages allow extra principal payments without penalty. Paying extra principal reduces both your total interest paid and the loan term. For example, adding $100/month to a $300,000 mortgage can save thousands in interest."
+    },
+    {
+      "question": "What is a mortgage term?",
+      "answer": "The mortgage term is the length of time (typically 15, 20, or 30 years) over which you agree to repay the loan. A shorter term means higher monthly payments but less total interest. A longer term means lower payments but more total interest."
+    },
+    {
+      "question": "What does the interest rate depend on?",
+      "answer": "Your mortgage rate depends on your credit score, down payment percentage, loan type (fixed vs. adjustable), current market conditions, and the lender you choose. Better credit scores and larger down payments typically result in lower rates."
+    },
+    {
+      "question": "What is an amortization schedule?",
+      "answer": "An amortization schedule is a month-by-month breakdown of your mortgage showing how much of each payment goes toward principal and interest. It shows your declining loan balance over time."
+    },
+    {
+      "question": "Should I choose a 15-year or 30-year mortgage?",
+      "answer": "A 15-year mortgage has higher monthly payments but you pay much less interest overall. A 30-year mortgage has lower monthly payments, making homeownership more affordable upfront. Choose based on your income and budget."
+    },
+    {
+      "question": "What is PMI (Private Mortgage Insurance)?",
+      "answer": "PMI is insurance lenders require if your down payment is less than 20%. It protects the lender if you default. PMI costs 0.3-1.5% of the loan amount annually and can be removed once you reach 20% equity."
+    },
+    {
+      "question": "What happens with an adjustable-rate mortgage (ARM)?",
+      "answer": "An ARM has an initial fixed rate, then adjusts periodically based on market conditions. Your payment may increase significantly after the fixed period ends. Fixed-rate mortgages are more predictable but typically have higher initial rates."
+    },
+    {
+      "question": "How does property tax affect my total housing cost?",
+      "answer": "Property taxes are separate from your mortgage payment and vary by location. This calculator shows the mortgage portion only; add estimated property taxes, insurance, and HOA fees for total monthly housing costs."
+    },
+    {
+      "question": "What's the impact of a larger down payment?",
+      "answer": "A larger down payment reduces your loan principal, lowering your monthly payment and total interest. A 20% down payment avoids PMI fees. Each 5% increase in down payment can save thousands over the loan term."
+    },
+    {
+      "question": "Can I refinance my mortgage?",
+      "answer": "Yes, refinancing allows you to get a new mortgage to pay off your existing one, usually to get a lower rate, change from adjustable to fixed, or shorten the term. Refinancing involves closing costs, so ensure savings outweigh these expenses."
+    },
+    {
+      "question": "What is escrow for property taxes and insurance?",
+      "answer": "Many lenders require an escrow account where you contribute money monthly for property taxes and homeowners insurance. The lender pays these from the escrow account. This protects the lender's investment in your home."
+    },
+    {
+      "question": "How do interest rates affect affordability?",
+      "answer": "Interest rates directly impact your monthly payment. A 1% rate increase on a $300,000 mortgage increases your monthly payment by roughly $250. Shopping for rates can save you tens of thousands over 30 years."
+    },
+    {
+      "question": "What does 'points' mean in mortgage lending?",
+      "answer": "Points are upfront fees you pay to lower your interest rate. One point costs 1% of the loan amount and typically reduces your rate by 0.25%. Points make sense if you plan to keep the house long enough to recoup the cost."
+    },
+    {
+      "question": "How do I calculate total housing costs?",
+      "answer": "Total housing costs include mortgage payment, property taxes, homeowners insurance, HOA fees (if applicable), and utilities. This mortgage calculator shows the loan payment portion; you'll need to estimate other costs separately."
+    }
+  ]
+}

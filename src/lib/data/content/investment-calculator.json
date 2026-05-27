@@ -1,0 +1,68 @@
+{
+  "slug": "investment-calculator",
+  "intro": "An investment calculator reveals the extraordinary power of compound interest and regular contributions over time. By showing how your money grows through both interest earnings and your consistent deposits, this tool demonstrates why starting early is crucial for building wealth. Whether you're saving for retirement, a down payment, or a major life goal, understanding how compound interest accelerates your progress is transformational. This investment calculator uses the compound interest formula with monthly contributions to project your final amount, total contributions, and interest earned over your investment timeline.",
+  "howItWorks": "The investment calculator uses the compound interest formula: A = P(1+r/n)^(nt) + PMT × [((1+r/n)^(nt) - 1) / (r/n)], where P is your principal, PMT is monthly contribution, r is annual rate, n is compounding frequency (12 for monthly), and t is years. For example, starting with $10,000 principal and adding $500 monthly at 7% annual return over 5 years produces approximately $46,000 final amount. This represents $30,000 in contributions ($10,000 principal plus $500 × 60 months) plus $6,000 in compound interest earned. The formula has two parts: the future value of your initial principal grows exponentially, and your monthly contributions form an annuity that also compounds. This is why regular investment is so powerful—each contribution earns returns for the remaining years.",
+  "interpretationGuide": "Your final amount is the total value of your investment at the end. Total contributions is the sum of your principal plus all monthly deposits you made. Interest earned is the difference—the 'free money' from compounding. In the example above, you contributed $30,000 and earned $6,000 in interest, a 20% return. The longer your timeline and the higher your return rate, the more dramatic the compound effect. A 7% return over 5 years grows your money by 40%; the same 7% over 30 years grows it 7-8x. Starting earlier means more years of compounding, which exponentially increases your final amount even with the same monthly contributions.",
+  "faqs": [
+    {
+      "question": "What is compound interest?",
+      "answer": "Compound interest is interest earned on your interest. When your investment grows, it earns returns on both your principal and previous earnings. This snowball effect makes compound interest exponentially more powerful than simple interest over long periods."
+    },
+    {
+      "question": "Why does starting early matter?",
+      "answer": "Starting 10 years earlier at age 25 instead of 35 can nearly double your final amount, even with identical monthly contributions. Time is compound interest's most powerful multiplier. The longer your money compounds, the higher your final value."
+    },
+    {
+      "question": "What rate of return should I assume?",
+      "answer": "Stock market historically averages about 10% annually, though results vary yearly. Bonds average 4-5%. Money market accounts 4-5%. Savings accounts 0.5-1%. Conservative portfolios blend these. Higher-risk portfolios target higher returns but with volatility."
+    },
+    {
+      "question": "How much should I contribute monthly?",
+      "answer": "Contribute whatever you can consistently afford. Even $100/month compounds significantly over decades. Increase contributions when possible (raises, bonuses) to accelerate growth. Automatic contributions ensure you never skip saving."
+    },
+    {
+      "question": "What if I can't make all monthly contributions?",
+      "answer": "This calculator assumes consistent monthly contributions. If you skip months, your final amount will be lower. Any contribution is better than none. Automating contributions helps ensure consistency."
+    },
+    {
+      "question": "How do taxes affect my returns?",
+      "answer": "Taxes reduce your effective returns. Tax-advantaged accounts like 401(k) and IRA defer or eliminate taxes, dramatically increasing compounding. Long-term capital gains are taxed at 15-20%, while ordinary income is taxed up to 37%. This calculator shows pre-tax returns."
+    },
+    {
+      "question": "What are the best accounts for long-term investing?",
+      "answer": "401(k) (employer plans with matching), IRA (traditional or Roth), HSA (triple tax advantage), and taxable brokerage accounts. Choose based on your income, employer match, and tax situation. Max your 401(k) match before other investing."
+    },
+    {
+      "question": "What is the difference between 401(k) and IRA?",
+      "answer": "A 401(k) is employer-sponsored, often with matching contributions. An IRA is individual-directed. You can contribute up to $23,500 to a 401(k) vs. $7,000 to an IRA in 2024. Both offer tax advantages for retirement savings."
+    },
+    {
+      "question": "What is a Roth IRA and should I use one?",
+      "answer": "A Roth IRA lets you contribute after-tax money that grows tax-free, and withdrawals are tax-free in retirement. A traditional IRA lets you deduct contributions but taxes withdrawals. Roth is better if you expect higher tax rates in retirement."
+    },
+    {
+      "question": "How often should I rebalance my portfolio?",
+      "answer": "Rebalance annually or when allocations drift 5%+ from targets. This maintains your desired risk level and forces you to buy low and sell high. More frequent rebalancing increases costs."
+    },
+    {
+      "question": "What is dollar-cost averaging?",
+      "answer": "Dollar-cost averaging is investing a fixed amount regularly (monthly). This automatically buys more shares when prices fall and fewer when high, reducing timing risk. It's simple and effective for long-term investing."
+    },
+    {
+      "question": "Should I invest a lump sum or monthly amounts?",
+      "answer": "Mathematically, investing a lump sum sooner typically results in higher returns. However, monthly investing is psychologically easier and reduces timing risk. Monthly investing also forces discipline."
+    },
+    {
+      "question": "What is asset allocation and how does it affect returns?",
+      "answer": "Asset allocation is your portfolio split (e.g., 70% stocks, 30% bonds). More stocks = higher returns but higher volatility. More bonds = lower returns but more stability. Your allocation should match your risk tolerance and timeline."
+    },
+    {
+      "question": "How do fees affect long-term returns?",
+      "answer": "Even small fees compound dramatically. A 1% annual fee reduces your 30-year return by roughly 25%. Choose low-cost index funds (0.03-0.20% fees) over actively managed funds (0.5-2% fees). Fees matter."
+    },
+    {
+      "question": "What if the market crashes?",
+      "answer": "Market downturns are normal. Stay invested and continue contributions to buy low. Panic selling locks in losses. Historically, markets recover within years. Long-term investors who stay the course experience strong returns."
+    }
+  ]
+}
