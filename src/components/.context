@@ -1,0 +1,262 @@
+# src/components/ - Reusable React Components
+
+## Purpose
+Shared React components used across pages. Data-driven, not coupled to specific calculators.
+
+## Organization
+
+```
+src/components/
+├── layout/              # Page structure (Header, Footer, etc.)
+│   ├── Header.tsx
+│   ├── Footer.tsx
+│   ├── StickyNav.tsx
+│   └── ...
+├── calculators/         # Calculator-specific components
+│   ├── CalculatorLayout.tsx    # Main wrapper (reusable for ANY calculator)
+│   ├── InputGroup.tsx
+│   ├── ResultBox.tsx
+│   ├── FAQAccordion.tsx
+│   ├── RelatedTools.tsx
+│   ├── BreadcrumbNav.tsx
+│   └── ...
+├── common/              # Generic, reusable components
+│   ├── AdPlaceholder.tsx
+│   ├── SchemaMarkup.tsx
+│   └── ...
+└── sections/            # Page sections (not reused)
+    ├── HeroSection.tsx
+    ├── ToolGrid.tsx
+    └── ...
+```
+
+## Component Pattern
+
+Every component must:
+
+1. **Have a clear prop interface**
+```tsx
+interface InputGroupProps {
+  label: string;
+  type: 'number' | 'currency' | 'percentage';
+  value: number;
+  onChange: (value: number) => void;
+  min?: number;
+  max?: number;
+  placeholder?: string;
+  error?: string;
+}
+
+export function InputGroup({ label, type, value, onChange, ...props }: InputGroupProps) {
+  // Component
+}
+```
+
+2. **Use TypeScript strict mode**
+```tsx
+// YES - explicit types
+const formatValue = (value: number): string => {
+  return value.toFixed(2);
+};
+
+// NO - implicit any
+const formatValue = (value) => {
+  return value.toFixed(2);
+};
+```
+
+3. **No inline styles** (use Tailwind className)
+```tsx
+// YES
+<div className="px-4 py-2 rounded bg-white">
+  Content
+</div>
+
+// NO
+<div style={{ padding: "8px 16px", borderRadius: "4px" }}>
+  Content
+</div>
+```
+
+4. **Use clsx for conditional classes**
+```tsx
+import clsx from 'clsx';
+
+<button className={clsx(
+  'px-4 py-2 rounded transition',
+  isActive ? 'bg-blue-500 text-white' : 'bg-gray-200'
+)}>
+  {label}
+</button>
+```
+
+## Key Components
+
+### CalculatorLayout
+
+**File:** `calculators/CalculatorLayout.tsx`
+
+Wrapper for all calculator pages. Takes tool config + content as props.
+
+```tsx
+interface CalculatorLayoutProps {
+  tool: Tool;
+  content: ContentData;
+}
+
+export function CalculatorLayout({ tool, content }: CalculatorLayoutProps) {
+  return (
+    <>
+      <Header />
+      <BreadcrumbNav category={tool.category} toolName={tool.name} />
+
+      <main>
+        <HeroSection h1={tool.h1} description={content.intro} />
+        <CalculatorWidget tool={tool} />
+        <AdPlaceholder />
+
+        <section>
+          <h2>How It Works</h2>
+          <p>{content.howItWorks}</p>
+        </section>
+
+        <section>
+          <h2>FAQ</h2>
+          <FAQAccordion faqs={content.faqs} />
+        </section>
+
+        <section>
+          <RelatedTools slugs={tool.relatedTools} />
+        </section>
+      </main>
+
+      <SchemaMarkup tool={tool} content={content} />
+      <Footer />
+    </>
+  );
+}
+```
+
+**Key benefit:** One component handles all 50+ calculators (just swap props).
+
+### InputGroup
+
+**File:** `calculators/InputGroup.tsx`
+
+Reusable input component with validation + error display.
+
+```tsx
+export function InputGroup({ label, value, onChange, error, ...props }: InputGroupProps) {
+  return (
+    <div className="mb-4">
+      <label className="block mb-1 font-semibold">{label}</label>
+      <input
+        type="number"
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className={clsx(
+          'w-full px-3 py-2 border rounded',
+          error ? 'border-red-500' : 'border-gray-300'
+        )}
+        {...props}
+      />
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+    </div>
+  );
+}
+```
+
+### ResultBox
+
+**File:** `calculators/ResultBox.tsx`
+
+Displays formatted results (currency, percentage, number).
+
+```tsx
+interface ResultBoxProps {
+  label: string;
+  value: number;
+  format: 'currency' | 'percentage' | 'number';
+}
+
+export function ResultBox({ label, value, format }: ResultBoxProps) {
+  let displayValue: string;
+  if (format === 'currency') {
+    displayValue = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(value);
+  } else if (format === 'percentage') {
+    displayValue = `${value.toFixed(2)}%`;
+  } else {
+    displayValue = value.toFixed(2);
+  }
+
+  return (
+    <div className="p-4 bg-blue-50 rounded border border-blue-200">
+      <p className="text-gray-600 text-sm">{label}</p>
+      <p className="text-2xl font-bold text-blue-600">{displayValue}</p>
+    </div>
+  );
+}
+```
+
+## Testing Components
+
+Before committing:
+
+```bash
+npm run lint              # Check no TypeScript errors
+npm run type-check       # Verify strict types
+```
+
+**Manual testing:**
+1. Load page with component
+2. Check PropTypes warnings (none expected)
+3. Test on mobile (320px, 768px, 1440px)
+4. Verify accessibility (keyboard nav, screen reader)
+
+## Performance
+
+- **No heavy imports in component file** (lazy load if needed)
+- **Memoize if rendering expensive children** (optional, measure first)
+- **Debounce onChange callbacks** (if many quick updates expected)
+
+```tsx
+import { useCallback } from 'react';
+
+export function InputGroup({ onChange, ...props }) {
+  const handleChange = useCallback((value) => {
+    // Debounce or batch updates if needed
+    onChange(value);
+  }, [onChange]);
+
+  return <input onChange={(e) => handleChange(e.target.value)} />;
+}
+```
+
+## Common Mistakes
+
+❌ **Hardcoding strings in components**
+- Pass as props or load from config
+
+❌ **Mixing layout + data**
+- InputGroup should not fetch calculator data (props only)
+
+❌ **No TypeScript interfaces**
+- Every component needs explicit PropTypes or interface
+
+✅ **Props-driven design**
+- Component behavior = props, not internal state
+
+✅ **Single responsibility**
+- InputGroup handles input validation (not calculation)
+
+---
+
+## Storybook (Future, Phase 3+)
+
+Once components stabilize, consider Storybook for:
+- Component showcase
+- Variant testing (dark mode, error states, etc.)
+- Documentation for team collaboration

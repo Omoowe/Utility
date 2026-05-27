@@ -1,0 +1,427 @@
+# src/lib/ - Business Logic, Utilities, Data
+
+## Purpose
+Non-UI code: calculator logic, utilities, data definitions, hooks.
+
+## Organization
+
+```
+src/lib/
+├── data/
+│   ├── tools.ts              # Central source of truth (all tool metadata)
+│   ├── categories.ts         # Category definitions
+│   ├── content/              # Content files (JSON per calculator)
+│   │   ├── mortgage.json
+│   │   ├── paycheck.json
+│   │   └── ...
+│   └── examples.ts           # Example calculations for FAQs
+│
+├── calculators/              # Pure calculation functions
+│   ├── mortgage.ts
+│   ├── paycheck.ts
+│   ├── roi.ts
+│   ├── loan.ts
+│   ├── investment.ts
+│   ├── age.ts
+│   ├── random.ts
+│   └── __tests__/            # Unit tests (Phase 2+)
+│       ├── mortgage.test.ts
+│       └── ...
+│
+├── utils/
+│   ├── formatting.ts         # Currency, number formatting
+│   ├── validation.ts         # Input validation
+│   ├── seo.ts                # Schema markup generation
+│   └── constants.ts          # Tax rates, constants
+│
+├── config/
+│   ├── metadata.ts           # SEO metadata defaults
+│   └── siteConfig.ts         # Site-wide config
+│
+└── hooks/
+    ├── useCalculator.ts      # Reusable calculator state
+    ├── useFavorites.ts       # localStorage favorites (Phase 2+)
+    └── useTheme.ts           # Dark mode toggle
+```
+
+## Core Files
+
+### tools.ts - Central Source of Truth
+
+```typescript
+interface Tool {
+  slug: string;                    // URL: /calculators/mortgage-calculator
+  name: string;                    // Display name
+  category: Category;              // Category tag
+  description: string;             // Card description
+  keywords: string[];              // SEO keywords
+
+  // SEO metadata
+  title: string;                   // <title> tag
+  metaDescription: string;         // Meta description
+  h1: string;                       // H1 heading
+
+  // Content references
+  intro: string;                   // Short intro (100-150 words)
+  howItWorks: string;              // How it works (markdown)
+  interpretationGuide: string;     // How to interpret results
+
+  // Relations
+  relatedTools: string[];          // Slugs of related tools
+  category: Category;
+
+  // Calculator schema
+  calculator: CalculatorConfig;    // Inputs, outputs, compute function
+
+  // SEO schema
+  schema: SchemaMarkup;            // Auto-generated FAQPage + Calculator
+}
+
+export const TOOLS: Record<string, Tool> = {
+  'mortgage-calculator': {
+    slug: 'mortgage-calculator',
+    name: 'Mortgage Calculator',
+    category: 'finance',
+    title: 'Mortgage Calculator | Calculate Monthly Payment',
+    metaDescription: 'Free mortgage calculator. Estimate your monthly payment...',
+    h1: 'Mortgage Payment Calculator',
+    description: 'Calculate monthly mortgage payment based on loan amount, interest rate, and term.',
+    keywords: ['mortgage calculator', 'monthly payment', 'loan calculator'],
+    intro: 'Unsure about your monthly mortgage payment...',
+    howItWorks: 'The mortgage formula is...',
+    relatedTools: ['loan-calculator', 'paycheck-calculator'],
+    calculator: {
+      inputs: [
+        { name: 'principal', label: 'Loan Amount', type: 'currency', validation: { min: 1 } },
+        { name: 'rate', label: 'Annual Interest Rate (%)', type: 'number', validation: { min: 0, max: 20 } },
+        { name: 'years', label: 'Loan Term (Years)', type: 'number', validation: { min: 1, max: 50 } },
+      ],
+      compute: calculateMortgage,
+      outputs: [
+        { name: 'payment', label: 'Monthly Payment', format: 'currency' },
+        { name: 'totalPayment', label: 'Total Payment', format: 'currency' },
+        { name: 'totalInterest', label: 'Total Interest', format: 'currency' },
+      ],
+    },
+  },
+  // ... more tools
+};
+```
+
+**Functions:**
+```typescript
+export function getToolBySlug(slug: string): Tool {
+  const tool = TOOLS[slug];
+  if (!tool) throw new Error(`Tool not found: ${slug}`);
+  return tool;
+}
+
+export function getAllTools(): Tool[] {
+  return Object.values(TOOLS);
+}
+
+export function getToolsByCategory(category: Category): Tool[] {
+  return Object.values(TOOLS).filter((tool) => tool.category === category);
+}
+
+export function getCategories(): Category[] {
+  const categories = new Set(Object.values(TOOLS).map((tool) => tool.category));
+  return Array.from(categories);
+}
+```
+
+### Calculation Functions
+
+**File:** `calculators/mortgage.ts`
+
+Pure functions that compute results. No side effects.
+
+```typescript
+export interface MortgageInputs {
+  principal: number;  // Loan amount ($)
+  rate: number;       // Annual interest rate (%)
+  years: number;      // Loan term (years)
+}
+
+export interface MortgageOutput {
+  monthlyPayment: number;
+  totalPayment: number;
+  totalInterest: number;
+}
+
+export function calculateMortgage(inputs: MortgageInputs): MortgageOutput {
+  const { principal, rate, years } = inputs;
+
+  // Validate inputs
+  if (principal <= 0) throw new Error('Principal must be positive');
+  if (rate < 0) throw new Error('Rate cannot be negative');
+  if (years <= 0) throw new Error('Years must be positive');
+
+  // Convert to monthly values
+  const monthlyRate = rate / 100 / 12;
+  const numPayments = years * 12;
+
+  // PMT formula: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+  if (monthlyRate === 0) {
+    // If no interest, just divide principal by # payments
+    const monthlyPayment = principal / numPayments;
+    return {
+      monthlyPayment,
+      totalPayment: principal,
+      totalInterest: 0,
+    };
+  }
+
+  const monthlyPayment =
+    (principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments))) /
+    (Math.pow(1 + monthlyRate, numPayments) - 1);
+
+  const totalPayment = monthlyPayment * numPayments;
+  const totalInterest = totalPayment - principal;
+
+  return {
+    monthlyPayment,
+    totalPayment,
+    totalInterest,
+  };
+}
+```
+
+**Key principles:**
+- Pure functions (no side effects)
+- Explicit types (inputs, outputs)
+- Error handling (validate inputs)
+- Tested (unit tests, Phase 2+)
+- Well-commented (formulas, edge cases)
+
+### Utilities
+
+**File:** `utils/formatting.ts`
+
+```typescript
+export function formatCurrency(amount: number, decimals = 2): string {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(amount);
+}
+
+export function formatNumber(value: number, decimals = 2): string {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+}
+
+export function formatPercentage(value: number, decimals = 2): string {
+  return `${value.toFixed(decimals)}%`;
+}
+```
+
+**File:** `utils/validation.ts`
+
+```typescript
+export function validateNumber(value: any, min?: number, max?: number): { valid: boolean; error?: string } {
+  if (typeof value !== 'number' || isNaN(value)) {
+    return { valid: false, error: 'Must be a number' };
+  }
+  if (min !== undefined && value < min) {
+    return { valid: false, error: `Must be at least ${min}` };
+  }
+  if (max !== undefined && value > max) {
+    return { valid: false, error: `Must be at most ${max}` };
+  }
+  return { valid: true };
+}
+```
+
+**File:** `utils/seo.ts`
+
+```typescript
+export function generateCalculatorSchema(tool: Tool): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Calculator',
+    name: tool.name,
+    description: tool.metaDescription,
+    url: `https://toolnest.com/calculators/${tool.slug}`,
+    inputType: tool.calculator.inputs.map((input) => input.type),
+    inputLabel: tool.calculator.inputs.map((input) => input.label),
+    outputType: tool.calculator.outputs[0].format,
+    outputLabel: tool.calculator.outputs[0].label,
+  };
+}
+
+export function generateFAQSchema(faqs: FAQ[]): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+```
+
+### Content Data
+
+**File:** `data/content/mortgage.json`
+
+```json
+{
+  "slug": "mortgage-calculator",
+  "intro": "Unsure about your monthly mortgage payment?...",
+  "howItWorks": "The mortgage formula calculates monthly payment...",
+  "interpretationGuide": "Your monthly payment includes...",
+  "faqs": [
+    {
+      "question": "What's a good mortgage rate?",
+      "answer": "Rates vary based on..."
+    }
+  ]
+}
+```
+
+## Custom Hooks
+
+**File:** `hooks/useCalculator.ts`
+
+```typescript
+export function useCalculator<T extends Record<string, number>>(
+  computeFn: (inputs: T) => Record<string, number>,
+  initialInputs: T
+) {
+  const [inputs, setInputs] = useState(initialInputs);
+  const [result, setResult] = useState<Record<string, number> | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const compute = useCallback(() => {
+    try {
+      setError(null);
+      const computed = computeFn(inputs);
+      setResult(computed);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Calculation error');
+      setResult(null);
+    }
+  }, [inputs, computeFn]);
+
+  useEffect(() => {
+    const timer = setTimeout(compute, 300); // Debounce
+    return () => clearTimeout(timer);
+  }, [inputs, compute]);
+
+  return { inputs, setInputs, result, error };
+}
+```
+
+## Testing Calculations (Phase 2+)
+
+**File:** `calculators/__tests__/mortgage.test.ts`
+
+```typescript
+import { calculateMortgage } from '../mortgage';
+
+describe('calculateMortgage', () => {
+  it('calculates correct monthly payment', () => {
+    const result = calculateMortgage({
+      principal: 300000,
+      rate: 6.5,
+      years: 30,
+    });
+
+    expect(result.monthlyPayment).toBeCloseTo(1897.73, 2);
+  });
+
+  it('throws error for negative principal', () => {
+    expect(() => {
+      calculateMortgage({ principal: -100, rate: 5, years: 30 });
+    }).toThrow();
+  });
+});
+```
+
+## Performance Considerations
+
+- **Pure functions:** Testable, cacheable, predictable
+- **Memoization:** Use for expensive calculations (optional, measure first)
+- **Lazy imports:** Load heavy libraries on-demand (e.g., date-fns)
+
+```typescript
+// Lazy import (only loaded when needed)
+export async function calculateWithDateParsing(dateString: string) {
+  const { parse } = await import('date-fns');
+  const parsed = parse(dateString, 'MM/dd/yyyy', new Date());
+  // ...
+}
+```
+
+## Common Mistakes
+
+❌ **Side effects in calculators**
+- calculateMortgage should not fetch data, log, or mutate state
+
+❌ **Mixed business logic + UI**
+- Keep formatting (formatCurrency) in utils/formatting.ts
+- Calculators return raw numbers
+
+❌ **Hardcoded constants**
+- Use constants.ts or config files
+
+✅ **Data-driven from tools.ts**
+- All tool metadata flows from single source
+
+✅ **Pure functions, easy to test**
+- No dependencies on external state
+
+---
+
+## Constants
+
+**File:** `utils/constants.ts`
+
+```typescript
+export const TAX_RATES = {
+  federal: {
+    2024: {
+      single: [
+        { bracket: 11600, rate: 0.10 },
+        { bracket: 47150, rate: 0.12 },
+        // ...
+      ],
+    },
+  },
+};
+
+export const STATES_US = ['CA', 'TX', 'NY', ...];
+export const MAX_LOAN_AMOUNT = 1_000_000;
+export const MIN_INTEREST_RATE = 0.01;
+```
+
+## Type Definitions
+
+Keep shared types in `lib/types.ts` (or co-locate near where used):
+
+```typescript
+export type Category = 'finance' | 'utility' | 'health' | 'home' | 'pet' | 'business';
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface ContentData {
+  slug: string;
+  intro: string;
+  howItWorks: string;
+  interpretationGuide: string;
+  faqs: FAQ[];
+}
+```

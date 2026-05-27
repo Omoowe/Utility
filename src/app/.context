@@ -1,0 +1,171 @@
+# src/app/ - Page Router & App Structure
+
+## Purpose
+Next.js App Router pages. Each file/folder = route.
+
+## Routing Convention
+
+```
+src/app/
+├── page.tsx                # /
+├── layout.tsx              # Root layout (wraps all pages)
+├── calculators/
+│   ├── page.tsx            # /calculators (all calculators listing)
+│   ├── [slug]/
+│   │   └── page.tsx        # /calculators/[slug] (dynamic calculator pages)
+├── categories/
+│   └── [category]/
+│       └── page.tsx        # /categories/[category] (category listing)
+├── about/
+│   └── page.tsx            # /about
+├── contact/
+│   └── page.tsx            # /contact
+├── privacy/
+│   └── page.tsx            # /privacy
+├── terms/
+│   └── page.tsx            # /terms
+├── sitemap.ts              # /sitemap.xml (auto-generated)
+└── robots.ts               # /robots.txt (auto-generated)
+```
+
+## Page Component Pattern
+
+Every page must have:
+
+1. **Metadata** (SEO)
+```tsx
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Mortgage Calculator | ToolNest',
+  description: 'Free mortgage calculator. Estimate your monthly payment...',
+  openGraph: {
+    title: 'Mortgage Calculator | ToolNest',
+    description: 'Free mortgage calculator...',
+    url: 'https://toolnest.com/calculators/mortgage-calculator',
+    images: [{ url: '/og-image.png' }],
+  },
+};
+```
+
+2. **Component** (functional)
+```tsx
+export default function Page() {
+  return (
+    // Page content
+  );
+}
+```
+
+3. **No inline styles** (use Tailwind)
+
+4. **Reuse layouts & sections** (don't duplicate code)
+
+## Dynamic Pages: Calculators
+
+File: `calculators/[slug]/page.tsx`
+
+```tsx
+import { CalculatorLayout } from '@/components/calculators/CalculatorLayout';
+import { getToolBySlug } from '@/lib/data/tools';
+import { getContent } from '@/lib/data/content';
+
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const tool = getToolBySlug(params.slug);
+  return {
+    title: tool.title,
+    description: tool.metaDescription,
+  };
+}
+
+export async function generateStaticParams() {
+  const tools = getAllTools();
+  return tools.map((tool) => ({ slug: tool.slug }));
+}
+
+export default function CalculatorPage({ params }) {
+  const tool = getToolBySlug(params.slug);
+  const content = getContent(params.slug);
+
+  return <CalculatorLayout tool={tool} content={content} />;
+}
+```
+
+**Why:** Static generation at build time. Zero runtime overhead.
+
+## Category Pages
+
+File: `categories/[category]/page.tsx`
+
+Similar pattern to calculators, but shows grid of tools + category intro.
+
+## Sitemap & Robots
+
+- `sitemap.ts` - auto-generates from tools.ts (includes all calculators, categories, static pages)
+- `robots.ts` - simple allow all (no disallows)
+
+Both exported as static files at build time.
+
+## Static Pages
+
+Each static page (about, privacy, contact) follows same pattern:
+- Metadata at top
+- Functional component
+- Reuse sections (HeroSection, FAQSection, etc.)
+
+## Layout Hierarchy
+
+```
+layout.tsx (root)
+├── page.tsx (homepage)
+├── calculators/
+│   ├── layout.tsx (optional, if calc-specific layout needed)
+│   ├── page.tsx (all calculators)
+│   └── [slug]/page.tsx (individual calculator)
+├── about/page.tsx
+└── ...
+```
+
+Root layout provides:
+- Header (sticky nav)
+- Footer
+- Theme provider (dark mode)
+- Global styles
+
+---
+
+## Performance Notes
+
+- Static generation preferred (no dynamic data)
+- Use `generateStaticParams()` to pre-generate dynamic routes
+- ISR (incremental static regeneration) if content changes frequently
+
+---
+
+## Common Mistakes
+
+❌ **Importing heavy libraries in page.tsx**
+- Use dynamic import if needed: `const Component = dynamic(() => import('...'))`
+
+❌ **Hardcoding content in page.tsx**
+- Load from `lib/data/content/{slug}.json`
+
+❌ **No metadata export**
+- Always export Metadata object for SEO
+
+✅ **Data from tools.ts**
+- All tool metadata flows from single source
+
+✅ **Layout reuse**
+- Use CalculatorLayout for all calculators (not separate page per tool)
+
+---
+
+## Testing Page
+
+Before committing:
+1. Render page locally: `npm run dev`
+2. Check metadata in browser <head> (view source)
+3. Mobile responsive (DevTools 320px-1440px)
+4. Lighthouse audit (Performance ≥90)
+5. No console errors/warnings

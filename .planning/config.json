@@ -1,0 +1,72 @@
+{
+  "projectName": "ToolNest",
+  "description": "SEO utility calculator website",
+  "owner": "hafeez",
+  "created": "2026-05-27",
+  "workflow": {
+    "researchDepth": "full",
+    "mvpScope": "core-15-20",
+    "timeline": "this-week",
+    "teamSize": "solo-dev"
+  },
+  "techStack": {
+    "framework": "next.js-15",
+    "language": "typescript",
+    "styling": "tailwind-css-4",
+    "calculator": "math.js",
+    "deployment": "vercel",
+    "analytics": "vercel-analytics-plausible"
+  },
+  "seoTargets": {
+    "primaryCategory": "finance",
+    "targetKeywords": [
+      "mortgage calculator",
+      "paycheck calculator",
+      "roi calculator",
+      "loan calculator",
+      "investment calculator",
+      "age calculator",
+      "random number generator"
+    ],
+    "schemaMarkup": [
+      "calculator",
+      "faq-page",
+      "breadcrumb"
+    ]
+  },
+  "contentStrategy": {
+    "wordsPerCalculator": "1000-1200",
+    "contentGeneration": "ai-draft-human-edit",
+    "faqsPerCalculator": "10-15"
+  },
+  "phase1": {
+    "calculators": 7,
+    "essentialPages": 6,
+    "duration": "7-days",
+    "startDate": "2026-05-27",
+    "targetDeployDate": "2026-06-05"
+  },
+  "adsense": {
+    "targetApprovalDate": "2026-06-15",
+    "contentPagesTarget": 25,
+    "minimumWordsPerPage": 500
+  },
+  "metrics": {
+    "phase1": {
+      "lcpTarget": "<2.5s",
+      "inpTarget": "<200ms",
+      "clsTarget": "<0.1",
+      "lighthousePerformance": ">=90"
+    },
+    "phase2": {
+      "toolCount": "15-20",
+      "estimatedOrganicVisits": "0-100/month",
+      "estimatedRevenue": "$5-50/month"
+    },
+    "phase6Month": {
+      "toolCount": "30-50",
+      "estimatedOrganicVisits": "10000+/month",
+      "estimatedRevenue": "$200-500/month"
+    }
+  }
+}
