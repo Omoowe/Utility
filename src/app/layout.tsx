@@ -1,19 +1,31 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import '../styles/globals.css';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: {
-    default: 'ToolNest - Free Online Calculators',
+    default: 'ToolNest — Free Online Calculators & Utility Tools',
     template: '%s | ToolNest',
   },
   description:
-    'Free online calculators for finance, health, home, and more. Instant accurate calculations for mortgages, loans, taxes, and daily utilities.',
+    'Free online calculators and utility tools for finance, health, home improvement, and everyday use. No sign-up, instant results.',
   keywords: [
     'calculator',
     'online calculator',
     'mortgage calculator',
     'loan calculator',
-    'tax calculator',
+    'bmi calculator',
+    'free tools',
+    'utility tools',
   ],
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_BASE_URL || 'https://toolnest.vercel.app'
@@ -23,23 +35,22 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: process.env.NEXT_PUBLIC_BASE_URL || 'https://toolnest.vercel.app',
     siteName: 'ToolNest',
-    title: 'ToolNest - Free Online Calculators',
+    title: 'ToolNest — Free Online Calculators & Utility Tools',
     description:
-      'Free online calculators for finance, health, home, and more. Instant accurate calculations.',
+      'Free online calculators and utility tools for finance, health, home, and everyday use.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ToolNest - Free Online Calculators',
+        alt: 'ToolNest — Free Online Calculators',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ToolNest - Free Online Calculators',
-    description:
-      'Free online calculators for finance, health, home, and more.',
+    title: 'ToolNest — Free Online Calculators & Utility Tools',
+    description: 'Free online calculators and utility tools.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -51,19 +62,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
+        {/* No-flash theme script — must run before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})()`,
+          }}
+        />
       </head>
-      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-        <main className="min-h-screen">{children}</main>
+      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
+        <ThemeProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

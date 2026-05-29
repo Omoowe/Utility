@@ -36,5 +36,9 @@ yarn-error.log*
 # OS
 Thumbs.db
 
+# SQLite / RuVector
+ruvector.db
+*.db
+
 # Deployment
 vercel.json

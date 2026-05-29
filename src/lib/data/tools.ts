@@ -5,6 +5,38 @@ import { calculateLoan } from '../calculators/loan';
 import { calculateInvestment } from '../calculators/investment';
 import { calculateAgeCalculator } from '../calculators/age';
 import { calculateRandom } from '../calculators/random';
+import { calculateCompoundInterest } from '../calculators/compound-interest';
+import { calculateSavingsGoal } from '../calculators/savings-goal';
+import { calculateSimpleInterest } from '../calculators/simple-interest';
+import { calculateInflation } from '../calculators/inflation-calculator';
+import { calculateDebtPayoff } from '../calculators/debt-payoff';
+import { calculateProfitMargin } from '../calculators/profit-margin-calculator';
+import { calculateVat } from '../calculators/vat-calculator';
+import { calculateHourlyToSalary } from '../calculators/hourly-to-salary';
+import { calculateSalaryToHourly } from '../calculators/salary-to-hourly';
+import { calculatePercentageIncrease } from '../calculators/percentage-increase';
+import { calculatePercentageDecrease } from '../calculators/percentage-decrease';
+import { calculateMortgageOverpayment } from '../calculators/mortgage-overpayment';
+import { calculateBmi } from '../calculators/bmi-calculator';
+import { calculateBodyFat } from '../calculators/body-fat-calculator';
+import { calculateCalories } from '../calculators/calorie-calculator';
+import { calculateWaterIntake } from '../calculators/water-intake-calculator';
+import { calculateProteinIntake } from '../calculators/protein-intake-calculator';
+import { calculateBudget } from '../calculators/budget-calculator';
+import { calculateCatAge } from '../calculators/cat-age-calculator';
+import { calculateDogAge } from '../calculators/dog-age-calculator';
+import { calculatePetFood } from '../calculators/pet-food-calculator';
+import { calculateYoutubeMoney } from '../calculators/youtube-money-calculator';
+import { calculateRoomSize } from '../calculators/room-size-calculator';
+import { calculatePaint } from '../calculators/paint-calculator';
+import { calculateTiles } from '../calculators/tile-calculator';
+import { calculateFlooring } from '../calculators/flooring-calculator';
+import { calculateWallpaper } from '../calculators/wallpaper-calculator';
+import { calculateFence } from '../calculators/fence-calculator';
+import { calculateConcrete } from '../calculators/concrete-calculator';
+import { calculateGravel } from '../calculators/gravel-calculator';
+import { calculateMulch } from '../calculators/mulch-calculator';
+import { calculateApplianceEnergy } from '../calculators/appliance-energy-cost';
 
 export interface CalculatorInput {
   name: string;
@@ -30,25 +62,35 @@ export interface CalculatorOutput {
 export interface ToolConfig {
   slug: string;
   name: string;
+  /** Category slug: 'finance' | 'everyday-utilities' | 'home-diy' | 'health-fitness' | 'pets' | 'business-creator' */
   category: string;
+  kind: 'calculator' | 'interactive';
   title: string;
   description: string;
   keywords: string[];
+  icon?: string;
+  featured?: boolean;
   inputs: CalculatorInput[];
   outputs: CalculatorOutput[];
   contentFile: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  compute: (inputs: any) => any;
+  compute?: (inputs: any) => any;
+  /** Key into customComponents registry for interactive tools */
+  customComponent?: string;
 }
 
 export const TOOLS: ToolConfig[] = [
+  // ── FINANCE ──────────────────────────────────────────────────────────────
   {
     slug: 'mortgage-calculator',
     name: 'Mortgage Calculator',
-    category: 'Finance',
+    category: 'finance',
+    kind: 'calculator',
     title: 'Mortgage Payment Calculator',
     description: 'Calculate monthly mortgage payments, total interest, and loan payoff timeline.',
-    keywords: ['mortgage', 'payment', 'interest', 'loan', 'home'],
+    keywords: ['mortgage calculator', 'mortgage payment', 'home loan calculator', 'amortization'],
+    icon: '🏡',
+    featured: true,
     inputs: [
       {
         name: 'principal',
@@ -92,10 +134,13 @@ export const TOOLS: ToolConfig[] = [
   {
     slug: 'paycheck-calculator',
     name: 'Paycheck Calculator',
-    category: 'Finance',
+    category: 'finance',
+    kind: 'calculator',
     title: 'Paycheck Deductions Calculator',
-    description: 'Calculate net take-home pay after taxes and deductions.',
-    keywords: ['paycheck', 'salary', 'taxes', 'deductions', 'net pay'],
+    description: 'Calculate net take-home pay after federal taxes, FICA, and state deductions.',
+    keywords: ['paycheck calculator', 'take-home pay', 'salary after tax', 'net pay calculator'],
+    icon: '💵',
+    featured: true,
     inputs: [
       {
         name: 'annualSalary',
@@ -123,9 +168,9 @@ export const TOOLS: ToolConfig[] = [
     outputs: [
       { name: 'grossPerPeriod', label: 'Gross Pay', type: 'currency' },
       { name: 'federalTaxPerPeriod', label: 'Federal Tax', type: 'currency' },
-      { name: 'ficaTaxPerPeriod', label: 'FICA (Social Security & Medicare)', type: 'currency' },
-      { name: 'stateTaxPerPeriod', label: 'State Tax', type: 'currency' },
-      { name: 'netPerPeriod', label: 'Net Pay', type: 'currency' },
+      { name: 'ficaTaxPerPeriod', label: 'FICA (SS & Medicare)', type: 'currency' },
+      { name: 'stateTaxPerPeriod', label: 'State Tax (Est.)', type: 'currency' },
+      { name: 'netPerPeriod', label: 'Net Take-Home Pay', type: 'currency' },
     ],
     contentFile: 'paycheck-calculator.json',
     compute: calculatePaycheck,
@@ -133,24 +178,27 @@ export const TOOLS: ToolConfig[] = [
   {
     slug: 'roi-calculator',
     name: 'ROI Calculator',
-    category: 'Investment',
-    title: 'Return on Investment Calculator',
-    description: 'Calculate ROI percentage and annualized returns on your investments.',
-    keywords: ['roi', 'return', 'investment', 'profit', 'gain'],
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Return on Investment (ROI) Calculator',
+    description: 'Calculate ROI percentage, annualized returns, and final investment value.',
+    keywords: ['roi calculator', 'return on investment', 'investment return calculator', 'profit calculator'],
+    icon: '📈',
+    featured: true,
     inputs: [
       {
         name: 'initialInvestment',
         label: 'Initial Investment ($)',
         type: 'number',
         placeholder: '10000',
-        min: 100,
+        min: 1,
         max: 10000000,
         step: 100,
         required: true,
       },
       {
         name: 'gain',
-        label: 'Gain ($)',
+        label: 'Net Gain ($)',
         type: 'number',
         placeholder: '2000',
         min: 0,
@@ -179,11 +227,14 @@ export const TOOLS: ToolConfig[] = [
   },
   {
     slug: 'loan-calculator',
-    name: 'Loan Calculator',
-    category: 'Finance',
-    title: 'Personal Loan Calculator',
-    description: 'Calculate loan payments, total interest, and payoff timeline.',
-    keywords: ['loan', 'payment', 'personal loan', 'interest', 'payoff'],
+    name: 'Loan Repayment Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Loan Repayment Calculator',
+    description: 'Calculate loan payments, total interest, and payoff timeline with optional extra payments.',
+    keywords: ['loan calculator', 'loan repayment calculator', 'personal loan calculator', 'loan payoff'],
+    icon: '🏦',
+    featured: true,
     inputs: [
       {
         name: 'principal',
@@ -238,10 +289,12 @@ export const TOOLS: ToolConfig[] = [
   {
     slug: 'investment-calculator',
     name: 'Investment Calculator',
-    category: 'Investment',
+    category: 'finance',
+    kind: 'calculator',
     title: 'Investment Growth Calculator',
     description: 'Calculate future investment value with compound interest and monthly contributions.',
-    keywords: ['investment', 'compound interest', 'growth', 'savings', 'returns'],
+    keywords: ['investment calculator', 'compound interest calculator', 'investment growth', 'savings calculator'],
+    icon: '💹',
     inputs: [
       {
         name: 'principal',
@@ -277,10 +330,10 @@ export const TOOLS: ToolConfig[] = [
         name: 'years',
         label: 'Time Period (Years)',
         type: 'number',
-        placeholder: '5',
+        placeholder: '10',
         min: 0.1,
         max: 100,
-        step: 0.1,
+        step: 0.5,
         required: true,
       },
     ],
@@ -292,17 +345,21 @@ export const TOOLS: ToolConfig[] = [
     contentFile: 'investment-calculator.json',
     compute: calculateInvestment,
   },
+  // ── EVERYDAY UTILITIES ───────────────────────────────────────────────────
   {
     slug: 'age-calculator',
     name: 'Age Calculator',
-    category: 'Utilities',
-    title: 'Age Calculator',
-    description: 'Calculate your exact age in years, months, and days.',
-    keywords: ['age', 'birthday', 'date calculator', 'how old'],
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Age Calculator — How Old Am I?',
+    description: 'Calculate your exact age in years, months, and days from your birth date.',
+    keywords: ['age calculator', 'how old am i', 'birthday calculator', 'date of birth calculator'],
+    icon: '🎂',
+    featured: true,
     inputs: [
       {
         name: 'birthDate',
-        label: 'Birth Date',
+        label: 'Date of Birth',
         type: 'date',
         placeholder: 'YYYY-MM-DD',
         required: true,
@@ -312,7 +369,7 @@ export const TOOLS: ToolConfig[] = [
       { name: 'years', label: 'Years', type: 'number' },
       { name: 'months', label: 'Months', type: 'number' },
       { name: 'days', label: 'Days', type: 'number' },
-      { name: 'daysToNextBirthday', label: 'Days to Next Birthday', type: 'number' },
+      { name: 'daysToNextBirthday', label: 'Days Until Next Birthday', type: 'number' },
     ],
     contentFile: 'age-calculator.json',
     compute: calculateAgeCalculator,
@@ -320,10 +377,13 @@ export const TOOLS: ToolConfig[] = [
   {
     slug: 'random-number-generator',
     name: 'Random Number Generator',
-    category: 'Utilities',
+    category: 'everyday-utilities',
+    kind: 'calculator',
     title: 'Random Number Generator',
-    description: 'Generate random numbers within a specified range.',
-    keywords: ['random', 'number generator', 'random integer', 'lottery'],
+    description: 'Generate random numbers instantly within any range you specify.',
+    keywords: ['random number generator', 'random number', 'random integer', 'number randomizer'],
+    icon: '🎲',
+    featured: true,
     inputs: [
       {
         name: 'min',
@@ -351,7 +411,7 @@ export const TOOLS: ToolConfig[] = [
         type: 'number',
         placeholder: '10',
         min: 1,
-        max: 10000,
+        max: 100,
         step: 1,
         required: true,
       },
@@ -362,7 +422,1016 @@ export const TOOLS: ToolConfig[] = [
     contentFile: 'random-number-generator.json',
     compute: calculateRandom,
   },
+
+  // ── FINANCE (additional) ──────────────────────────────────────────────────
+  {
+    slug: 'compound-interest',
+    name: 'Compound Interest Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Compound Interest Calculator',
+    description: 'Calculate compound interest growth with the formula A = P(1+r/n)^(nt). See final amount and total interest earned.',
+    keywords: ['compound interest calculator', 'interest calculator', 'investment growth calculator'],
+    icon: '📈',
+    featured: true,
+    inputs: [
+      { name: 'principal', label: 'Principal Amount ($)', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '7', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'years', label: 'Number of Years', type: 'number', placeholder: '10', min: 1, max: 100, step: 1, required: true },
+      { name: 'compoundingFrequency', label: 'Compounding Frequency (per year)', type: 'select', required: true, options: [
+        { value: '365', label: 'Daily (365)' },
+        { value: '12', label: 'Monthly (12)' },
+        { value: '4', label: 'Quarterly (4)' },
+        { value: '2', label: 'Semi-Annually (2)' },
+        { value: '1', label: 'Annually (1)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'finalAmount', label: 'Final Amount', type: 'currency' },
+      { name: 'totalInterestEarned', label: 'Total Interest Earned', type: 'currency' },
+      { name: 'totalContributions', label: 'Total Contributions', type: 'currency' },
+    ],
+    contentFile: 'compound-interest.json',
+    compute: calculateCompoundInterest,
+  },
+  {
+    slug: 'savings-goal',
+    name: 'Savings Goal Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Savings Goal Calculator',
+    description: 'Calculate how much to save monthly to reach any savings target. Accounts for interest earned on existing savings.',
+    keywords: ['savings goal calculator', 'monthly savings calculator', 'savings target calculator'],
+    icon: '🏦',
+    featured: false,
+    inputs: [
+      { name: 'targetAmount', label: 'Savings Goal ($)', type: 'number', placeholder: '20000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'currentSavings', label: 'Current Savings ($)', type: 'number', placeholder: '5000', min: 0, max: 10000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '4', min: 0, max: 20, step: 0.1, required: true },
+      { name: 'years', label: 'Years to Goal', type: 'number', placeholder: '5', min: 0.5, max: 50, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'monthlyContributionNeeded', label: 'Monthly Contribution Needed', type: 'currency' },
+      { name: 'totalContributions', label: 'Total Contributions', type: 'currency' },
+      { name: 'interestEarned', label: 'Interest Earned', type: 'currency' },
+    ],
+    contentFile: 'savings-goal.json',
+    compute: calculateSavingsGoal,
+  },
+  {
+    slug: 'simple-interest-calculator',
+    name: 'Simple Interest Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Simple Interest Calculator',
+    description: 'Calculate simple interest earned or owed using I = P × r × t. Find total repayment and effective interest rate.',
+    keywords: ['simple interest calculator', 'interest calculator', 'loan interest calculator'],
+    icon: '💵',
+    featured: false,
+    inputs: [
+      { name: 'principal', label: 'Principal Amount ($)', type: 'number', placeholder: '5000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '6', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'years', label: 'Time Period (Years)', type: 'number', placeholder: '3', min: 0.25, max: 50, step: 0.25, required: true },
+    ],
+    outputs: [
+      { name: 'interestEarned', label: 'Interest Earned', type: 'currency' },
+      { name: 'totalRepayment', label: 'Total Repayment', type: 'currency' },
+      { name: 'effectiveRate', label: 'Effective Rate Over Period', type: 'percent', decimals: 2 },
+    ],
+    contentFile: 'simple-interest-calculator.json',
+    compute: calculateSimpleInterest,
+  },
+  {
+    slug: 'inflation-calculator',
+    name: 'Inflation Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Inflation Calculator — Purchasing Power Over Time',
+    description: 'See how inflation erodes purchasing power over time. Calculate future value of today\'s money at any inflation rate.',
+    keywords: ['inflation calculator', 'purchasing power calculator', 'cost of living calculator'],
+    icon: '📉',
+    featured: false,
+    inputs: [
+      { name: 'presentValue', label: 'Present Value ($)', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'inflationRate', label: 'Annual Inflation Rate (%)', type: 'number', placeholder: '3', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'years', label: 'Number of Years', type: 'number', placeholder: '10', min: 1, max: 100, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'futureValue', label: 'Future Equivalent Value', type: 'currency' },
+      { name: 'purchasingPowerLost', label: 'Purchasing Power Lost ($)', type: 'currency' },
+      { name: 'purchasingPowerLostPercent', label: 'Purchasing Power Lost (%)', type: 'percent', decimals: 1 },
+    ],
+    contentFile: 'inflation-calculator.json',
+    compute: calculateInflation,
+  },
+  {
+    slug: 'debt-payoff-calculator',
+    name: 'Debt Payoff Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Debt Payoff Calculator — Pay Off Any Loan Faster',
+    description: 'Calculate exactly when you will be debt-free and how much interest you will pay based on your monthly payment.',
+    keywords: ['debt payoff calculator', 'credit card payoff calculator', 'loan payoff calculator'],
+    icon: '💳',
+    featured: true,
+    inputs: [
+      { name: 'balance', label: 'Current Balance ($)', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'monthlyPayment', label: 'Monthly Payment ($)', type: 'number', placeholder: '200', min: 1, max: 100000, step: 10, required: true },
+    ],
+    outputs: [
+      { name: 'monthsToPayoff', label: 'Months to Pay Off', type: 'number', decimals: 0 },
+      { name: 'totalPaid', label: 'Total Paid', type: 'currency' },
+      { name: 'totalInterest', label: 'Total Interest Paid', type: 'currency' },
+    ],
+    contentFile: 'debt-payoff-calculator.json',
+    compute: calculateDebtPayoff,
+  },
+  {
+    slug: 'profit-margin-calculator',
+    name: 'Profit Margin Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Profit Margin Calculator — Gross Margin & Markup',
+    description: 'Calculate gross profit, gross margin percentage, and markup percentage for any product or service.',
+    keywords: ['profit margin calculator', 'gross margin calculator', 'markup calculator'],
+    icon: '💰',
+    featured: false,
+    inputs: [
+      { name: 'revenue', label: 'Selling Price / Revenue ($)', type: 'number', placeholder: '100', min: 0.01, max: 10000000, step: 1, required: true },
+      { name: 'cost', label: 'Cost of Goods ($)', type: 'number', placeholder: '60', min: 0, max: 10000000, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'grossProfit', label: 'Gross Profit', type: 'currency' },
+      { name: 'grossMarginPercent', label: 'Gross Margin %', type: 'percent', decimals: 2 },
+      { name: 'markupPercent', label: 'Markup %', type: 'percent', decimals: 2 },
+      { name: 'netProfitPerUnit', label: 'Net Profit Per Unit', type: 'currency' },
+    ],
+    contentFile: 'profit-margin-calculator.json',
+    compute: calculateProfitMargin,
+  },
+  {
+    slug: 'vat-calculator',
+    name: 'VAT Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'VAT Calculator — Add or Remove VAT from Any Price',
+    description: 'Add VAT to a net price or remove VAT from a gross price. Supports any VAT rate including UK 20%, EU, and GST.',
+    keywords: ['VAT calculator', 'value added tax calculator', 'GST calculator', 'tax calculator'],
+    icon: '🧾',
+    featured: false,
+    inputs: [
+      { name: 'price', label: 'Price ($)', type: 'number', placeholder: '100', min: 0.01, max: 10000000, step: 0.01, required: true },
+      { name: 'vatRate', label: 'VAT Rate (%)', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'priceIncludesVat', label: 'Price Includes VAT?', type: 'select', required: true, options: [
+        { value: '0', label: 'No — Add VAT to price' },
+        { value: '1', label: 'Yes — Remove VAT from price' },
+      ]},
+    ],
+    outputs: [
+      { name: 'netPrice', label: 'Net Price (ex-VAT)', type: 'currency' },
+      { name: 'vatAmount', label: 'VAT Amount', type: 'currency' },
+      { name: 'grossPrice', label: 'Gross Price (inc-VAT)', type: 'currency' },
+    ],
+    contentFile: 'vat-calculator.json',
+    compute: calculateVat,
+  },
+  {
+    slug: 'hourly-to-salary-calculator',
+    name: 'Hourly to Salary Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Hourly to Annual Salary Calculator',
+    description: 'Convert any hourly pay rate to annual salary, monthly, weekly, and daily earnings instantly.',
+    keywords: ['hourly to salary calculator', 'hourly wage to annual salary', 'pay calculator'],
+    icon: '⏰',
+    featured: false,
+    inputs: [
+      { name: 'hourlyRate', label: 'Hourly Rate ($)', type: 'number', placeholder: '25', min: 0.01, max: 10000, step: 0.25, required: true },
+      { name: 'hoursPerWeek', label: 'Hours Per Week', type: 'number', placeholder: '40', min: 1, max: 168, step: 1, required: true },
+      { name: 'weeksPerYear', label: 'Working Weeks Per Year', type: 'number', placeholder: '52', min: 1, max: 52, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'annualSalary', label: 'Annual Salary', type: 'currency' },
+      { name: 'monthlyRate', label: 'Monthly Rate', type: 'currency' },
+      { name: 'weeklyRate', label: 'Weekly Rate', type: 'currency' },
+      { name: 'dailyRate', label: 'Daily Rate', type: 'currency' },
+    ],
+    contentFile: 'hourly-to-salary-calculator.json',
+    compute: calculateHourlyToSalary,
+  },
+  {
+    slug: 'salary-to-hourly-calculator',
+    name: 'Salary to Hourly Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Annual Salary to Hourly Rate Calculator',
+    description: 'Convert your annual salary to an equivalent hourly rate. See daily, weekly, and monthly breakdowns.',
+    keywords: ['salary to hourly calculator', 'annual salary to hourly', 'wage converter'],
+    icon: '💼',
+    featured: false,
+    inputs: [
+      { name: 'annualSalary', label: 'Annual Salary ($)', type: 'number', placeholder: '65000', min: 1, max: 10000000, step: 1000, required: true },
+      { name: 'hoursPerWeek', label: 'Hours Per Week', type: 'number', placeholder: '40', min: 1, max: 168, step: 1, required: true },
+      { name: 'weeksPerYear', label: 'Working Weeks Per Year', type: 'number', placeholder: '52', min: 1, max: 52, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'hourlyRate', label: 'Hourly Rate', type: 'currency' },
+      { name: 'dailyRate', label: 'Daily Rate', type: 'currency' },
+      { name: 'weeklyRate', label: 'Weekly Rate', type: 'currency' },
+      { name: 'monthlyRate', label: 'Monthly Rate', type: 'currency' },
+    ],
+    contentFile: 'salary-to-hourly-calculator.json',
+    compute: calculateSalaryToHourly,
+  },
+  {
+    slug: 'percentage-increase-calculator',
+    name: 'Percentage Increase Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Percentage Increase Calculator',
+    description: 'Calculate the percentage increase between two values. Find percentage growth, absolute change, and final value.',
+    keywords: ['percentage increase calculator', 'percent change calculator', 'growth calculator'],
+    icon: '↗️',
+    featured: false,
+    inputs: [
+      { name: 'oldValue', label: 'Original Value', type: 'number', placeholder: '80', min: -1000000000, max: 1000000000, step: 1, required: true },
+      { name: 'newValue', label: 'New Value', type: 'number', placeholder: '100', min: -1000000000, max: 1000000000, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'percentageChange', label: 'Percentage Change', type: 'percent', decimals: 2 },
+      { name: 'absoluteChange', label: 'Absolute Change', type: 'number', decimals: 2 },
+      { name: 'finalValue', label: 'Final Value', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'percentage-increase-calculator.json',
+    compute: calculatePercentageIncrease,
+  },
+  {
+    slug: 'percentage-decrease-calculator',
+    name: 'Percentage Decrease Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Percentage Decrease Calculator',
+    description: 'Calculate percentage decrease between two values. Find discount percentage, price drops, and absolute changes.',
+    keywords: ['percentage decrease calculator', 'percent decrease calculator', 'discount calculator'],
+    icon: '↘️',
+    featured: false,
+    inputs: [
+      { name: 'oldValue', label: 'Original Value', type: 'number', placeholder: '120', min: -1000000000, max: 1000000000, step: 1, required: true },
+      { name: 'newValue', label: 'New Value', type: 'number', placeholder: '90', min: -1000000000, max: 1000000000, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'percentageDecrease', label: 'Percentage Decrease', type: 'percent', decimals: 2 },
+      { name: 'absoluteDecrease', label: 'Absolute Decrease', type: 'number', decimals: 2 },
+      { name: 'finalValue', label: 'Final Value', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'percentage-decrease-calculator.json',
+    compute: calculatePercentageDecrease,
+  },
+  {
+    slug: 'mortgage-overpayment-calculator',
+    name: 'Mortgage Overpayment Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Mortgage Overpayment Calculator — Save Interest & Pay Off Early',
+    description: 'See how much interest you save and how many months you cut off your mortgage by making extra monthly payments.',
+    keywords: ['mortgage overpayment calculator', 'extra mortgage payment calculator', 'pay off mortgage early'],
+    icon: '🏠',
+    featured: false,
+    inputs: [
+      { name: 'principal', label: 'Loan Amount ($)', type: 'number', placeholder: '300000', min: 1000, max: 10000000, step: 1000, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '6.5', min: 0, max: 20, step: 0.1, required: true },
+      { name: 'years', label: 'Loan Term (Years)', type: 'number', placeholder: '30', min: 1, max: 50, step: 1, required: true },
+      { name: 'extraMonthlyPayment', label: 'Extra Monthly Payment ($)', type: 'number', placeholder: '200', min: 0, max: 100000, step: 50, required: true },
+    ],
+    outputs: [
+      { name: 'standardMonthlyPayment', label: 'Standard Monthly Payment', type: 'currency' },
+      { name: 'newMonthlyPayment', label: 'New Monthly Payment', type: 'currency' },
+      { name: 'monthsSaved', label: 'Months Saved', type: 'number', decimals: 0 },
+      { name: 'interestSaved', label: 'Total Interest Saved', type: 'currency' },
+    ],
+    contentFile: 'mortgage-overpayment-calculator.json',
+    compute: calculateMortgageOverpayment,
+  },
+
+  // ── HEALTH & FITNESS ──────────────────────────────────────────────────────
+  {
+    slug: 'bmi-calculator',
+    name: 'BMI Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'BMI Calculator — Body Mass Index',
+    description: 'Calculate your BMI and healthy weight range. Based on WHO classifications for underweight, normal, overweight, and obese.',
+    keywords: ['BMI calculator', 'body mass index calculator', 'healthy weight calculator'],
+    icon: '⚖️',
+    featured: true,
+    inputs: [
+      { name: 'weightKg', label: 'Weight (kg)', type: 'number', placeholder: '70', min: 10, max: 500, step: 0.5, required: true },
+      { name: 'heightCm', label: 'Height (cm)', type: 'number', placeholder: '175', min: 50, max: 300, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'bmi', label: 'BMI', type: 'number', decimals: 1 },
+      { name: 'category', label: 'BMI Category', type: 'text' },
+      { name: 'healthyWeightMin', label: 'Healthy Weight Min (kg)', type: 'number', decimals: 1 },
+      { name: 'healthyWeightMax', label: 'Healthy Weight Max (kg)', type: 'number', decimals: 1 },
+    ],
+    contentFile: 'bmi-calculator.json',
+    compute: calculateBmi,
+  },
+  {
+    slug: 'body-fat-calculator',
+    name: 'Body Fat Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Body Fat Percentage Calculator (Navy Method)',
+    description: 'Estimate body fat percentage using the U.S. Navy circumference method. Shows fat mass, lean mass, and fitness category.',
+    keywords: ['body fat calculator', 'body fat percentage calculator', 'navy body fat calculator'],
+    icon: '💪',
+    featured: false,
+    inputs: [
+      { name: 'gender', label: 'Gender', type: 'select', required: true, options: [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
+      ]},
+      { name: 'heightCm', label: 'Height (cm)', type: 'number', placeholder: '175', min: 50, max: 300, step: 0.5, required: true },
+      { name: 'neckCm', label: 'Neck Circumference (cm)', type: 'number', placeholder: '37', min: 20, max: 80, step: 0.5, required: true },
+      { name: 'waistCm', label: 'Waist Circumference (cm)', type: 'number', placeholder: '85', min: 40, max: 200, step: 0.5, required: true },
+      { name: 'hipCm', label: 'Hip Circumference (cm, females only)', type: 'number', placeholder: '95', min: 40, max: 200, step: 0.5, required: false },
+      { name: 'weightKg', label: 'Weight (kg)', type: 'number', placeholder: '70', min: 10, max: 500, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'bodyFatPercent', label: 'Body Fat %', type: 'percent', decimals: 1 },
+      { name: 'category', label: 'Fitness Category', type: 'text' },
+      { name: 'fatMassKg', label: 'Fat Mass (kg)', type: 'number', decimals: 1 },
+      { name: 'leanMassKg', label: 'Lean Mass (kg)', type: 'number', decimals: 1 },
+    ],
+    contentFile: 'body-fat-calculator.json',
+    compute: calculateBodyFat,
+  },
+  {
+    slug: 'calorie-calculator',
+    name: 'Calorie Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Calorie Calculator — Daily Calorie Needs (TDEE)',
+    description: 'Calculate your BMR and Total Daily Energy Expenditure (TDEE) using the Mifflin-St Jeor equation.',
+    keywords: ['calorie calculator', 'TDEE calculator', 'BMR calculator', 'daily calorie needs'],
+    icon: '🥗',
+    featured: true,
+    inputs: [
+      { name: 'weightKg', label: 'Weight (kg)', type: 'number', placeholder: '70', min: 10, max: 500, step: 0.5, required: true },
+      { name: 'heightCm', label: 'Height (cm)', type: 'number', placeholder: '175', min: 50, max: 300, step: 0.5, required: true },
+      { name: 'age', label: 'Age (years)', type: 'number', placeholder: '30', min: 15, max: 100, step: 1, required: true },
+      { name: 'gender', label: 'Gender', type: 'select', required: true, options: [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
+      ]},
+      { name: 'activityLevel', label: 'Activity Level', type: 'select', required: true, options: [
+        { value: 'sedentary', label: 'Sedentary (desk job, little exercise)' },
+        { value: 'light', label: 'Lightly Active (light exercise 1–3 days/week)' },
+        { value: 'moderate', label: 'Moderately Active (moderate exercise 3–5 days/week)' },
+        { value: 'active', label: 'Active (hard exercise 6–7 days/week)' },
+        { value: 'veryActive', label: 'Very Active (physical labor or twice-daily training)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'bmr', label: 'Basal Metabolic Rate (BMR)', type: 'number', decimals: 0, unit: 'cal' },
+      { name: 'tdee', label: 'Total Daily Energy Expenditure (TDEE)', type: 'number', decimals: 0, unit: 'cal' },
+      { name: 'weightLoss', label: 'Calorie Target (Weight Loss)', type: 'number', decimals: 0, unit: 'cal' },
+      { name: 'weightGain', label: 'Calorie Target (Weight Gain)', type: 'number', decimals: 0, unit: 'cal' },
+    ],
+    contentFile: 'calorie-calculator.json',
+    compute: calculateCalories,
+  },
+  {
+    slug: 'water-intake-calculator',
+    name: 'Water Intake Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Daily Water Intake Calculator',
+    description: 'Calculate your recommended daily water intake based on body weight and activity level.',
+    keywords: ['water intake calculator', 'daily water calculator', 'hydration calculator'],
+    icon: '💧',
+    featured: false,
+    inputs: [
+      { name: 'weightLbs', label: 'Weight (lbs)', type: 'number', placeholder: '154', min: 20, max: 1000, step: 1, required: true },
+      { name: 'activityLevel', label: 'Activity Level', type: 'select', required: true, options: [
+        { value: 'sedentary', label: 'Sedentary' },
+        { value: 'light', label: 'Lightly Active' },
+        { value: 'moderate', label: 'Moderately Active' },
+        { value: 'active', label: 'Active' },
+        { value: 'veryActive', label: 'Very Active' },
+      ]},
+    ],
+    outputs: [
+      { name: 'dailyOunces', label: 'Daily Intake (oz)', type: 'number', decimals: 0 },
+      { name: 'dailyCups', label: 'Daily Intake (cups)', type: 'number', decimals: 1 },
+      { name: 'dailyLiters', label: 'Daily Intake (liters)', type: 'number', decimals: 2 },
+      { name: 'dailyMilliliters', label: 'Daily Intake (ml)', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'water-intake-calculator.json',
+    compute: calculateWaterIntake,
+  },
+  {
+    slug: 'protein-intake-calculator',
+    name: 'Protein Intake Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Daily Protein Intake Calculator',
+    description: 'Calculate your optimal daily protein intake based on weight, activity level, and fitness goals.',
+    keywords: ['protein intake calculator', 'daily protein calculator', 'protein requirement calculator'],
+    icon: '🥩',
+    featured: false,
+    inputs: [
+      { name: 'weightKg', label: 'Weight (kg)', type: 'number', placeholder: '70', min: 10, max: 500, step: 0.5, required: true },
+      { name: 'activityLevel', label: 'Activity Level', type: 'select', required: true, options: [
+        { value: 'sedentary', label: 'Sedentary' },
+        { value: 'light', label: 'Lightly Active' },
+        { value: 'moderate', label: 'Moderately Active' },
+        { value: 'active', label: 'Active' },
+        { value: 'veryActive', label: 'Very Active / Athlete' },
+      ]},
+      { name: 'goal', label: 'Primary Goal', type: 'select', required: true, options: [
+        { value: 'general', label: 'General Health' },
+        { value: 'weightLoss', label: 'Weight Loss' },
+        { value: 'muscleGain', label: 'Muscle Gain' },
+        { value: 'performance', label: 'Athletic Performance' },
+      ]},
+    ],
+    outputs: [
+      { name: 'minProteinG', label: 'Minimum Protein (g/day)', type: 'number', decimals: 0 },
+      { name: 'maxProteinG', label: 'Maximum Protein (g/day)', type: 'number', decimals: 0 },
+      { name: 'recommendedProteinG', label: 'Recommended Protein (g/day)', type: 'number', decimals: 0 },
+      { name: 'gramsPerMeal', label: 'Per Meal Target (3–4 meals)', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'protein-intake-calculator.json',
+    compute: calculateProteinIntake,
+  },
+  {
+    slug: 'budget-calculator',
+    name: 'Budget Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Monthly Budget Calculator — Track Income vs. Expenses',
+    description: 'Calculate your monthly budget surplus or deficit. Track spending across 7 categories and find your savings rate.',
+    keywords: ['budget calculator', 'monthly budget calculator', 'budget planner', 'savings rate calculator'],
+    icon: '📊',
+    featured: true,
+    inputs: [
+      { name: 'monthlyIncome', label: 'Monthly Take-Home Income ($)', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
+      { name: 'housing', label: 'Housing (rent/mortgage) ($)', type: 'number', placeholder: '1500', min: 0, max: 100000, step: 50, required: true },
+      { name: 'transportation', label: 'Transportation ($)', type: 'number', placeholder: '400', min: 0, max: 100000, step: 25, required: true },
+      { name: 'food', label: 'Food (groceries + dining) ($)', type: 'number', placeholder: '600', min: 0, max: 100000, step: 25, required: true },
+      { name: 'utilities', label: 'Utilities ($)', type: 'number', placeholder: '200', min: 0, max: 10000, step: 10, required: true },
+      { name: 'entertainment', label: 'Entertainment ($)', type: 'number', placeholder: '150', min: 0, max: 10000, step: 10, required: true },
+      { name: 'savings', label: 'Savings / Investments ($)', type: 'number', placeholder: '500', min: 0, max: 100000, step: 25, required: true },
+      { name: 'other', label: 'Other Expenses ($)', type: 'number', placeholder: '200', min: 0, max: 100000, step: 25, required: true },
+    ],
+    outputs: [
+      { name: 'totalExpenses', label: 'Total Expenses', type: 'currency' },
+      { name: 'surplus', label: 'Monthly Surplus / Deficit', type: 'currency' },
+      { name: 'savingsRate', label: 'Savings Rate', type: 'percent', decimals: 1 },
+      { name: 'housingPercent', label: 'Housing % of Income', type: 'percent', decimals: 1 },
+    ],
+    contentFile: 'budget-calculator.json',
+    compute: calculateBudget,
+  },
+
+  // ── PETS ──────────────────────────────────────────────────────────────────
+  {
+    slug: 'cat-age-calculator',
+    name: 'Cat Age Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Cat Age Calculator — Cat Years to Human Years',
+    description: 'Convert your cat\'s age to human years using the veterinary life stage formula. Discover your cat\'s life stage.',
+    keywords: ['cat age calculator', 'cat years to human years', 'cat age in human years'],
+    icon: '🐱',
+    featured: false,
+    inputs: [
+      { name: 'humanYears', label: 'Cat\'s Age (years)', type: 'number', placeholder: '5', min: 0.25, max: 30, step: 0.25, required: true },
+    ],
+    outputs: [
+      { name: 'catYears', label: 'Human-Equivalent Age', type: 'number', decimals: 0 },
+      { name: 'lifeStage', label: 'Life Stage', type: 'text' },
+    ],
+    contentFile: 'cat-age-calculator.json',
+    compute: calculateCatAge,
+  },
+  {
+    slug: 'dog-age-calculator',
+    name: 'Dog Age Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Dog Age Calculator — Dog Years to Human Years',
+    description: 'Convert your dog\'s age to human years using the veterinary formula. Discover your dog\'s life stage and care needs.',
+    keywords: ['dog age calculator', 'dog years to human years', 'dog age in human years'],
+    icon: '🐶',
+    featured: false,
+    inputs: [
+      { name: 'humanYears', label: 'Dog\'s Age (years)', type: 'number', placeholder: '5', min: 0.25, max: 25, step: 0.25, required: true },
+    ],
+    outputs: [
+      { name: 'dogYears', label: 'Human-Equivalent Age', type: 'number', decimals: 0 },
+      { name: 'lifeStage', label: 'Life Stage', type: 'text' },
+    ],
+    contentFile: 'dog-age-calculator.json',
+    compute: calculateDogAge,
+  },
+  {
+    slug: 'pet-food-calculator',
+    name: 'Pet Food Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Pet Food Calculator — How Much to Feed Your Pet',
+    description: 'Calculate how much to feed your dog or cat daily based on weight, activity level, and food calorie density.',
+    keywords: ['pet food calculator', 'dog food calculator', 'cat food calculator', 'how much to feed dog'],
+    icon: '🐾',
+    featured: false,
+    inputs: [
+      { name: 'petWeightKg', label: 'Pet\'s Weight (kg)', type: 'number', placeholder: '10', min: 0.5, max: 100, step: 0.5, required: true },
+      { name: 'activityLevel', label: 'Activity Level', type: 'select', required: true, options: [
+        { value: 'low', label: 'Low (senior, mostly indoors)' },
+        { value: 'moderate', label: 'Moderate (average adult pet)' },
+        { value: 'active', label: 'Active (daily exercise)' },
+        { value: 'veryActive', label: 'Very Active (sporting/working dog)' },
+      ]},
+      { name: 'foodCaloriesPer100g', label: 'Food Calories per 100g (kcal)', type: 'number', placeholder: '350', min: 50, max: 600, step: 5, required: true },
+    ],
+    outputs: [
+      { name: 'dailyCalories', label: 'Daily Calories Needed (kcal)', type: 'number', decimals: 0 },
+      { name: 'dailyGrams', label: 'Daily Food (grams)', type: 'number', decimals: 0 },
+      { name: 'dailyCups', label: 'Daily Food (cups)', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'pet-food-calculator.json',
+    compute: calculatePetFood,
+  },
+
+  // ── BUSINESS & CREATOR ────────────────────────────────────────────────────
+  {
+    slug: 'youtube-money-calculator',
+    name: 'YouTube Money Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'YouTube Money Calculator — Estimate Channel Earnings',
+    description: 'Estimate YouTube ad revenue based on monthly views and RPM. See monthly and annual earnings potential.',
+    keywords: ['YouTube money calculator', 'YouTube earnings calculator', 'YouTube RPM calculator'],
+    icon: '📺',
+    featured: true,
+    inputs: [
+      { name: 'monthlyViews', label: 'Monthly Views', type: 'number', placeholder: '100000', min: 1, max: 1000000000, step: 1000, required: true },
+      { name: 'rpm', label: 'RPM (Revenue Per 1,000 Views, $)', type: 'number', placeholder: '5', min: 0.1, max: 100, step: 0.1, required: true },
+    ],
+    outputs: [
+      { name: 'monthlyEarnings', label: 'Monthly Earnings', type: 'currency' },
+      { name: 'annualEarnings', label: 'Annual Earnings', type: 'currency' },
+      { name: 'earningsPer1000Views', label: 'Earnings Per 1,000 Views', type: 'currency' },
+    ],
+    contentFile: 'youtube-money-calculator.json',
+    compute: calculateYoutubeMoney,
+  },
+
+  // ── HOME & DIY ─────────────────────────────────────────────────────────────
+  {
+    slug: 'room-size-calculator',
+    name: 'Room Size Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Room Size Calculator — Square Footage & Measurements',
+    description: 'Calculate room area in square feet, square meters, and square yards from length and width measurements.',
+    keywords: ['room size calculator', 'square footage calculator', 'room area calculator'],
+    icon: '📐',
+    featured: false,
+    inputs: [
+      { name: 'length', label: 'Room Length (ft)', type: 'number', placeholder: '15', min: 1, max: 1000, step: 0.5, required: true },
+      { name: 'width', label: 'Room Width (ft)', type: 'number', placeholder: '12', min: 1, max: 1000, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'squareFeet', label: 'Square Feet', type: 'number', decimals: 1 },
+      { name: 'squareMeters', label: 'Square Meters', type: 'number', decimals: 2 },
+      { name: 'squareYards', label: 'Square Yards', type: 'number', decimals: 2 },
+      { name: 'perimeter', label: 'Perimeter (ft)', type: 'number', decimals: 1 },
+    ],
+    contentFile: 'room-size-calculator.json',
+    compute: calculateRoomSize,
+  },
+  {
+    slug: 'paint-calculator',
+    name: 'Paint Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Paint Calculator — How Many Gallons for Any Room',
+    description: 'Calculate exactly how many gallons of paint you need based on room dimensions, ceiling height, and number of coats.',
+    keywords: ['paint calculator', 'how much paint do I need', 'gallons of paint calculator'],
+    icon: '🎨',
+    featured: false,
+    inputs: [
+      { name: 'roomLength', label: 'Room Length (ft)', type: 'number', placeholder: '14', min: 1, max: 1000, step: 0.5, required: true },
+      { name: 'roomWidth', label: 'Room Width (ft)', type: 'number', placeholder: '12', min: 1, max: 1000, step: 0.5, required: true },
+      { name: 'ceilingHeight', label: 'Ceiling Height (ft)', type: 'number', placeholder: '8', min: 6, max: 30, step: 0.5, required: true },
+      { name: 'numberOfCoats', label: 'Number of Coats', type: 'number', placeholder: '2', min: 1, max: 5, step: 1, required: true },
+      { name: 'coveragePerGallon', label: 'Coverage per Gallon (sq ft)', type: 'number', placeholder: '400', min: 100, max: 600, step: 10, required: true },
+    ],
+    outputs: [
+      { name: 'gallonsNeeded', label: 'Gallons Needed', type: 'number', decimals: 1 },
+      { name: 'wallArea', label: 'Total Wall Area (sq ft)', type: 'number', decimals: 0 },
+      { name: 'totalAreaToPaint', label: 'Total Area to Paint (sq ft)', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'paint-calculator.json',
+    compute: calculatePaint,
+  },
+  {
+    slug: 'tile-calculator',
+    name: 'Tile Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Tile Calculator — How Many Tiles Do I Need?',
+    description: 'Calculate the number of tiles needed for any floor or wall project with a customizable waste factor.',
+    keywords: ['tile calculator', 'how many tiles do I need', 'floor tile calculator'],
+    icon: '🔲',
+    featured: false,
+    inputs: [
+      { name: 'roomLength', label: 'Room Length (ft)', type: 'number', placeholder: '10', min: 0.5, max: 1000, step: 0.5, required: true },
+      { name: 'roomWidth', label: 'Room Width (ft)', type: 'number', placeholder: '8', min: 0.5, max: 1000, step: 0.5, required: true },
+      { name: 'tileLength', label: 'Tile Length (inches)', type: 'number', placeholder: '12', min: 1, max: 120, step: 0.5, required: true },
+      { name: 'tileWidth', label: 'Tile Width (inches)', type: 'number', placeholder: '12', min: 1, max: 120, step: 0.5, required: true },
+      { name: 'wasteFactor', label: 'Waste Factor (%)', type: 'number', placeholder: '10', min: 0, max: 30, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'tilesNeeded', label: 'Tiles Needed', type: 'number', decimals: 0 },
+      { name: 'roomArea', label: 'Room Area (sq ft)', type: 'number', decimals: 1 },
+      { name: 'tileArea', label: 'Tile Area (sq ft)', type: 'number', decimals: 3 },
+      { name: 'squareFeetNeeded', label: 'Total Sq Ft Needed (with waste)', type: 'number', decimals: 1 },
+    ],
+    contentFile: 'tile-calculator.json',
+    compute: calculateTiles,
+  },
+  {
+    slug: 'flooring-calculator',
+    name: 'Flooring Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Flooring Calculator — Square Footage Needed',
+    description: 'Calculate square footage of flooring needed with waste factor. Results in sq ft, sq yards, and sq meters.',
+    keywords: ['flooring calculator', 'square footage calculator flooring', 'how much flooring do I need'],
+    icon: '🏡',
+    featured: false,
+    inputs: [
+      { name: 'roomLength', label: 'Room Length (ft)', type: 'number', placeholder: '15', min: 0.5, max: 1000, step: 0.5, required: true },
+      { name: 'roomWidth', label: 'Room Width (ft)', type: 'number', placeholder: '12', min: 0.5, max: 1000, step: 0.5, required: true },
+      { name: 'wasteFactor', label: 'Waste Factor (%)', type: 'number', placeholder: '10', min: 0, max: 30, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'roomArea', label: 'Room Area (sq ft)', type: 'number', decimals: 1 },
+      { name: 'squareFeetNeeded', label: 'Sq Ft Needed (with waste)', type: 'number', decimals: 1 },
+      { name: 'squareYardsNeeded', label: 'Sq Yards Needed', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'flooring-calculator.json',
+    compute: calculateFlooring,
+  },
+  {
+    slug: 'wallpaper-calculator',
+    name: 'Wallpaper Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Wallpaper Calculator — How Many Rolls Do I Need?',
+    description: 'Calculate wallpaper rolls needed for any room based on wall dimensions, height, and roll coverage.',
+    keywords: ['wallpaper calculator', 'how many rolls of wallpaper', 'wallpaper estimator'],
+    icon: '🖼️',
+    featured: false,
+    inputs: [
+      { name: 'roomLength', label: 'Room Length (ft)', type: 'number', placeholder: '14', min: 1, max: 500, step: 0.5, required: true },
+      { name: 'roomWidth', label: 'Room Width (ft)', type: 'number', placeholder: '12', min: 1, max: 500, step: 0.5, required: true },
+      { name: 'wallHeight', label: 'Wall Height (ft)', type: 'number', placeholder: '8', min: 5, max: 30, step: 0.5, required: true },
+      { name: 'rollCoverage', label: 'Roll Coverage (sq ft)', type: 'number', placeholder: '56', min: 10, max: 200, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'wallArea', label: 'Total Wall Area (sq ft)', type: 'number', decimals: 0 },
+      { name: 'rollsNeeded', label: 'Rolls Needed', type: 'number', decimals: 0 },
+      { name: 'squareFeetNeeded', label: 'Square Feet Needed', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'wallpaper-calculator.json',
+    compute: calculateWallpaper,
+  },
+  {
+    slug: 'fence-calculator',
+    name: 'Fence Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Fence Calculator — Panels & Posts Needed',
+    description: 'Calculate fence panels, posts, and total perimeter for any yard. Includes gate allowances and post count.',
+    keywords: ['fence calculator', 'fence panel calculator', 'fence post calculator', 'how much fence do I need'],
+    icon: '🏗️',
+    featured: false,
+    inputs: [
+      { name: 'length', label: 'Yard Length (ft)', type: 'number', placeholder: '80', min: 1, max: 10000, step: 1, required: true },
+      { name: 'width', label: 'Yard Width (ft)', type: 'number', placeholder: '60', min: 1, max: 10000, step: 1, required: true },
+      { name: 'panelLength', label: 'Panel Length (ft)', type: 'number', placeholder: '8', min: 2, max: 20, step: 1, required: true },
+      { name: 'numberOfGates', label: 'Number of Gates', type: 'number', placeholder: '1', min: 0, max: 20, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'perimeter', label: 'Total Perimeter (ft)', type: 'number', decimals: 0 },
+      { name: 'panelsNeeded', label: 'Fence Panels Needed', type: 'number', decimals: 0 },
+      { name: 'postsNeeded', label: 'Posts Needed', type: 'number', decimals: 0 },
+      { name: 'totalFenceLength', label: 'Total Fence Length (ft)', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'fence-calculator.json',
+    compute: calculateFence,
+  },
+  {
+    slug: 'concrete-calculator',
+    name: 'Concrete Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Concrete Calculator — Cubic Yards & Bags',
+    description: 'Calculate cubic yards of concrete needed for slabs, patios, and walkways. Shows cubic feet and number of bags.',
+    keywords: ['concrete calculator', 'how much concrete do I need', 'cubic yards concrete calculator'],
+    icon: '🧱',
+    featured: false,
+    inputs: [
+      { name: 'length', label: 'Length (ft)', type: 'number', placeholder: '10', min: 0.5, max: 10000, step: 0.5, required: true },
+      { name: 'width', label: 'Width (ft)', type: 'number', placeholder: '10', min: 0.5, max: 10000, step: 0.5, required: true },
+      { name: 'depth', label: 'Depth / Thickness (inches)', type: 'number', placeholder: '4', min: 0.5, max: 24, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'cubicYards', label: 'Cubic Yards', type: 'number', decimals: 2 },
+      { name: 'cubicFeet', label: 'Cubic Feet', type: 'number', decimals: 2 },
+      { name: 'bags60lb', label: '60-lb Bags Needed', type: 'number', decimals: 0 },
+      { name: 'bags80lb', label: '80-lb Bags Needed', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'concrete-calculator.json',
+    compute: calculateConcrete,
+  },
+  {
+    slug: 'gravel-calculator',
+    name: 'Gravel Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Gravel Calculator — Cubic Yards & Tons',
+    description: 'Calculate how much gravel you need in cubic yards and tons for driveways, paths, and landscaping projects.',
+    keywords: ['gravel calculator', 'how much gravel do I need', 'cubic yards gravel calculator'],
+    icon: '🪨',
+    featured: false,
+    inputs: [
+      { name: 'length', label: 'Length (ft)', type: 'number', placeholder: '30', min: 0.5, max: 10000, step: 0.5, required: true },
+      { name: 'width', label: 'Width (ft)', type: 'number', placeholder: '10', min: 0.5, max: 10000, step: 0.5, required: true },
+      { name: 'depth', label: 'Depth (inches)', type: 'number', placeholder: '4', min: 0.5, max: 24, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'cubicYards', label: 'Cubic Yards', type: 'number', decimals: 2 },
+      { name: 'tons', label: 'Tons (approximate)', type: 'number', decimals: 2 },
+      { name: 'cubicFeet', label: 'Cubic Feet', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'gravel-calculator.json',
+    compute: calculateGravel,
+  },
+  {
+    slug: 'mulch-calculator',
+    name: 'Mulch Calculator',
+    category: 'home-diy',
+    kind: 'calculator',
+    title: 'Mulch Calculator — Cubic Yards & Bags',
+    description: 'Calculate how much mulch you need for garden beds in cubic yards and bags based on area and desired depth.',
+    keywords: ['mulch calculator', 'how much mulch do I need', 'cubic yards mulch calculator'],
+    icon: '🌱',
+    featured: false,
+    inputs: [
+      { name: 'area', label: 'Garden Bed Area (sq ft)', type: 'number', placeholder: '200', min: 1, max: 100000, step: 10, required: true },
+      { name: 'depth', label: 'Desired Depth (inches)', type: 'number', placeholder: '3', min: 0.5, max: 12, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'cubicYards', label: 'Cubic Yards', type: 'number', decimals: 2 },
+      { name: 'cubicFeet', label: 'Cubic Feet', type: 'number', decimals: 2 },
+      { name: 'bags2CuFt', label: '2-cu-ft Bags Needed', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'mulch-calculator.json',
+    compute: calculateMulch,
+  },
+  {
+    slug: 'appliance-energy-cost-calculator',
+    name: 'Appliance Energy Cost Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Appliance Energy Cost Calculator — Running Cost Per Day',
+    description: 'Calculate how much any appliance costs to run per day, month, and year based on wattage and usage hours.',
+    keywords: ['appliance energy cost calculator', 'electricity cost calculator', 'running cost calculator'],
+    icon: '🔌',
+    featured: false,
+    inputs: [
+      { name: 'watts', label: 'Appliance Wattage (W)', type: 'number', placeholder: '1500', min: 1, max: 50000, step: 10, required: true },
+      { name: 'hoursPerDay', label: 'Hours Used Per Day', type: 'number', placeholder: '4', min: 0.1, max: 24, step: 0.5, required: true },
+      { name: 'daysPerMonth', label: 'Days Per Month', type: 'number', placeholder: '30', min: 1, max: 31, step: 1, required: true },
+      { name: 'kwhRate', label: 'Electricity Rate ($/kWh)', type: 'number', placeholder: '0.13', min: 0.01, max: 2, step: 0.01, required: true },
+    ],
+    outputs: [
+      { name: 'dailyCost', label: 'Daily Cost', type: 'currency' },
+      { name: 'monthlyCost', label: 'Monthly Cost', type: 'currency' },
+      { name: 'annualCost', label: 'Annual Cost', type: 'currency' },
+      { name: 'monthlyKwh', label: 'Monthly kWh Usage', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'appliance-energy-cost-calculator.json',
+    compute: calculateApplianceEnergy,
+  },
+
+  // ── EVERYDAY UTILITIES — INTERACTIVE ─────────────────────────────────────
+  {
+    slug: 'countdown-timer',
+    name: 'Countdown Timer',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Online Countdown Timer',
+    description: 'Set a countdown timer for any duration. Start, pause, and reset with a click.',
+    keywords: ['countdown timer', 'online timer', 'free timer', 'countdown clock'],
+    icon: '⏱️',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'countdown-timer.json',
+    customComponent: 'countdown-timer',
+  },
+  {
+    slug: 'qr-code-generator',
+    name: 'QR Code Generator',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free QR Code Generator — Create QR Codes Instantly',
+    description: 'Generate QR codes from any URL or text. Download as PNG for free.',
+    keywords: ['qr code generator', 'create qr code', 'free qr code', 'qr code maker'],
+    icon: '📱',
+    featured: true,
+    inputs: [],
+    outputs: [],
+    contentFile: 'qr-code-generator.json',
+    customComponent: 'qr-code-generator',
+  },
+  {
+    slug: 'spin-the-wheel',
+    name: 'Spin the Wheel',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Spin the Wheel — Free Random Decision Maker',
+    description: 'Add your options and spin the wheel for a random result. Great for decisions, games, and giveaways.',
+    keywords: ['spin the wheel', 'random wheel', 'decision wheel', 'wheel spinner'],
+    icon: '🎡',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'spin-the-wheel.json',
+    customComponent: 'spin-the-wheel',
+  },
+  {
+    slug: 'password-generator',
+    name: 'Password Generator',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Strong Password Generator',
+    description: 'Generate secure random passwords with custom length and character sets.',
+    keywords: ['password generator', 'random password', 'strong password', 'secure password'],
+    icon: '🔐',
+    featured: true,
+    inputs: [],
+    outputs: [],
+    contentFile: 'password-generator.json',
+    customComponent: 'password-generator',
+  },
+  {
+    slug: 'username-generator',
+    name: 'Username Generator',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Username Generator — Creative Unique Usernames',
+    description: 'Generate unique usernames instantly for gaming, social media, or any platform.',
+    keywords: ['username generator', 'random username', 'unique username', 'name generator'],
+    icon: '👤',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'username-generator.json',
+    customComponent: 'username-generator',
+  },
+  {
+    slug: 'fake-address-generator',
+    name: 'Fake Address Generator',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Fake Address Generator — Random US Addresses',
+    description: 'Generate realistic fake US addresses for testing, forms, or development.',
+    keywords: ['fake address generator', 'random address', 'dummy address', 'test address'],
+    icon: '📍',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'fake-address-generator.json',
+    customComponent: 'fake-address-generator',
+  },
+  {
+    slug: 'word-counter',
+    name: 'Word Counter',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Word Counter — Count Words & Characters Online',
+    description: 'Count words, characters, sentences, and estimate reading time instantly.',
+    keywords: ['word counter', 'character counter', 'word count tool', 'text counter'],
+    icon: '📝',
+    featured: true,
+    inputs: [],
+    outputs: [],
+    contentFile: 'word-counter.json',
+    customComponent: 'word-counter',
+  },
+  {
+    slug: 'character-counter',
+    name: 'Character Counter',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Character Counter — Count Characters Online',
+    description: 'Count characters with and without spaces. Perfect for Twitter, SMS, and forms with limits.',
+    keywords: ['character counter', 'char count', 'letter counter', 'text length'],
+    icon: '🔢',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'character-counter.json',
+    customComponent: 'character-counter',
+  },
+  {
+    slug: 'case-converter',
+    name: 'Case Converter',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Case Converter — UPPER, lower, Title, camelCase',
+    description: 'Convert text between uppercase, lowercase, title case, camelCase, and snake_case instantly.',
+    keywords: ['case converter', 'text case converter', 'uppercase converter', 'camelcase converter'],
+    icon: '🔤',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'case-converter.json',
+    customComponent: 'case-converter',
+  },
+  {
+    slug: 'binary-to-text',
+    name: 'Binary to Text Converter',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Binary to Text Converter Online',
+    description: 'Convert binary code to readable ASCII text instantly. Supports space-separated binary input.',
+    keywords: ['binary to text', 'binary converter', 'binary decoder', 'binary translator'],
+    icon: '💻',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'binary-to-text.json',
+    customComponent: 'binary-to-text',
+  },
+  {
+    slug: 'text-to-binary',
+    name: 'Text to Binary Converter',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Text to Binary Converter Online',
+    description: 'Convert any text or ASCII characters to binary code instantly.',
+    keywords: ['text to binary', 'ascii to binary', 'binary encoder', 'binary code converter'],
+    icon: '🖥️',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'text-to-binary.json',
+    customComponent: 'text-to-binary',
+  },
+  {
+    slug: 'random-name-picker',
+    name: 'Random Name Picker',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Free Random Name Picker — Pick a Random Name Online',
+    description: 'Enter a list of names and randomly pick one. Great for raffle draws, classroom picks, and giveaways.',
+    keywords: ['random name picker', 'name picker', 'random picker', 'name selector'],
+    icon: '🎲',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'random-name-picker.json',
+    customComponent: 'random-name-picker',
+  },
+  {
+    slug: 'date-difference',
+    name: 'Date Difference Calculator',
+    category: 'everyday-utilities',
+    kind: 'interactive',
+    title: 'Date Difference Calculator — Days Between Two Dates',
+    description: 'Calculate the number of days, weeks, months, or years between any two dates.',
+    keywords: ['date difference calculator', 'days between dates', 'date calculator', 'days counter'],
+    icon: '📅',
+    featured: false,
+    inputs: [],
+    outputs: [],
+    contentFile: 'date-difference.json',
+    customComponent: 'date-difference',
+  },
 ];
+
+// ── Helpers ─────────────────────────────────────────────────────────────────
 
 export function getToolBySlug(slug: string): ToolConfig | undefined {
   return TOOLS.find((tool) => tool.slug === slug);
@@ -372,6 +1441,25 @@ export function getToolsByCategory(category: string): ToolConfig[] {
   return TOOLS.filter((tool) => tool.category === category);
 }
 
+/** Alias for getToolsByCategory using explicit slug terminology */
+export function getToolsByCategorySlug(slug: string): ToolConfig[] {
+  return getToolsByCategory(slug);
+}
+
 export function getAllCategories(): string[] {
   return Array.from(new Set(TOOLS.map((tool) => tool.category)));
+}
+
+export function getPopularTools(limit = 6): ToolConfig[] {
+  return TOOLS.filter((t) => t.featured).slice(0, limit);
+}
+
+export function getRecentTools(limit = 4): ToolConfig[] {
+  return [...TOOLS].reverse().slice(0, limit);
+}
+
+export function getRelatedTools(slug: string, limit = 3): ToolConfig[] {
+  const tool = getToolBySlug(slug);
+  if (!tool) return [];
+  return TOOLS.filter((t) => t.category === tool.category && t.slug !== slug).slice(0, limit);
 }

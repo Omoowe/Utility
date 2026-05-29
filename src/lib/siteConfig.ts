@@ -1,6 +1,9 @@
+import { CATEGORIES } from './data/categories';
+
 export const siteConfig = {
   name: 'ToolNest',
-  description: 'Free online calculators for finance, health, home, and more.',
+  description:
+    'Free online calculators and utility tools for finance, health, home, and everyday use.',
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://toolnest.vercel.app',
   author: 'ToolNest',
   email: 'support@toolnest.com',
@@ -11,15 +14,13 @@ export const siteConfig = {
   },
   navigation: [
     { name: 'Home', href: '/' },
-    { name: 'Calculators', href: '/calculators' },
+    { name: 'All Tools', href: '/calculators' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ],
-  categories: [
-    { slug: 'finance', name: 'Finance', description: 'Financial calculators' },
-    { slug: 'health', name: 'Health', description: 'Health and fitness calculators' },
-    { slug: 'home', name: 'Home', description: 'Home and property calculators' },
-  ],
+  get categories() {
+    return CATEGORIES;
+  },
 };
 
 export type SiteConfig = typeof siteConfig;

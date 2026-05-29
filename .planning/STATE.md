@@ -1,3 +1,16 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: planning
+last_updated: "2026-05-28T11:00:09.320Z"
+progress:
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+---
+
 # PROJECT STATE: ToolNest
 
 **Last Updated:** 2026-05-27 (initial planning)
@@ -9,6 +22,7 @@
 ## CURRENT PHASE
 
 **Phase 1: MVP Launch (Week 1)**
+
 - Status: Planned, not started
 - Timeline: Target end of Week 1 (2026-06-05)
 - Key deliverables: 7 calculators + 6 essential pages live on Vercel
@@ -39,11 +53,13 @@
 ## NEXT IMMEDIATE ACTION
 
 **Option A (Recommended):** Start Phase 1 planning with `/gsd-plan-phase 1`
+
 - Generates day-by-day task breakdown
 - Creates checklist for Phase 1 execution
 - Ready to start coding immediately
 
 **Option B:** Generate full project skeleton now
+
 - Create GitHub repo structure
 - Generate all component scaffolding
 - Pre-generate content JSON templates
@@ -64,23 +80,27 @@
 ## METRICS TO TRACK (Phase 2+)
 
 **Week 2 Checklist:**
+
 - [ ] Phase 1 shipped to Vercel
 - [ ] AdSense application submitted
 - [ ] Google Search Console set up
 - [ ] Initial indexation status (should show 20-30 pages)
 
 **Week 4 (End of Phase 2):**
+
 - [ ] 15+ calculators live
 - [ ] Google Search Console: 30-50 pages indexed
 - [ ] Organic traffic: Expect 0-50 visits (SEO still early)
 - [ ] AdSense status: Approved or rejection feedback received
 
 **Week 8 (Phase 3):**
+
 - [ ] 30-50 tools live (mix of single + variations)
 - [ ] Organic traffic: 50-500 visits/month (some tools starting to rank)
 - [ ] AdSense revenue: $5-50/month (depending on traffic)
 
 **Month 6:**
+
 - [ ] 50+ tools live
 - [ ] Organic traffic: 10K+/month target
 - [ ] AdSense revenue: $200-500/month target
@@ -104,10 +124,12 @@
 **Current:** None
 **Phase 1:** None (greenfield)
 **Phase 2:** 
+
 - AdSense approval (must be approved before aggressive monetization)
 - Google indexation (need to see pages in GSC before measuring SEO)
 
 **Phase 3:**
+
 - Database (if implementing user favorites)
 - Email service (if implementing newsletter)
 
@@ -116,12 +138,14 @@
 ## OWNER NOTES
 
 **Why this project matters:**
+
 - Validates passive income + SEO fundamentals
 - Builds portfolio: "Built SEO calculator site ranked for 100+ keywords, 10K+ organic visits"
 - Scalable: Can expand to 100+ tools with programmatic variations
 - Low risk: No client, no deadline pressure, learn as you go
 
 **Success looks like:**
+
 - Week 1: MVP shipped + working
 - Week 4: AdSense approved, first organic visitors
 - Month 6: $300/month revenue + 10K visits/month
