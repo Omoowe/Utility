@@ -39,6 +39,16 @@ Thumbs.db
 # SQLite / RuVector
 ruvector.db
 *.db
+*.rvf
+*.rvf.lock
+
+# Graphify output
+graphify-out/
+
+# Claude Code / claude-flow internals
+.claude/
+.claude-flow/
+.mcp.json
 
 # Deployment
 vercel.json
