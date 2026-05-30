@@ -40,6 +40,14 @@ import { calculateApplianceEnergy } from '../calculators/appliance-energy-cost';
 import { calculateTemperatureConverter } from '../calculators/temperature-converter';
 import { calculateLengthConverter } from '../calculators/length-converter';
 import { calculateWeightConverter } from '../calculators/weight-converter';
+import { calculateMarkup } from '../calculators/markup-calculator';
+import { calculateBreakEven } from '../calculators/break-even-calculator';
+import { calculateFreelanceRate } from '../calculators/freelance-rate-calculator';
+import { calculateCpm } from '../calculators/cpm-calculator';
+import { calculateInvoice } from '../calculators/invoice-calculator';
+import { calculateAquariumVolume } from '../calculators/aquarium-volume-calculator';
+import { calculateDogFood } from '../calculators/dog-food-calculator';
+import { calculateCatFood } from '../calculators/cat-food-calculator';
 
 export interface CalculatorInput {
   name: string;
@@ -1530,6 +1538,216 @@ export const TOOLS: ToolConfig[] = [
     ],
     contentFile: 'weight-converter.json',
     compute: calculateWeightConverter,
+  },
+
+  // ── BUSINESS & CREATOR ────────────────────────────────────────────────────
+  {
+    slug: 'markup-calculator',
+    name: 'Markup Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Markup Calculator — Cost to Selling Price',
+    description: 'Calculate the selling price, gross profit, and gross margin from a cost price and markup percentage. Essential for pricing products and services.',
+    keywords: ['markup calculator', 'selling price calculator', 'profit margin', 'gross margin'],
+    icon: '💰',
+    featured: true,
+    inputs: [
+      { name: 'costPrice',     label: 'Cost Price ($)',    type: 'number', placeholder: '50',  min: 0.01, step: 0.01, required: true },
+      { name: 'markupPercent', label: 'Markup (%)',        type: 'number', placeholder: '50',  min: 0,    step: 0.1,  required: true },
+    ],
+    outputs: [
+      { name: 'sellingPrice',      label: 'Selling Price',      type: 'currency' },
+      { name: 'grossProfit',       label: 'Gross Profit',       type: 'currency' },
+      { name: 'grossMarginPercent',label: 'Gross Margin',       type: 'percent', decimals: 2 },
+    ],
+    contentFile: 'markup-calculator.json',
+    compute: calculateMarkup,
+  },
+  {
+    slug: 'break-even-calculator',
+    name: 'Break-Even Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Break-Even Calculator — Units & Revenue',
+    description: 'Find out how many units you need to sell to cover costs. Enter fixed costs, variable cost per unit, and selling price to calculate your break-even point.',
+    keywords: ['break even calculator', 'break even point', 'break even analysis', 'fixed costs'],
+    icon: '⚖️',
+    featured: true,
+    inputs: [
+      { name: 'fixedCosts',          label: 'Fixed Costs ($)',              type: 'number', placeholder: '10000', min: 0,    step: 1,    required: true },
+      { name: 'variableCostPerUnit', label: 'Variable Cost per Unit ($)',   type: 'number', placeholder: '20',    min: 0,    step: 0.01, required: true },
+      { name: 'sellingPricePerUnit', label: 'Selling Price per Unit ($)',   type: 'number', placeholder: '50',    min: 0.01, step: 0.01, required: true },
+    ],
+    outputs: [
+      { name: 'breakEvenUnits',        label: 'Break-Even Units',         type: 'number', decimals: 0 },
+      { name: 'breakEvenRevenue',      label: 'Break-Even Revenue',       type: 'currency' },
+      { name: 'contributionMargin',    label: 'Contribution Margin',      type: 'currency' },
+      { name: 'contributionMarginRatio', label: 'Contribution Margin %',  type: 'percent', decimals: 1 },
+    ],
+    contentFile: 'break-even-calculator.json',
+    compute: calculateBreakEven,
+  },
+  {
+    slug: 'freelance-rate-calculator',
+    name: 'Freelance Rate Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Freelance Rate Calculator — Hourly & Daily Rate',
+    description: 'Calculate the minimum hourly rate you need to charge as a freelancer based on your income target, working hours, vacation time, and non-billable overhead.',
+    keywords: ['freelance rate calculator', 'hourly rate calculator', 'freelancer pricing', 'consulting rate'],
+    icon: '💼',
+    featured: false,
+    inputs: [
+      { name: 'annualIncome',       label: 'Desired Annual Income ($)', type: 'number', placeholder: '80000', min: 1,    step: 100,  required: true },
+      { name: 'hoursPerWeek',       label: 'Hours per Week',            type: 'number', placeholder: '40',    min: 1,    max: 80, step: 1,    required: true },
+      { name: 'vacationWeeks',      label: 'Vacation Weeks per Year',   type: 'number', placeholder: '4',     min: 0,    max: 20, step: 1,    required: true },
+      { name: 'nonBillablePercent', label: 'Non-Billable Time (%)',     type: 'number', placeholder: '20',    min: 0,    max: 80, step: 1,    required: true },
+    ],
+    outputs: [
+      { name: 'hourlyRate',           label: 'Minimum Hourly Rate',      type: 'currency' },
+      { name: 'dailyRate',            label: 'Daily Rate (8hr day)',      type: 'currency' },
+      { name: 'monthlyGrossTarget',   label: 'Monthly Gross Target',     type: 'currency' },
+      { name: 'billableHoursPerYear', label: 'Billable Hours / Year',    type: 'number',  decimals: 0 },
+    ],
+    contentFile: 'freelance-rate-calculator.json',
+    compute: calculateFreelanceRate,
+  },
+  {
+    slug: 'cpm-calculator',
+    name: 'CPM Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'CPM Calculator — Cost Per 1,000 Impressions',
+    description: 'Calculate CPM (cost per mille), CPC (cost per click), and CTR (click-through rate) for your ad campaigns. Enter impressions, cost, and optional clicks.',
+    keywords: ['CPM calculator', 'cost per mille', 'CPC calculator', 'CTR calculator', 'ad metrics'],
+    icon: '📊',
+    featured: false,
+    inputs: [
+      { name: 'impressions', label: 'Impressions',     type: 'number', placeholder: '100000', min: 1,    step: 1000, required: true },
+      { name: 'totalCost',   label: 'Total Cost ($)',  type: 'number', placeholder: '500',    min: 0.01, step: 0.01, required: true },
+      { name: 'clicks',      label: 'Clicks (optional)', type: 'number', placeholder: '2000', min: 0,    step: 1,    required: false },
+    ],
+    outputs: [
+      { name: 'cpm',                 label: 'CPM (Cost per 1,000)',       type: 'currency', decimals: 4 },
+      { name: 'cpc',                 label: 'CPC (Cost per Click)',        type: 'currency', decimals: 4 },
+      { name: 'ctrPercent',          label: 'CTR (%)',                     type: 'percent',  decimals: 4 },
+      { name: 'impressionsPerDollar',label: 'Impressions per $1',          type: 'number',   decimals: 0 },
+    ],
+    contentFile: 'cpm-calculator.json',
+    compute: calculateCpm,
+  },
+  {
+    slug: 'invoice-calculator',
+    name: 'Invoice Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Invoice Calculator — Tax & Discount Total',
+    description: 'Calculate invoice totals with tax and discount. Enter your subtotal, tax rate, and optional discount percentage to get the final amount to charge clients.',
+    keywords: ['invoice calculator', 'invoice total calculator', 'tax calculator invoice', 'discount calculator'],
+    icon: '🧾',
+    featured: false,
+    inputs: [
+      { name: 'subtotal',        label: 'Subtotal ($)',      type: 'number', placeholder: '1000', min: 0,  step: 0.01, required: true },
+      { name: 'taxRate',         label: 'Tax Rate (%)',      type: 'number', placeholder: '20',   min: 0,  step: 0.1,  required: true },
+      { name: 'discountPercent', label: 'Discount (%)',      type: 'number', placeholder: '0',    min: 0,  max: 100, step: 0.1, required: false },
+    ],
+    outputs: [
+      { name: 'discountAmount', label: 'Discount Amount',  type: 'currency' },
+      { name: 'taxableAmount',  label: 'Taxable Amount',   type: 'currency' },
+      { name: 'taxAmount',      label: 'Tax Amount',       type: 'currency' },
+      { name: 'total',          label: 'Invoice Total',    type: 'currency' },
+    ],
+    contentFile: 'invoice-calculator.json',
+    compute: calculateInvoice,
+  },
+
+  // ── PETS (additional) ─────────────────────────────────────────────────────
+  {
+    slug: 'aquarium-volume-calculator',
+    name: 'Aquarium Volume Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Aquarium Volume Calculator — Liters & Gallons',
+    description: 'Calculate the water volume of your aquarium in liters, US gallons, and UK gallons from tank dimensions. Supports both metric (cm) and imperial (inches) measurements.',
+    keywords: ['aquarium calculator', 'fish tank volume calculator', 'tank size calculator', 'aquarium liters gallons'],
+    icon: '🐠',
+    featured: true,
+    inputs: [
+      { name: 'length', label: 'Length',       type: 'number', placeholder: '60',  min: 1, step: 0.1, required: true },
+      { name: 'width',  label: 'Width',        type: 'number', placeholder: '30',  min: 1, step: 0.1, required: true },
+      { name: 'height', label: 'Height',       type: 'number', placeholder: '30',  min: 1, step: 0.1, required: true },
+      { name: 'unit',   label: 'Unit System',  type: 'select', required: true, options: [
+        { value: 'cm',     label: 'Centimetres (cm)' },
+        { value: 'inches', label: 'Inches (in)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'volumeLiters',           label: 'Volume (Litres)',      type: 'number', decimals: 1 },
+      { name: 'volumeUSGallons',        label: 'Volume (US Gallons)',  type: 'number', decimals: 1 },
+      { name: 'volumeUKGallons',        label: 'Volume (UK Gallons)',  type: 'number', decimals: 1 },
+      { name: 'recommendedFishInches',  label: 'Max Fish (inches)',    type: 'number', decimals: 0 },
+    ],
+    contentFile: 'aquarium-volume-calculator.json',
+    compute: calculateAquariumVolume,
+  },
+  {
+    slug: 'dog-food-calculator',
+    name: 'Dog Food Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Dog Food Calculator — Daily Portions by Weight & Age',
+    description: 'Calculate how much to feed your dog per day based on weight, life stage, and food calorie density. Uses veterinary RER formula for accurate portions.',
+    keywords: ['dog food calculator', 'how much to feed my dog', 'dog daily food amount', 'dog calorie calculator'],
+    icon: '🐕',
+    featured: true,
+    inputs: [
+      { name: 'weightKg',       label: 'Dog Weight (kg)',          type: 'number', placeholder: '15',  min: 0.5, max: 100, step: 0.5, required: true },
+      { name: 'lifeStage',      label: 'Life Stage',               type: 'select', required: true, options: [
+        { value: 'puppy',    label: 'Puppy (4–12 months)' },
+        { value: 'adult',    label: 'Adult (neutered)' },
+        { value: 'active',   label: 'Active / Working Adult' },
+        { value: 'senior',   label: 'Senior (7+ years)' },
+        { value: 'pregnant', label: 'Pregnant / Nursing' },
+      ]},
+      { name: 'foodCalsPer100g', label: 'Food Calories per 100g', type: 'number', placeholder: '350', min: 100, max: 600, step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'dailyCalories', label: 'Daily Calories (kcal)', type: 'number', decimals: 0 },
+      { name: 'dailyGrams',    label: 'Daily Food (grams)',    type: 'number', decimals: 0 },
+      { name: 'dailyCups',     label: 'Daily Food (cups)',     type: 'number', decimals: 2 },
+      { name: 'rerCalories',   label: 'Resting Energy (RER)', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'dog-food-calculator.json',
+    compute: calculateDogFood,
+  },
+  {
+    slug: 'cat-food-calculator',
+    name: 'Cat Food Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Cat Food Calculator — Daily Portions for Cats',
+    description: 'Calculate how much to feed your cat per day. Enter your cat\'s weight and life stage to get daily calorie needs and equivalent portions for both dry and wet food.',
+    keywords: ['cat food calculator', 'how much to feed my cat', 'cat daily food amount', 'cat calorie calculator'],
+    icon: '🐱',
+    featured: false,
+    inputs: [
+      { name: 'weightKg',  label: 'Cat Weight (kg)', type: 'number', placeholder: '4', min: 0.5, max: 20, step: 0.1, required: true },
+      { name: 'lifeStage', label: 'Life Stage',      type: 'select', required: true, options: [
+        { value: 'kitten',        label: 'Kitten (under 1 year)' },
+        { value: 'adult-indoor',  label: 'Adult — Indoor' },
+        { value: 'adult-outdoor', label: 'Adult — Outdoor / Active' },
+        { value: 'senior',        label: 'Senior (10+ years)' },
+        { value: 'pregnant',      label: 'Pregnant / Nursing' },
+        { value: 'obese-prone',   label: 'Overweight / Obese-prone' },
+      ]},
+    ],
+    outputs: [
+      { name: 'dailyCalories', label: 'Daily Calories (kcal)', type: 'number', decimals: 0 },
+      { name: 'dryFoodGrams',  label: 'Dry Food (grams/day)', type: 'number', decimals: 0 },
+      { name: 'wetFoodGrams',  label: 'Wet Food (grams/day)', type: 'number', decimals: 0 },
+    ],
+    contentFile: 'cat-food-calculator.json',
+    compute: calculateCatFood,
   },
 ];
 
