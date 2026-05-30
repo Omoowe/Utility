@@ -222,6 +222,7 @@ export function CalculatorPageClient({
             max={input.type === 'number' ? input.max : undefined}
             step={input.type === 'number' ? input.step : undefined}
             unit={input.unit}
+            prefix={input.prefix}
             required={input.required}
             disabled={isComputing}
             options={input.options}

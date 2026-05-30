@@ -47,6 +47,7 @@ export interface CalculatorInput {
   max?: number;
   step?: number;
   unit?: string;
+  prefix?: string;
   required: boolean;
   options?: Array<{ value: string; label: string }>;
 }
@@ -94,7 +95,7 @@ export const TOOLS: ToolConfig[] = [
     inputs: [
       {
         name: 'principal',
-        label: 'Loan Amount ($)',
+        label: 'Loan Amount', prefix: '$',
         type: 'number',
         placeholder: '300000',
         min: 100,
@@ -104,7 +105,7 @@ export const TOOLS: ToolConfig[] = [
       },
       {
         name: 'annualRate',
-        label: 'Annual Interest Rate (%)',
+        label: 'Annual Interest Rate', unit: '%',
         type: 'number',
         placeholder: '6.5',
         min: 0,
@@ -144,7 +145,7 @@ export const TOOLS: ToolConfig[] = [
     inputs: [
       {
         name: 'annualSalary',
-        label: 'Annual Salary ($)',
+        label: 'Annual Salary', prefix: '$',
         type: 'number',
         placeholder: '50000',
         min: 0,
@@ -188,7 +189,7 @@ export const TOOLS: ToolConfig[] = [
     inputs: [
       {
         name: 'initialInvestment',
-        label: 'Initial Investment ($)',
+        label: 'Initial Investment', prefix: '$',
         type: 'number',
         placeholder: '10000',
         min: 1,
@@ -198,7 +199,7 @@ export const TOOLS: ToolConfig[] = [
       },
       {
         name: 'gain',
-        label: 'Net Gain ($)',
+        label: 'Net Gain', prefix: '$',
         type: 'number',
         placeholder: '2000',
         min: 0,
@@ -238,7 +239,7 @@ export const TOOLS: ToolConfig[] = [
     inputs: [
       {
         name: 'principal',
-        label: 'Loan Amount ($)',
+        label: 'Loan Amount', prefix: '$',
         type: 'number',
         placeholder: '50000',
         min: 100,
@@ -248,7 +249,7 @@ export const TOOLS: ToolConfig[] = [
       },
       {
         name: 'annualRate',
-        label: 'Annual Interest Rate (%)',
+        label: 'Annual Interest Rate', unit: '%',
         type: 'number',
         placeholder: '5.5',
         min: 0,
@@ -268,7 +269,7 @@ export const TOOLS: ToolConfig[] = [
       },
       {
         name: 'extraPaymentPerMonth',
-        label: 'Extra Monthly Payment ($)',
+        label: 'Extra Monthly Payment', prefix: '$',
         type: 'number',
         placeholder: '0',
         min: 0,
@@ -298,7 +299,7 @@ export const TOOLS: ToolConfig[] = [
     inputs: [
       {
         name: 'principal',
-        label: 'Initial Investment ($)',
+        label: 'Initial Investment', prefix: '$',
         type: 'number',
         placeholder: '10000',
         min: 0,
@@ -308,7 +309,7 @@ export const TOOLS: ToolConfig[] = [
       },
       {
         name: 'monthlyContribution',
-        label: 'Monthly Contribution ($)',
+        label: 'Monthly Contribution', prefix: '$',
         type: 'number',
         placeholder: '500',
         min: 0,
@@ -318,7 +319,7 @@ export const TOOLS: ToolConfig[] = [
       },
       {
         name: 'annualRate',
-        label: 'Annual Return Rate (%)',
+        label: 'Annual Return Rate', unit: '%',
         type: 'number',
         placeholder: '7',
         min: 0,
@@ -435,8 +436,8 @@ export const TOOLS: ToolConfig[] = [
     icon: '📈',
     featured: true,
     inputs: [
-      { name: 'principal', label: 'Principal Amount ($)', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
-      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '7', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'principal', label: 'Principal Amount', prefix: '$', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '7', min: 0, max: 50, step: 0.1, required: true },
       { name: 'years', label: 'Number of Years', type: 'number', placeholder: '10', min: 1, max: 100, step: 1, required: true },
       { name: 'compoundingFrequency', label: 'Compounding Frequency (per year)', type: 'select', required: true, options: [
         { value: '365', label: 'Daily (365)' },
@@ -465,9 +466,9 @@ export const TOOLS: ToolConfig[] = [
     icon: '🏦',
     featured: false,
     inputs: [
-      { name: 'targetAmount', label: 'Savings Goal ($)', type: 'number', placeholder: '20000', min: 1, max: 10000000, step: 100, required: true },
-      { name: 'currentSavings', label: 'Current Savings ($)', type: 'number', placeholder: '5000', min: 0, max: 10000000, step: 100, required: true },
-      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '4', min: 0, max: 20, step: 0.1, required: true },
+      { name: 'targetAmount', label: 'Savings Goal', prefix: '$', type: 'number', placeholder: '20000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'currentSavings', label: 'Current Savings', prefix: '$', type: 'number', placeholder: '5000', min: 0, max: 10000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '4', min: 0, max: 20, step: 0.1, required: true },
       { name: 'years', label: 'Years to Goal', type: 'number', placeholder: '5', min: 0.5, max: 50, step: 0.5, required: true },
     ],
     outputs: [
@@ -489,8 +490,8 @@ export const TOOLS: ToolConfig[] = [
     icon: '💵',
     featured: false,
     inputs: [
-      { name: 'principal', label: 'Principal Amount ($)', type: 'number', placeholder: '5000', min: 1, max: 10000000, step: 100, required: true },
-      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '6', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'principal', label: 'Principal Amount', prefix: '$', type: 'number', placeholder: '5000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '6', min: 0, max: 50, step: 0.1, required: true },
       { name: 'years', label: 'Time Period (Years)', type: 'number', placeholder: '3', min: 0.25, max: 50, step: 0.25, required: true },
     ],
     outputs: [
@@ -512,14 +513,14 @@ export const TOOLS: ToolConfig[] = [
     icon: '📉',
     featured: false,
     inputs: [
-      { name: 'presentValue', label: 'Present Value ($)', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
-      { name: 'inflationRate', label: 'Annual Inflation Rate (%)', type: 'number', placeholder: '3', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'presentValue', label: 'Present Value', prefix: '$', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
+      { name: 'inflationRate', label: 'Annual Inflation Rate', unit: '%', type: 'number', placeholder: '3', min: 0, max: 50, step: 0.1, required: true },
       { name: 'years', label: 'Number of Years', type: 'number', placeholder: '10', min: 1, max: 100, step: 1, required: true },
     ],
     outputs: [
       { name: 'futureValue', label: 'Future Equivalent Value', type: 'currency' },
-      { name: 'purchasingPowerLost', label: 'Purchasing Power Lost ($)', type: 'currency' },
-      { name: 'purchasingPowerLostPercent', label: 'Purchasing Power Lost (%)', type: 'percent', decimals: 1 },
+      { name: 'purchasingPowerLost', label: 'Purchasing Power Lost', type: 'currency' },
+      { name: 'purchasingPowerLostPercent', label: 'Purchasing Power Lost', unit: '%', type: 'percent', decimals: 1 },
     ],
     contentFile: 'inflation-calculator.json',
     compute: calculateInflation,
@@ -535,9 +536,9 @@ export const TOOLS: ToolConfig[] = [
     icon: '💳',
     featured: true,
     inputs: [
-      { name: 'balance', label: 'Current Balance ($)', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
-      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
-      { name: 'monthlyPayment', label: 'Monthly Payment ($)', type: 'number', placeholder: '200', min: 1, max: 100000, step: 10, required: true },
+      { name: 'balance', label: 'Current Balance', prefix: '$', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'monthlyPayment', label: 'Monthly Payment', prefix: '$', type: 'number', placeholder: '200', min: 1, max: 100000, step: 10, required: true },
     ],
     outputs: [
       { name: 'monthsToPayoff', label: 'Months to Pay Off', type: 'number', decimals: 0 },
@@ -558,8 +559,8 @@ export const TOOLS: ToolConfig[] = [
     icon: '💰',
     featured: false,
     inputs: [
-      { name: 'revenue', label: 'Selling Price / Revenue ($)', type: 'number', placeholder: '100', min: 0.01, max: 10000000, step: 1, required: true },
-      { name: 'cost', label: 'Cost of Goods ($)', type: 'number', placeholder: '60', min: 0, max: 10000000, step: 1, required: true },
+      { name: 'revenue', label: 'Selling Price / Revenue', prefix: '$', type: 'number', placeholder: '100', min: 0.01, max: 10000000, step: 1, required: true },
+      { name: 'cost', label: 'Cost of Goods', prefix: '$', type: 'number', placeholder: '60', min: 0, max: 10000000, step: 1, required: true },
     ],
     outputs: [
       { name: 'grossProfit', label: 'Gross Profit', type: 'currency' },
@@ -581,8 +582,8 @@ export const TOOLS: ToolConfig[] = [
     icon: '🧾',
     featured: false,
     inputs: [
-      { name: 'price', label: 'Price ($)', type: 'number', placeholder: '100', min: 0.01, max: 10000000, step: 0.01, required: true },
-      { name: 'vatRate', label: 'VAT Rate (%)', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
+      { name: 'price', label: 'Price', prefix: '$', type: 'number', placeholder: '100', min: 0.01, max: 10000000, step: 0.01, required: true },
+      { name: 'vatRate', label: 'VAT Rate', unit: '%', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
       { name: 'priceIncludesVat', label: 'Price Includes VAT?', type: 'select', required: true, options: [
         { value: '0', label: 'No — Add VAT to price' },
         { value: '1', label: 'Yes — Remove VAT from price' },
@@ -607,7 +608,7 @@ export const TOOLS: ToolConfig[] = [
     icon: '⏰',
     featured: false,
     inputs: [
-      { name: 'hourlyRate', label: 'Hourly Rate ($)', type: 'number', placeholder: '25', min: 0.01, max: 10000, step: 0.25, required: true },
+      { name: 'hourlyRate', label: 'Hourly Rate', prefix: '$', type: 'number', placeholder: '25', min: 0.01, max: 10000, step: 0.25, required: true },
       { name: 'hoursPerWeek', label: 'Hours Per Week', type: 'number', placeholder: '40', min: 1, max: 168, step: 1, required: true },
       { name: 'weeksPerYear', label: 'Working Weeks Per Year', type: 'number', placeholder: '52', min: 1, max: 52, step: 1, required: true },
     ],
@@ -631,7 +632,7 @@ export const TOOLS: ToolConfig[] = [
     icon: '💼',
     featured: false,
     inputs: [
-      { name: 'annualSalary', label: 'Annual Salary ($)', type: 'number', placeholder: '65000', min: 1, max: 10000000, step: 1000, required: true },
+      { name: 'annualSalary', label: 'Annual Salary', prefix: '$', type: 'number', placeholder: '65000', min: 1, max: 10000000, step: 1000, required: true },
       { name: 'hoursPerWeek', label: 'Hours Per Week', type: 'number', placeholder: '40', min: 1, max: 168, step: 1, required: true },
       { name: 'weeksPerYear', label: 'Working Weeks Per Year', type: 'number', placeholder: '52', min: 1, max: 52, step: 1, required: true },
     ],
@@ -699,10 +700,10 @@ export const TOOLS: ToolConfig[] = [
     icon: '🏠',
     featured: false,
     inputs: [
-      { name: 'principal', label: 'Loan Amount ($)', type: 'number', placeholder: '300000', min: 1000, max: 10000000, step: 1000, required: true },
-      { name: 'annualRate', label: 'Annual Interest Rate (%)', type: 'number', placeholder: '6.5', min: 0, max: 20, step: 0.1, required: true },
+      { name: 'principal', label: 'Loan Amount', prefix: '$', type: 'number', placeholder: '300000', min: 1000, max: 10000000, step: 1000, required: true },
+      { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '6.5', min: 0, max: 20, step: 0.1, required: true },
       { name: 'years', label: 'Loan Term (Years)', type: 'number', placeholder: '30', min: 1, max: 50, step: 1, required: true },
-      { name: 'extraMonthlyPayment', label: 'Extra Monthly Payment ($)', type: 'number', placeholder: '200', min: 0, max: 100000, step: 50, required: true },
+      { name: 'extraMonthlyPayment', label: 'Extra Monthly Payment', prefix: '$', type: 'number', placeholder: '200', min: 0, max: 100000, step: 50, required: true },
     ],
     outputs: [
       { name: 'standardMonthlyPayment', label: 'Standard Monthly Payment', type: 'currency' },
@@ -878,14 +879,14 @@ export const TOOLS: ToolConfig[] = [
     icon: '📊',
     featured: true,
     inputs: [
-      { name: 'monthlyIncome', label: 'Monthly Take-Home Income ($)', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
-      { name: 'housing', label: 'Housing (rent/mortgage) ($)', type: 'number', placeholder: '1500', min: 0, max: 100000, step: 50, required: true },
-      { name: 'transportation', label: 'Transportation ($)', type: 'number', placeholder: '400', min: 0, max: 100000, step: 25, required: true },
-      { name: 'food', label: 'Food (groceries + dining) ($)', type: 'number', placeholder: '600', min: 0, max: 100000, step: 25, required: true },
-      { name: 'utilities', label: 'Utilities ($)', type: 'number', placeholder: '200', min: 0, max: 10000, step: 10, required: true },
-      { name: 'entertainment', label: 'Entertainment ($)', type: 'number', placeholder: '150', min: 0, max: 10000, step: 10, required: true },
-      { name: 'savings', label: 'Savings / Investments ($)', type: 'number', placeholder: '500', min: 0, max: 100000, step: 25, required: true },
-      { name: 'other', label: 'Other Expenses ($)', type: 'number', placeholder: '200', min: 0, max: 100000, step: 25, required: true },
+      { name: 'monthlyIncome', label: 'Monthly Take-Home Income', prefix: '$', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
+      { name: 'housing', label: 'Housing (rent/mortgage)', prefix: '$', type: 'number', placeholder: '1500', min: 0, max: 100000, step: 50, required: true },
+      { name: 'transportation', label: 'Transportation', prefix: '$', type: 'number', placeholder: '400', min: 0, max: 100000, step: 25, required: true },
+      { name: 'food', label: 'Food (groceries + dining)', prefix: '$', type: 'number', placeholder: '600', min: 0, max: 100000, step: 25, required: true },
+      { name: 'utilities', label: 'Utilities', prefix: '$', type: 'number', placeholder: '200', min: 0, max: 10000, step: 10, required: true },
+      { name: 'entertainment', label: 'Entertainment', prefix: '$', type: 'number', placeholder: '150', min: 0, max: 10000, step: 10, required: true },
+      { name: 'savings', label: 'Savings / Investments', prefix: '$', type: 'number', placeholder: '500', min: 0, max: 100000, step: 25, required: true },
+      { name: 'other', label: 'Other Expenses', prefix: '$', type: 'number', placeholder: '200', min: 0, max: 100000, step: 25, required: true },
     ],
     outputs: [
       { name: 'totalExpenses', label: 'Total Expenses', type: 'currency' },
@@ -1055,7 +1056,7 @@ export const TOOLS: ToolConfig[] = [
       { name: 'roomWidth', label: 'Room Width (ft)', type: 'number', placeholder: '8', min: 0.5, max: 1000, step: 0.5, required: true },
       { name: 'tileLength', label: 'Tile Length (inches)', type: 'number', placeholder: '12', min: 1, max: 120, step: 0.5, required: true },
       { name: 'tileWidth', label: 'Tile Width (inches)', type: 'number', placeholder: '12', min: 1, max: 120, step: 0.5, required: true },
-      { name: 'wasteFactor', label: 'Waste Factor (%)', type: 'number', placeholder: '10', min: 0, max: 30, step: 1, required: true },
+      { name: 'wasteFactor', label: 'Waste Factor', unit: '%', type: 'number', placeholder: '10', min: 0, max: 30, step: 1, required: true },
     ],
     outputs: [
       { name: 'tilesNeeded', label: 'Tiles Needed', type: 'number', decimals: 0 },
@@ -1079,7 +1080,7 @@ export const TOOLS: ToolConfig[] = [
     inputs: [
       { name: 'roomLength', label: 'Room Length (ft)', type: 'number', placeholder: '15', min: 0.5, max: 1000, step: 0.5, required: true },
       { name: 'roomWidth', label: 'Room Width (ft)', type: 'number', placeholder: '12', min: 0.5, max: 1000, step: 0.5, required: true },
-      { name: 'wasteFactor', label: 'Waste Factor (%)', type: 'number', placeholder: '10', min: 0, max: 30, step: 1, required: true },
+      { name: 'wasteFactor', label: 'Waste Factor', unit: '%', type: 'number', placeholder: '10', min: 0, max: 30, step: 1, required: true },
     ],
     outputs: [
       { name: 'roomArea', label: 'Room Area (sq ft)', type: 'number', decimals: 1 },
