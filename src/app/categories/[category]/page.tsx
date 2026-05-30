@@ -4,6 +4,7 @@ import { CATEGORIES, getCategoryBySlug } from '@/lib/data/categories';
 import { getCategoryColors } from '@/lib/data/categoryColors';
 import { BreadcrumbNav } from '@/components/common/BreadcrumbNav';
 import { AdPlaceholder } from '@/components/common/AdPlaceholder';
+import { ToolCard } from '@/components/common/ToolCard';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -74,25 +75,8 @@ export default async function CategoryPage({ params }: PageProps) {
         {/* Tools grid */}
         <section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/calculators/${tool.slug}`}
-                className={`group flex items-start gap-4 p-5 rounded-xl border-l-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all ${colors.border}`}
-              >
-                <span className={`text-2xl shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${colors.iconBg}`}>
-                  {tool.icon ?? cat.icon}
-                </span>
-                <div className="min-w-0 space-y-1">
-                  <h2 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {tool.name}
-                  </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{tool.description}</p>
-                  <span className="inline-flex items-center text-xs text-blue-600 dark:text-blue-400 font-medium">
-                    Open tool →
-                  </span>
-                </div>
-              </Link>
+            {tools.map(({ compute: _c, ...tool }) => (
+              <ToolCard key={tool.slug} tool={tool} size="sm" />
             ))}
           </div>
         </section>

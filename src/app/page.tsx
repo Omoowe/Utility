@@ -4,6 +4,9 @@ import { getCategoryColors } from '@/lib/data/categoryColors';
 import { getPopularTools, getRecentTools, getToolsByCategory, TOOLS } from '@/lib/data/tools';
 import { AdPlaceholder } from '@/components/common/AdPlaceholder';
 import { SearchBar } from '@/components/common/SearchBar';
+import { ToolCard } from '@/components/common/ToolCard';
+import { SavedToolsSection } from '@/components/common/SavedToolsSection';
+import { RecentlyViewedSection } from '@/components/common/RecentlyViewedSection';
 import { generateWebsiteSchema } from '@/lib/utils/seo';
 import type { Metadata } from 'next';
 
@@ -77,7 +80,6 @@ export default function HomePage() {
                 <span className="text-blue-600 dark:text-blue-400">Calculators</span>
                 <br />& Utility Tools
               </h1>
-              {/* Stats bar */}
               <div className="flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
                 <span className="font-semibold text-gray-700 dark:text-gray-300">{TOOLS.length} tools</span>
                 <span className="text-gray-300 dark:text-gray-600">·</span>
@@ -91,7 +93,6 @@ export default function HomePage() {
               <SearchBar placeholder="Search mortgage, BMI, age calculator…" />
             </div>
 
-            {/* Category pills */}
             <div className="flex flex-wrap gap-2 justify-center pt-2">
               {CATEGORIES.map((cat) => (
                 <Link
@@ -105,7 +106,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* CTA */}
             <div>
               <Link
                 href="/calculators"
@@ -133,6 +133,9 @@ export default function HomePage() {
         </div>
 
         <div className="container-custom py-14 space-y-16">
+          {/* Saved Tools — conditional, hidden until first save */}
+          <SavedToolsSection />
+
           {/* Popular Tools */}
           <section className="space-y-6">
             <div className="flex items-center justify-between">
@@ -142,26 +145,9 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {popularTools.map((tool) => {
-                const colors = getCategoryColors(tool.category) ?? getCategoryColors('everyday-utilities');
-                return (
-                  <Link
-                    key={tool.slug}
-                    href={`/calculators/${tool.slug}`}
-                    className={`group flex items-start gap-4 p-5 rounded-xl border-l-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all ${colors.border}`}
-                  >
-                    <span className={`text-2xl shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${colors.iconBg}`}>
-                      {tool.icon ?? '🔧'}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {tool.name}
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{tool.description}</p>
-                    </div>
-                  </Link>
-                );
-              })}
+              {popularTools.map(({ compute: _c, ...tool }) => (
+                <ToolCard key={tool.slug} tool={tool} size="md" />
+              ))}
             </div>
           </section>
 
@@ -171,7 +157,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {CATEGORIES.map((cat) => {
                 const count = getToolsByCategory(cat.slug).length;
-                const colors = getCategoryColors(cat.slug) ?? getCategoryColors('everyday-utilities');
+                const colors = getCategoryColors(cat.slug);
                 return (
                   <Link
                     key={cat.slug}
@@ -201,6 +187,9 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* Recently Viewed — conditional, hidden until first tool visit */}
+          <RecentlyViewedSection />
+
           {/* New Additions */}
           <section className="space-y-6">
             <div className="flex items-center justify-between">
@@ -210,20 +199,8 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {recentTools.map((tool) => (
-                <Link
-                  key={tool.slug}
-                  href={`/calculators/${tool.slug}`}
-                  className="group flex items-center gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all"
-                >
-                  <span className="text-2xl shrink-0">{tool.icon ?? '🔧'}</span>
-                  <div className="min-w-0">
-                    <p className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm">
-                      {tool.name}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{tool.description}</p>
-                  </div>
-                </Link>
+              {recentTools.map(({ compute: _c, ...tool }) => (
+                <ToolCard key={tool.slug} tool={tool} size="sm" />
               ))}
             </div>
           </section>
@@ -254,7 +231,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* Ad — below fold, after content */}
           <AdPlaceholder />
 
           {/* SEO text */}
