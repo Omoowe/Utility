@@ -38,20 +38,11 @@ export const metadata: Metadata = {
     title: 'ToolNest — Free Online Calculators & Utility Tools',
     description:
       'Free online calculators and utility tools for finance, health, home, and everyday use.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'ToolNest — Free Online Calculators',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ToolNest — Free Online Calculators & Utility Tools',
     description: 'Free online calculators and utility tools.',
-    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -76,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
         <ThemeProvider>
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <div className="min-h-screen">{children}</div>
           <Footer />
         </ThemeProvider>
       </body>
