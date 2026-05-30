@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getToolsByCategory } from '@/lib/data/tools';
 import { CATEGORIES, getCategoryBySlug } from '@/lib/data/categories';
+import { getCategoryColors } from '@/lib/data/categoryColors';
 import { BreadcrumbNav } from '@/components/common/BreadcrumbNav';
 import { AdPlaceholder } from '@/components/common/AdPlaceholder';
 import { Metadata } from 'next';
@@ -43,6 +44,8 @@ export default async function CategoryPage({ params }: PageProps) {
     (c) => getToolsByCategory(c.slug).length > 0
   );
 
+  const colors = getCategoryColors(cat.slug);
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
@@ -51,20 +54,23 @@ export default async function CategoryPage({ params }: PageProps) {
         </div>
       </div>
 
-      <main className="container-custom py-10 space-y-10">
-        {/* Header */}
-        <section className="space-y-3">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">{cat.icon}</span>
+      {/* Category banner */}
+      <div className={`bg-gradient-to-br ${colors.banner} border-b`}>
+        <div className="container-custom py-10">
+          <div className="flex items-center gap-4">
+            <span className={`text-4xl w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${colors.iconBg} shadow-sm`}>
+              {cat.icon}
+            </span>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{cat.name} Tools</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{tools.length} free tools</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{tools.length} free tools · No sign-up required</p>
             </div>
           </div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">{cat.description}</p>
-          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-2xl">{cat.seoBlurb}</p>
-        </section>
+          <p className="text-base text-gray-700 dark:text-gray-300 max-w-2xl mt-4">{cat.seoBlurb}</p>
+        </div>
+      </div>
 
+      <main className="container-custom py-10 space-y-10">
         {/* Tools grid */}
         <section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -72,14 +78,16 @@ export default async function CategoryPage({ params }: PageProps) {
               <Link
                 key={tool.slug}
                 href={`/calculators/${tool.slug}`}
-                className="group flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all"
+                className={`group flex items-start gap-4 p-5 rounded-xl border-l-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all ${colors.border}`}
               >
-                <span className="text-3xl shrink-0">{tool.icon ?? cat.icon}</span>
+                <span className={`text-2xl shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${colors.iconBg}`}>
+                  {tool.icon ?? cat.icon}
+                </span>
                 <div className="min-w-0 space-y-1">
                   <h2 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {tool.name}
                   </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{tool.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{tool.description}</p>
                   <span className="inline-flex items-center text-xs text-blue-600 dark:text-blue-400 font-medium">
                     Open tool →
                   </span>
@@ -93,21 +101,26 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {/* Other categories */}
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Browse Other Categories</h2>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Browse Other Categories</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {otherCategories.map((c) => (
-              <Link
-                key={c.slug}
-                href={`/categories/${c.slug}`}
-                className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              >
-                <span>{c.icon}</span>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{c.name}</span>
-                <span className="text-xs text-gray-400 ml-auto">
-                  {getToolsByCategory(c.slug).length}
-                </span>
-              </Link>
-            ))}
+            {otherCategories.map((c) => {
+              const otherColors = getCategoryColors(c.slug);
+              return (
+                <Link
+                  key={c.slug}
+                  href={`/categories/${c.slug}`}
+                  className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md transition-all"
+                >
+                  <span className={`text-base w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${otherColors.iconBg}`}>
+                    {c.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 block truncate">{c.name}</span>
+                    <span className="text-xs text-gray-400">{getToolsByCategory(c.slug).length} tools</span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
       </main>

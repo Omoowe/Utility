@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { TOOLS, getToolsByCategory } from '@/lib/data/tools';
 import { CATEGORIES } from '@/lib/data/categories';
+import { getCategoryColors } from '@/lib/data/categoryColors';
 import { BreadcrumbNav } from '@/components/common/BreadcrumbNav';
 import { AdPlaceholder } from '@/components/common/AdPlaceholder';
 import { Metadata } from 'next';
@@ -43,7 +44,7 @@ export default function CalculatorsPage() {
 
       <main className="container-custom py-10 space-y-14">
         {/* Header */}
-        <section className="space-y-4 text-center max-w-2xl mx-auto">
+        <section className="space-y-3 text-center max-w-2xl mx-auto">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
             Free Online Calculators & Tools
           </h1>
@@ -53,49 +54,59 @@ export default function CalculatorsPage() {
         </section>
 
         {/* All categories */}
-        {categoriesWithTools.map((cat) => (
-          <section key={cat.slug} className="space-y-5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{cat.icon}</span>
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">{cat.name}</h2>
-                <span className="text-sm text-gray-400 dark:text-gray-500">
-                  ({cat.tools.length} tools)
-                </span>
-              </div>
-              <Link
-                href={`/categories/${cat.slug}`}
-                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-              >
-                See all →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {cat.tools.map((tool) => (
-                <Link
-                  key={tool.slug}
-                  href={`/calculators/${tool.slug}`}
-                  className="group flex items-start gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all"
-                >
-                  <span className="text-2xl shrink-0 mt-0.5">{tool.icon ?? '🔧'}</span>
-                  <div className="min-w-0">
-                    <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm leading-tight">
-                      {tool.name}
-                    </h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
-                      {tool.description}
-                    </p>
+        {categoriesWithTools.map((cat) => {
+          const colors = getCategoryColors(cat.slug);
+          return (
+            <section key={cat.slug} className="space-y-5">
+              {/* Section header */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 ${colors.iconBg}`}>
+                    {cat.icon}
+                  </span>
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{cat.name}</h2>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{cat.tools.length} tools</p>
                   </div>
+                </div>
+                <Link
+                  href={`/categories/${cat.slug}`}
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline shrink-0"
+                >
+                  See all →
                 </Link>
-              ))}
-            </div>
-          </section>
-        ))}
+              </div>
+
+              {/* Tool cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {cat.tools.map((tool) => (
+                  <Link
+                    key={tool.slug}
+                    href={`/calculators/${tool.slug}`}
+                    className={`group flex items-start gap-3 p-4 rounded-xl border-l-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md transition-all ${colors.border}`}
+                  >
+                    <span className={`text-xl shrink-0 w-9 h-9 rounded-lg flex items-center justify-center mt-0.5 ${colors.iconBg}`}>
+                      {tool.icon ?? '🔧'}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm leading-tight">
+                        {tool.name}
+                      </h3>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                        {tool.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          );
+        })}
 
         <AdPlaceholder />
 
         {/* SEO copy */}
-        <section className="prose dark:prose-invert max-w-none text-sm text-gray-600 dark:text-gray-400 space-y-3">
+        <section className="prose dark:prose-invert max-w-none text-sm text-gray-600 dark:text-gray-400 space-y-3 border-t border-gray-200 dark:border-gray-700 pt-10">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
             About ToolNest&apos;s Free Calculators
           </h2>
