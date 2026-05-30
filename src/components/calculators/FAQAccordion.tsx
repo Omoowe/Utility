@@ -36,6 +36,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps): React.JSX.Element {
         >
           <button
             onClick={() => toggleExpand(index)}
+            aria-expanded={expandedId === index}
             className={clsx(
               'w-full px-6 py-4 flex items-center justify-between text-left font-medium transition-colors',
               'bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700',

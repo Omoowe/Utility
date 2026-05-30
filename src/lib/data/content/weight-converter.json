@@ -1,0 +1,20 @@
+{
+  "slug": "weight-converter",
+  "intro": "Convert weight and mass between all common units instantly — kilograms, pounds, ounces, stone, grams, milligrams, and metric tons. Enter a value, choose your unit, and see every conversion at once.",
+  "howItWorks": "All conversions use grams as the base unit. Your input is first converted to grams using a precise conversion factor, then converted to every target unit. This ensures consistent accuracy across all unit pairs regardless of which you start from.",
+  "interpretationGuide": "The metric system uses grams and kilograms. The imperial/US system uses ounces and pounds. Stone is used mainly in the UK and Ireland for body weight. Metric tons are used for heavy industry and shipping.",
+  "faqs": [
+    { "question": "How many pounds in a kilogram?", "answer": "1 kilogram equals approximately 2.2046 pounds. Conversely, 1 pound = 0.4536 kilograms." },
+    { "question": "How many ounces in a pound?", "answer": "There are exactly 16 ounces in 1 pound (avoirdupois)." },
+    { "question": "How many grams in an ounce?", "answer": "1 ounce equals approximately 28.3495 grams." },
+    { "question": "What is 1 stone in kg?", "answer": "1 stone equals 14 pounds or approximately 6.35 kilograms." },
+    { "question": "How do I convert kg to lbs quickly?", "answer": "Multiply by 2.2 for a quick estimate. For example, 70 kg ≈ 154 lbs. The exact factor is 2.2046." },
+    { "question": "How many kg in a metric ton?", "answer": "1 metric ton equals exactly 1,000 kilograms." },
+    { "question": "What is my weight in stone if I weigh 75 kg?", "answer": "75 kg ÷ 6.35029 ≈ 11.81 stone, or approximately 11 stone 11 pounds." },
+    { "question": "How many grams are in a kilogram?", "answer": "There are exactly 1,000 grams in 1 kilogram." },
+    { "question": "What is the difference between mass and weight?", "answer": "Mass is the amount of matter in an object (measured in kg/g/lb). Weight is the force of gravity on that mass (measured in Newtons). In everyday usage, we use them interchangeably." },
+    { "question": "How many milligrams in a gram?", "answer": "There are exactly 1,000 milligrams in 1 gram." },
+    { "question": "Are these conversions accurate?", "answer": "Yes. The converter uses internationally accepted exact conversion factors (e.g., 1 pound = 453.592 grams) and shows results to 4–8 decimal places." },
+    { "question": "Can I convert very small weights like milligrams?", "answer": "Yes. Select 'Milligrams (mg)' as your starting unit and the converter will calculate all equivalents, including very small values in metric tons." }
+  ]
+}

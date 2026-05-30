@@ -37,6 +37,9 @@ import { calculateConcrete } from '../calculators/concrete-calculator';
 import { calculateGravel } from '../calculators/gravel-calculator';
 import { calculateMulch } from '../calculators/mulch-calculator';
 import { calculateApplianceEnergy } from '../calculators/appliance-energy-cost';
+import { calculateTemperatureConverter } from '../calculators/temperature-converter';
+import { calculateLengthConverter } from '../calculators/length-converter';
+import { calculateWeightConverter } from '../calculators/weight-converter';
 
 export interface CalculatorInput {
   name: string;
@@ -1429,6 +1432,104 @@ export const TOOLS: ToolConfig[] = [
     outputs: [],
     contentFile: 'date-difference.json',
     customComponent: 'date-difference',
+  },
+
+  // ── UNIT CONVERTERS ───────────────────────────────────────────────────────
+  {
+    slug: 'temperature-converter',
+    name: 'Temperature Converter',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Temperature Converter — Celsius, Fahrenheit & Kelvin',
+    description: 'Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly.',
+    keywords: ['temperature converter', 'celsius to fahrenheit', 'fahrenheit to celsius', 'kelvin converter'],
+    icon: '🌡️',
+    featured: false,
+    inputs: [
+      { name: 'value', label: 'Temperature', type: 'number', placeholder: '100', step: 0.1, required: true },
+      { name: 'fromUnit', label: 'Convert From', type: 'select', required: true, options: [
+        { value: 'celsius',    label: 'Celsius (°C)' },
+        { value: 'fahrenheit', label: 'Fahrenheit (°F)' },
+        { value: 'kelvin',     label: 'Kelvin (K)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'celsius',    label: 'Celsius (°C)',    type: 'number', decimals: 4 },
+      { name: 'fahrenheit', label: 'Fahrenheit (°F)', type: 'number', decimals: 4 },
+      { name: 'kelvin',     label: 'Kelvin (K)',       type: 'number', decimals: 4 },
+    ],
+    contentFile: 'temperature-converter.json',
+    compute: calculateTemperatureConverter,
+  },
+  {
+    slug: 'length-converter',
+    name: 'Length Converter',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Length Converter — mm, cm, m, km, Inches, Feet, Miles',
+    description: 'Convert lengths and distances between metric and imperial units instantly.',
+    keywords: ['length converter', 'unit converter', 'cm to inches', 'meters to feet', 'km to miles'],
+    icon: '📏',
+    featured: false,
+    inputs: [
+      { name: 'value', label: 'Length', type: 'number', placeholder: '1', min: 0, step: 0.001, required: true },
+      { name: 'fromUnit', label: 'Convert From', type: 'select', required: true, options: [
+        { value: 'millimeter', label: 'Millimeters (mm)' },
+        { value: 'centimeter', label: 'Centimeters (cm)' },
+        { value: 'meter',      label: 'Meters (m)' },
+        { value: 'kilometer',  label: 'Kilometers (km)' },
+        { value: 'inch',       label: 'Inches (in)' },
+        { value: 'foot',       label: 'Feet (ft)' },
+        { value: 'yard',       label: 'Yards (yd)' },
+        { value: 'mile',       label: 'Miles (mi)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'millimeters', label: 'Millimeters (mm)', type: 'number', decimals: 4 },
+      { name: 'centimeters', label: 'Centimeters (cm)', type: 'number', decimals: 4 },
+      { name: 'meters',      label: 'Meters (m)',       type: 'number', decimals: 6 },
+      { name: 'kilometers',  label: 'Kilometers (km)',  type: 'number', decimals: 6 },
+      { name: 'inches',      label: 'Inches (in)',      type: 'number', decimals: 4 },
+      { name: 'feet',        label: 'Feet (ft)',        type: 'number', decimals: 4 },
+      { name: 'yards',       label: 'Yards (yd)',       type: 'number', decimals: 4 },
+      { name: 'miles',       label: 'Miles (mi)',       type: 'number', decimals: 6 },
+    ],
+    contentFile: 'length-converter.json',
+    compute: calculateLengthConverter,
+  },
+  {
+    slug: 'weight-converter',
+    name: 'Weight Converter',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Weight Converter — kg, lbs, oz, Stone, Grams & More',
+    description: 'Convert weight and mass between kilograms, pounds, ounces, stone, grams, and metric tons.',
+    keywords: ['weight converter', 'kg to lbs', 'pounds to kg', 'ounces to grams', 'unit converter'],
+    icon: '⚖️',
+    featured: false,
+    inputs: [
+      { name: 'value', label: 'Weight', type: 'number', placeholder: '1', min: 0, step: 0.001, required: true },
+      { name: 'fromUnit', label: 'Convert From', type: 'select', required: true, options: [
+        { value: 'milligram',   label: 'Milligrams (mg)' },
+        { value: 'gram',        label: 'Grams (g)' },
+        { value: 'kilogram',    label: 'Kilograms (kg)' },
+        { value: 'ounce',       label: 'Ounces (oz)' },
+        { value: 'pound',       label: 'Pounds (lb)' },
+        { value: 'stone',       label: 'Stone (st)' },
+        { value: 'metric-ton',  label: 'Metric Tons (t)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'milligrams', label: 'Milligrams (mg)', type: 'number', decimals: 2 },
+      { name: 'grams',      label: 'Grams (g)',       type: 'number', decimals: 4 },
+      { name: 'kilograms',  label: 'Kilograms (kg)',  type: 'number', decimals: 6 },
+      { name: 'ounces',     label: 'Ounces (oz)',     type: 'number', decimals: 4 },
+      { name: 'pounds',     label: 'Pounds (lb)',     type: 'number', decimals: 4 },
+      { name: 'stone',      label: 'Stone (st)',      type: 'number', decimals: 6 },
+      { name: 'metricTons', label: 'Metric Tons (t)', type: 'number', decimals: 8 },
+    ],
+    contentFile: 'weight-converter.json',
+    compute: calculateWeightConverter,
   },
 ];
 

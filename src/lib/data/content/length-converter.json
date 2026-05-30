@@ -1,0 +1,20 @@
+{
+  "slug": "length-converter",
+  "intro": "Convert lengths and distances between all common metric and imperial units instantly. Enter a value, choose your starting unit, and get conversions in millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles.",
+  "howItWorks": "All conversions are performed via meters as the base unit. Your input is first converted to meters using a precise conversion factor, then converted to each target unit. This ensures consistent accuracy across all unit pairs.",
+  "interpretationGuide": "The metric system (mm, cm, m, km) is used worldwide for science and everyday life in most countries. The imperial system (in, ft, yd, mi) is used primarily in the United States, UK, and a few other countries. Use this converter whenever you need to work across systems.",
+  "faqs": [
+    { "question": "How many centimeters are in an inch?", "answer": "1 inch equals exactly 2.54 centimeters. This is an exact defined conversion." },
+    { "question": "How many feet are in a meter?", "answer": "1 meter equals approximately 3.2808 feet, or more precisely 1 foot = 0.3048 meters." },
+    { "question": "How many kilometers are in a mile?", "answer": "1 mile equals 1.60934 kilometers. Conversely, 1 kilometer equals approximately 0.6214 miles." },
+    { "question": "How many millimeters are in a foot?", "answer": "1 foot equals 304.8 millimeters." },
+    { "question": "What is 5'10\" in centimeters?", "answer": "5 feet 10 inches equals 177.8 cm. Convert each part: 5 ft = 152.4 cm, 10 in = 25.4 cm, total = 177.8 cm." },
+    { "question": "How do I convert km to miles mentally?", "answer": "A quick approximation: multiply km by 0.6 to get miles. For example, 10 km ≈ 6 miles. The exact factor is 0.6214." },
+    { "question": "How many yards are in a mile?", "answer": "There are exactly 1,760 yards in a mile." },
+    { "question": "What is the difference between a meter and a yard?", "answer": "A meter is slightly longer than a yard. 1 meter = 1.0936 yards, or 1 yard = 0.9144 meters." },
+    { "question": "How many inches in a foot?", "answer": "There are exactly 12 inches in 1 foot." },
+    { "question": "What is 100 meters in feet?", "answer": "100 meters equals approximately 328.08 feet." },
+    { "question": "Are these conversions exact?", "answer": "Yes. The conversion factors used are the internationally defined exact values (e.g., 1 inch = 2.54 cm exactly). Results are displayed to 4–6 decimal places." },
+    { "question": "Can I convert very large distances like light-years?", "answer": "This converter covers everyday units up to miles and kilometers. For astronomical distances, specialized tools are more appropriate." }
+  ]
+}

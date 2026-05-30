@@ -1,0 +1,20 @@
+{
+  "slug": "temperature-converter",
+  "intro": "Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly. Enter any temperature value, select your starting unit, and get all three results at once.",
+  "howItWorks": "Select the unit you're converting from, enter your temperature value, and the converter instantly shows the equivalent in Celsius, Fahrenheit, and Kelvin. The conversion uses exact mathematical formulas: °F = (°C × 9/5) + 32, and K = °C + 273.15.",
+  "interpretationGuide": "Celsius is the everyday scale used in most countries. Fahrenheit is used in the United States for weather and cooking. Kelvin is the scientific scale where 0 K is absolute zero — the coldest possible temperature.",
+  "faqs": [
+    { "question": "What is 100°C in Fahrenheit?", "answer": "100°C equals 212°F, which is the boiling point of water at sea level." },
+    { "question": "What is 0°F in Celsius?", "answer": "0°F equals approximately -17.78°C. It was originally defined as the freezing point of a brine solution." },
+    { "question": "What is absolute zero in Celsius and Fahrenheit?", "answer": "Absolute zero is 0 Kelvin, which equals -273.15°C or -459.67°F. It is the theoretically lowest temperature possible." },
+    { "question": "What is normal body temperature in Fahrenheit?", "answer": "Normal human body temperature is 37°C, which equals 98.6°F." },
+    { "question": "How do I convert Celsius to Fahrenheit manually?", "answer": "Multiply the Celsius value by 9, divide by 5, then add 32. Example: 20°C → (20 × 9/5) + 32 = 68°F." },
+    { "question": "How do I convert Fahrenheit to Celsius manually?", "answer": "Subtract 32, multiply by 5, then divide by 9. Example: 77°F → (77 - 32) × 5/9 = 25°C." },
+    { "question": "What is room temperature in Kelvin?", "answer": "Room temperature (around 20°C or 68°F) equals approximately 293.15 Kelvin." },
+    { "question": "Why does Kelvin not use the degree symbol?", "answer": "Kelvin is an absolute thermodynamic scale, not a relative degree scale. Units are written as 'K' not '°K' by international convention (SI units)." },
+    { "question": "At what temperature are Celsius and Fahrenheit the same?", "answer": "Celsius and Fahrenheit intersect at -40°. Both scales read -40 at that point." },
+    { "question": "What is the boiling point of water in Kelvin?", "answer": "Water boils at 373.15 K at standard atmospheric pressure, equivalent to 100°C or 212°F." },
+    { "question": "Is this converter accurate?", "answer": "Yes. The converter uses exact formulas with floating-point precision to 4 decimal places, which is more than sufficient for everyday and scientific use." },
+    { "question": "Can I convert negative temperatures?", "answer": "Yes, Celsius and Fahrenheit both support negative values. Kelvin cannot go below 0 (absolute zero)." }
+  ]
+}
