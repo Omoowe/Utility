@@ -134,16 +134,15 @@ export function Header(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Mobile search */}
-        <div className="md:hidden pb-3">
-          <SearchBar onSelect={() => setMobileOpen(false)} />
-        </div>
       </div>
 
       {/* Mobile nav drawer */}
       {mobileOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <nav className="container-custom py-4 space-y-1">
+            <div className="pb-2">
+              <SearchBar onSelect={() => setMobileOpen(false)} />
+            </div>
             <Link
               href="/"
               onClick={() => setMobileOpen(false)}

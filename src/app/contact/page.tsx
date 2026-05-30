@@ -40,7 +40,7 @@ export default function ContactPage() {
             ].map((item) => (
               <a
                 key={item.subject}
-                href={`mailto:support@toolnest.com?subject=${encodeURIComponent(item.subject)}`}
+                href={`mailto:hafeezalliowe@gmail.com?subject=${encodeURIComponent(item.subject)}`}
                 className="group p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md hover:border-blue-300 dark:hover:border-blue-600 transition-all space-y-2"
               >
                 <span className="text-3xl">{item.icon}</span>
@@ -56,10 +56,10 @@ export default function ContactPage() {
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-6 space-y-2">
             <p className="font-medium text-gray-900 dark:text-white">Email us directly</p>
             <a
-              href="mailto:support@toolnest.com"
+              href="mailto:hafeezalliowe@gmail.com"
               className="text-blue-600 dark:text-blue-400 hover:underline text-lg font-semibold"
             >
-              support@toolnest.com
+              hafeezalliowe@gmail.com
             </a>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               We aim to respond within 2–3 business days.

@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 interface Props { tool: { slug: string; name: string; description: string } }
 
@@ -29,6 +29,8 @@ export function PasswordGeneratorTool({ tool: _tool }: Props): React.JSX.Element
     const s = [p.length >= 12, /[A-Z]/.test(p), /[a-z]/.test(p), /\d/.test(p), /[^a-zA-Z0-9]/.test(p)].filter(Boolean).length;
     return s <= 2 ? { label: 'Weak', color: 'text-red-500' } : s <= 3 ? { label: 'Fair', color: 'text-yellow-500' } : s === 4 ? { label: 'Good', color: 'text-blue-500' } : { label: 'Strong', color: 'text-green-500' };
   };
+
+  useEffect(() => { generate(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const s = strength(password);
 
