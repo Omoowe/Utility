@@ -53,6 +53,15 @@ export function CalculatorPageClient({
   useEffect(() => {
     if (tool.kind !== 'calculator') return;
 
+    const hasAnyInput = Object.values(debouncedInputs).some(
+      (v) => v !== undefined && v !== '' && v !== null
+    );
+    if (!hasAnyInput) {
+      setResults(null);
+      setError(null);
+      return;
+    }
+
     const computeResults = async () => {
       try {
         setIsComputing(true);
@@ -116,23 +125,32 @@ export function CalculatorPageClient({
 
   // Calculator render
   const renderResults = () => {
+    if (isComputing) {
+      return (
+        <div className="flex flex-col items-center justify-center py-16 space-y-3">
+          <div className="w-8 h-8 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
+          <p className="text-sm text-gray-500 dark:text-gray-400">Calculating…</p>
+        </div>
+      );
+    }
     if (error) {
       return (
-        <div className="bg-red-50 dark:bg-red-950 rounded-lg p-6 border border-red-200 dark:border-red-900">
+        <div className="bg-red-50 dark:bg-red-950 rounded-xl p-5 border border-red-200 dark:border-red-900 flex gap-3 items-start">
+          <svg className="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
         </div>
       );
     }
-    if (!results) {
-      return (
-        <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 text-gray-500 dark:text-gray-400 text-center">
-          Enter values above to see results
-        </div>
-      );
-    }
+    if (!results) return null;
+
+    const outputs = (tool as SerializableTool & { outputs: CalculatorOutput[] }).outputs;
+    let primaryRendered = false;
+
     return (
-      <div className="grid grid-cols-1 gap-4">
-        {(tool as SerializableTool & { outputs: CalculatorOutput[] }).outputs.map((output) => {
+      <div className="space-y-3">
+        {outputs.map((output) => {
           const value = results[output.name];
           if (value === undefined || value === null) return null;
 
@@ -140,14 +158,14 @@ export function CalculatorPageClient({
             return (
               <div
                 key={output.name}
-                className="rounded-lg border-2 border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950 p-5 space-y-2"
+                className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 space-y-3"
               >
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{output.label}</p>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">{output.label}</p>
                 <div className="flex flex-wrap gap-2">
                   {(value as number[]).map((num: number, idx: number) => (
                     <span
                       key={idx}
-                      className="bg-green-200 dark:bg-green-800 text-green-900 dark:text-green-100 px-3 py-1 rounded text-sm font-medium"
+                      className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 px-3 py-1.5 rounded-lg text-sm font-semibold"
                     >
                       {num}
                     </span>
@@ -158,6 +176,9 @@ export function CalculatorPageClient({
           }
           if (output.type === 'array') return null;
 
+          const isPrimary = !primaryRendered;
+          if (isPrimary) primaryRendered = true;
+
           return (
             <ResultBox
               key={output.name}
@@ -166,7 +187,8 @@ export function CalculatorPageClient({
               format={output.type as 'currency' | 'number' | 'percent' | 'text'}
               decimals={output.decimals}
               unit={output.unit}
-              copyable={output.type === 'currency' || output.type === 'number'}
+              copyable
+              primary={isPrimary}
             />
           );
         })}
@@ -203,7 +225,6 @@ export function CalculatorPageClient({
             required={input.required}
             disabled={isComputing}
             options={input.options}
-            help={input.required ? undefined : 'Optional'}
           />
         ))}
       </div>

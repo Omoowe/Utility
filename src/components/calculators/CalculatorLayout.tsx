@@ -147,9 +147,6 @@ export function CalculatorLayout({
             <RelatedTools tools={relatedTools} />
           </section>
         )}
-
-        {/* Bottom ad */}
-        <AdPlaceholder slot="9876543210" />
       </main>
     </div>
   );
