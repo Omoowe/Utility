@@ -84,7 +84,7 @@ export default function TermsPage() {
             <h2>9. Contact</h2>
             <p>
               Questions about these Terms? Email us at{' '}
-              <a href="mailto:support@toolnest.com">support@toolnest.com</a>.
+              <a href="mailto:hafeezalliowe@gmail.com">hafeezalliowe@gmail.com</a>.
             </p>
           </div>
         </div>

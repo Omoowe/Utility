@@ -77,7 +77,7 @@ export default function DisclaimerPage() {
             <h2>Contact</h2>
             <p>
               Questions about this disclaimer? Email us at{' '}
-              <a href="mailto:support@toolnest.com">support@toolnest.com</a>.
+              <a href="mailto:hafeezalliowe@gmail.com">hafeezalliowe@gmail.com</a>.
             </p>
           </div>
         </div>

@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
             <h2>8. Contact</h2>
             <p>
               If you have questions about this Privacy Policy, please contact us at{' '}
-              <a href="mailto:support@toolnest.com">support@toolnest.com</a>.
+              <a href="mailto:hafeezalliowe@gmail.com">hafeezalliowe@gmail.com</a>.
             </p>
           </div>
         </div>
