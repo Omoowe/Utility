@@ -1,10 +1,19 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/lib/data/categories';
-import { getPopularTools, getRecentTools, TOOLS } from '@/lib/data/tools';
+import { getPopularTools, getRecentTools, getToolsByCategory, TOOLS } from '@/lib/data/tools';
 import { AdPlaceholder } from '@/components/common/AdPlaceholder';
 import { SearchBar } from '@/components/common/SearchBar';
 import { generateWebsiteSchema } from '@/lib/utils/seo';
 import type { Metadata } from 'next';
+
+const CATEGORY_COLORS: Record<string, { border: string; iconBg: string; badge: string }> = {
+  'finance':           { border: 'border-l-emerald-500', iconBg: 'bg-emerald-50 dark:bg-emerald-900/20', badge: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300' },
+  'everyday-utilities':{ border: 'border-l-blue-500',    iconBg: 'bg-blue-50 dark:bg-blue-900/20',       badge: 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' },
+  'home-diy':          { border: 'border-l-orange-500',  iconBg: 'bg-orange-50 dark:bg-orange-900/20',   badge: 'bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300' },
+  'health-fitness':    { border: 'border-l-rose-500',    iconBg: 'bg-rose-50 dark:bg-rose-900/20',       badge: 'bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300' },
+  'pets':              { border: 'border-l-amber-500',   iconBg: 'bg-amber-50 dark:bg-amber-900/20',     badge: 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300' },
+  'business-creator':  { border: 'border-l-violet-500',  iconBg: 'bg-violet-50 dark:bg-violet-900/20',   badge: 'bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300' },
+};
 
 export const metadata: Metadata = {
   title: 'ToolNest — Free Online Calculators & Utility Tools',
@@ -47,9 +56,16 @@ const HOMEPAGE_FAQS = [
   },
 ];
 
+const TRUST_BADGES = [
+  { icon: '🔒', label: 'No Sign-Up Required' },
+  { icon: '🖥️', label: 'Runs in Your Browser' },
+  { icon: '∞', label: 'Free Forever' },
+  { icon: '📱', label: 'Works on Mobile' },
+];
+
 export default function HomePage() {
   const popularTools = getPopularTools(6);
-  const recentTools = getRecentTools(4);
+  const recentTools = getRecentTools(6);
   const websiteSchema = generateWebsiteSchema();
 
   return (
@@ -69,13 +85,21 @@ export default function HomePage() {
                 <span className="text-blue-600 dark:text-blue-400">Calculators</span>
                 <br />& Utility Tools
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300">
-                {TOOLS.length}+ free tools. No sign-up. Instant results.
-              </p>
+              {/* Stats bar */}
+              <div className="flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
+                <span className="font-semibold text-gray-700 dark:text-gray-300">{TOOLS.length} tools</span>
+                <span className="text-gray-300 dark:text-gray-600">·</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">{CATEGORIES.length} categories</span>
+                <span className="text-gray-300 dark:text-gray-600">·</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">100% free</span>
+              </div>
             </div>
+
             <div className="max-w-xl mx-auto">
               <SearchBar placeholder="Search mortgage, BMI, age calculator…" />
             </div>
+
+            {/* Category pills */}
             <div className="flex flex-wrap gap-2 justify-center pt-2">
               {CATEGORIES.map((cat) => (
                 <Link
@@ -88,69 +112,112 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
+
+            {/* CTA */}
+            <div>
+              <Link
+                href="/calculators"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors shadow-sm"
+              >
+                Browse All Tools
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </section>
+
+        {/* Trust strip */}
+        <div className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700">
+          <div className="container-custom py-3">
+            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+              {TRUST_BADGES.map((badge) => (
+                <li key={badge.label} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <span className="text-base">{badge.icon}</span>
+                  <span>{badge.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
         <div className="container-custom py-14 space-y-16">
           {/* Popular Tools */}
           <section className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">⭐ Popular Tools</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Popular Tools</h2>
               <Link href="/calculators" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
                 View all →
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {popularTools.map((tool) => (
-                <Link
-                  key={tool.slug}
-                  href={`/calculators/${tool.slug}`}
-                  className="group flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all"
-                >
-                  <span className="text-3xl shrink-0">{tool.icon ?? '🔧'}</span>
-                  <div className="min-w-0">
-                    <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {tool.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{tool.description}</p>
-                  </div>
-                </Link>
-              ))}
+              {popularTools.map((tool) => {
+                const colors = CATEGORY_COLORS[tool.category] ?? CATEGORY_COLORS['everyday-utilities'];
+                return (
+                  <Link
+                    key={tool.slug}
+                    href={`/calculators/${tool.slug}`}
+                    className={`group flex items-start gap-4 p-5 rounded-xl border-l-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all ${colors.border}`}
+                  >
+                    <span className={`text-2xl shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${colors.iconBg}`}>
+                      {tool.icon ?? '🔧'}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {tool.name}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{tool.description}</p>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
 
           {/* Categories */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">📂 Browse by Category</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Browse by Category</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/categories/${cat.slug}`}
-                  className="group p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all space-y-3"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{cat.icon}</span>
-                    <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-lg">
-                      {cat.name}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{cat.description}</p>
-                  <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">
-                    Browse tools →
-                  </span>
-                </Link>
-              ))}
+              {CATEGORIES.map((cat) => {
+                const count = getToolsByCategory(cat.slug).length;
+                const colors = CATEGORY_COLORS[cat.slug] ?? CATEGORY_COLORS['everyday-utilities'];
+                return (
+                  <Link
+                    key={cat.slug}
+                    href={`/categories/${cat.slug}`}
+                    className="group p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all space-y-3"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className={`text-2xl w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${colors.iconBg}`}>
+                          {cat.icon}
+                        </span>
+                        <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-lg">
+                          {cat.name}
+                        </h3>
+                      </div>
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 ${colors.badge}`}>
+                        {count} tools
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{cat.description}</p>
+                    <span className="text-xs text-blue-600 dark:text-blue-400 font-medium group-hover:underline">
+                      Browse tools →
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </section>
 
-          {/* Ad */}
-          <AdPlaceholder />
-
-          {/* Recently Added */}
+          {/* New Additions */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">🆕 Recently Added</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">New Additions</h2>
+              <Link href="/calculators" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                View all →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {recentTools.map((tool) => (
                 <Link
                   key={tool.slug}
@@ -171,7 +238,7 @@ export default function HomePage() {
 
           {/* FAQ */}
           <section className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">❓ Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
             <div className="space-y-3 max-w-2xl">
               {HOMEPAGE_FAQS.map((faq, i) => (
                 <details
@@ -194,6 +261,9 @@ export default function HomePage() {
               ))}
             </div>
           </section>
+
+          {/* Ad — below fold, after content */}
+          <AdPlaceholder />
 
           {/* SEO text */}
           <section className="space-y-4 prose dark:prose-invert max-w-none text-sm text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-10">

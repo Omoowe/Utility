@@ -11,12 +11,9 @@ interface ResultBoxProps {
   decimals?: number;
   copyable?: boolean;
   unit?: string;
+  primary?: boolean;
 }
 
-/**
- * Reusable result display component for calculator outputs
- * Handles formatting, copy-to-clipboard, and dark mode
- */
 export function ResultBox({
   label,
   value,
@@ -24,63 +21,70 @@ export function ResultBox({
   decimals = 2,
   copyable = false,
   unit,
+  primary = false,
 }: ResultBoxProps): React.JSX.Element {
   const [copied, setCopied] = useState(false);
 
   const formatValue = (): string => {
-    if (typeof value === 'string') {
-      return value;
-    }
-
+    if (typeof value === 'string') return value;
     switch (format) {
-      case 'currency':
-        return formatCurrency(value, decimals);
-      case 'percent':
-        return formatPercent(value, decimals);
-      case 'number':
-        return formatNumber(value, decimals);
-      case 'text':
-      default:
-        return String(value);
+      case 'currency': return formatCurrency(value, decimals);
+      case 'percent':  return formatPercent(value, decimals);
+      case 'number':   return formatNumber(value, decimals);
+      default:         return String(value);
     }
   };
 
   const handleCopy = async () => {
-    const textToCopy = typeof value === 'string' ? value : String(value);
     try {
-      await navigator.clipboard.writeText(textToCopy);
+      await navigator.clipboard.writeText(typeof value === 'string' ? value : String(value));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+    } catch {
+      /* clipboard not available */
     }
   };
 
   const formattedValue = formatValue();
 
-  return (
-    <div
-      className={clsx(
-        'rounded-lg border-2 border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950',
-        'p-6 space-y-2 h-[180px] flex flex-col justify-between'
-      )}
-    >
-      <div>
-        <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{label}</p>
-        <p className="text-3xl font-bold text-green-700 dark:text-green-300 break-words">
+  if (primary) {
+    return (
+      <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 dark:from-blue-700 dark:to-indigo-800 p-6 text-white shadow-lg">
+        <p className="text-sm font-medium text-blue-100 uppercase tracking-wide">{label}</p>
+        <p className="text-5xl font-extrabold mt-2 break-words leading-none">
           {formattedValue}
-          {unit && <span className="text-lg ml-2">{unit}</span>}
+          {unit && <span className="text-2xl font-semibold ml-2 text-blue-200">{unit}</span>}
         </p>
+        {copyable && (
+          <button
+            onClick={handleCopy}
+            className={clsx(
+              'mt-4 px-4 py-1.5 rounded-full text-xs font-semibold transition-all',
+              copied
+                ? 'bg-white text-blue-700'
+                : 'bg-white/20 text-white hover:bg-white/30'
+            )}
+          >
+            {copied ? '✓ Copied' : 'Copy result'}
+          </button>
+        )}
       </div>
+    );
+  }
 
+  return (
+    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 space-y-1">
+      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">{label}</p>
+      <p className="text-2xl font-bold text-gray-900 dark:text-white break-words">
+        {formattedValue}
+        {unit && <span className="text-base font-medium text-gray-500 dark:text-gray-400 ml-1.5">{unit}</span>}
+      </p>
       {copyable && (
         <button
           onClick={handleCopy}
           className={clsx(
-            'self-start px-3 py-2 rounded text-xs font-medium transition-all',
-            copied
-              ? 'bg-green-700 text-white dark:bg-green-600'
-              : 'bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200 hover:bg-green-300 dark:hover:bg-green-700'
+            'text-xs font-medium transition-colors',
+            copied ? 'text-green-600 dark:text-green-400' : 'text-blue-600 dark:text-blue-400 hover:underline'
           )}
         >
           {copied ? '✓ Copied' : 'Copy'}

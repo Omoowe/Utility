@@ -22,6 +22,7 @@ interface InputGroupProps {
   required?: boolean;
   disabled?: boolean;
   unit?: string;
+  prefix?: string;
   options?: SelectOption[];
 }
 
@@ -39,15 +40,22 @@ export function InputGroup({
   required = false,
   disabled = false,
   unit,
+  prefix,
   options = [],
 }: InputGroupProps): React.JSX.Element {
-  const baseClasses = clsx(
-    'w-full px-4 py-2.5 rounded-lg border transition-colors min-h-[44px]',
-    'bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
-    'focus:outline-none focus:ring-2 focus:ring-offset-0',
+  const hasPrefix = Boolean(prefix);
+  const hasUnit = Boolean(unit) && type !== 'select';
+
+  const inputClasses = clsx(
+    'w-full py-2.5 rounded-lg border text-sm transition-all min-h-[44px]',
+    'bg-white dark:bg-gray-900 text-gray-900 dark:text-white',
+    'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+    hasPrefix ? 'pl-9 pr-4' : 'px-4',
+    hasUnit && 'pr-14',
     error
-      ? 'border-red-500 dark:border-red-500 focus:ring-red-500'
-      : 'border-gray-200 dark:border-gray-600 focus:ring-blue-500'
+      ? 'border-red-400 dark:border-red-500 focus:ring-red-500 focus:border-red-500'
+      : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500',
+    disabled && 'opacity-50 cursor-not-allowed bg-gray-50 dark:bg-gray-800'
   );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value);
@@ -55,26 +63,33 @@ export function InputGroup({
 
   return (
     <div className="space-y-1.5">
-      <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
       </label>
 
       <div className="relative">
+        {/* Prefix symbol (e.g. $) */}
+        {hasPrefix && (
+          <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-sm font-medium text-gray-400 dark:text-gray-500">
+            {prefix}
+          </span>
+        )}
+
         {type === 'select' ? (
           <select
             value={String(value)}
             onChange={handleSelectChange}
             disabled={disabled}
             className={clsx(
-              baseClasses,
-              'appearance-none pr-10 placeholder-gray-400 dark:placeholder-gray-500',
+              inputClasses,
+              'appearance-none pl-4 pr-10',
               !String(value) && 'text-gray-400 dark:text-gray-500'
             )}
           >
             {!value && (
               <option value="" disabled>
-                {placeholder ?? 'Select an option'}
+                {placeholder ?? 'Select…'}
               </option>
             )}
             {options.map((opt) => (
@@ -93,13 +108,11 @@ export function InputGroup({
             max={max}
             step={step}
             disabled={disabled}
-            className={clsx(
-              baseClasses,
-              'placeholder-gray-400 dark:placeholder-gray-500'
-            )}
+            className={inputClasses}
           />
         )}
 
+        {/* Select chevron */}
         {type === 'select' && (
           <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
             <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,15 +121,16 @@ export function InputGroup({
           </div>
         )}
 
-        {unit && type !== 'select' && !error && (
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 text-sm pointer-events-none">
+        {/* Unit suffix */}
+        {hasUnit && (
+          <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm text-gray-400 dark:text-gray-500">
             {unit}
           </span>
         )}
       </div>
 
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
-      {help && !error && <p className="text-sm text-gray-500 dark:text-gray-400">{help}</p>}
+      {error && <p className="text-xs font-medium text-red-600 dark:text-red-400">{error}</p>}
+      {help && !error && <p className="text-xs text-gray-500 dark:text-gray-400">{help}</p>}
     </div>
   );
 }

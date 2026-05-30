@@ -76,26 +76,38 @@ export function CalculatorLayout({
         </section>
 
         {/* Calculator */}
-        <section className="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 md:p-8">
+        <section className="rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
           {children ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="space-y-5">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Enter Values</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-5">
+              {/* Inputs panel */}
+              <div className="lg:col-span-2 bg-gray-50 dark:bg-gray-800/60 p-6 md:p-8 space-y-5 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0" aria-hidden="true" />
+                  <h2 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Inputs</h2>
+                </div>
                 {children}
               </div>
-              <div className="space-y-5">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Results</h2>
+              {/* Results panel */}
+              <div className="lg:col-span-3 bg-white dark:bg-gray-900 p-6 md:p-8 space-y-4">
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+                  <span className="w-2 h-2 rounded-full bg-green-500 shrink-0" aria-hidden="true" />
+                  <h2 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Results</h2>
+                </div>
                 {results ?? (
-                  <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 text-gray-500 dark:text-gray-400 text-center">
-                    Enter values to see results
+                  <div className="flex flex-col items-center justify-center py-16 text-center space-y-3">
+                    <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Enter values to see results</p>
                   </div>
                 )}
               </div>
             </div>
           ) : (
             /* Interactive tool — render full width */
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white sr-only">Tool</h2>
+            <div className="bg-white dark:bg-gray-900 p-6 md:p-8">
               {results}
             </div>
           )}
