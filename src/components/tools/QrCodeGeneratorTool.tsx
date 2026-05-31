@@ -49,7 +49,7 @@ export function QrCodeGeneratorTool({ tool: _tool }: Props): React.JSX.Element {
           <img src={qrUrl} alt="Generated QR Code" className="rounded-xl border-4 border-white shadow-lg dark:border-gray-700" width={256} height={256} />
           <div className="flex gap-3">
             <button onClick={download} className="btn-primary">Download PNG</button>
-            <button onClick={() => navigator.clipboard.writeText(text)} className="btn-secondary">Copy Text</button>
+            <button onClick={() => navigator.clipboard.writeText(text).catch(() => {})} className="btn-secondary">Copy Text</button>
           </div>
         </div>
       )}

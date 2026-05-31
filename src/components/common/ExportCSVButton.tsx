@@ -15,23 +15,25 @@ function toCSVRow(cells: string[]): string {
 
 export function ExportCSVButton({ toolName, results, outputs }: ExportCSVButtonProps): React.JSX.Element {
   const handleExport = () => {
-    const rows: string[] = [toCSVRow(['Metric', 'Value', 'Unit'])];
+    try {
+      const rows: string[] = [toCSVRow(['Metric', 'Value', 'Unit'])];
 
-    for (const output of outputs) {
-      if (output.type === 'array') continue;
-      const value = results[output.name];
-      if (value === undefined || value === null) continue;
-      rows.push(toCSVRow([output.label, String(value), output.unit ?? '']));
-    }
+      for (const output of outputs) {
+        if (output.type === 'array') continue;
+        const value = results[output.name];
+        if (value === undefined || value === null) continue;
+        rows.push(toCSVRow([output.label, String(value), output.unit ?? '']));
+      }
 
-    const csv = rows.join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${toolName.toLowerCase().replace(/\s+/g, '-')}-results.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+      const csv = rows.join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${toolName.toLowerCase().replace(/\s+/g, '-')}-results.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch { /* download not supported in this context */ }
   };
 
   return (
