@@ -53,6 +53,7 @@ const HOMEPAGE_FAQS = [
 
 export default function HomePage() {
   const websiteSchema = generateWebsiteSchema();
+  const featuredTools = TOOLS.filter((t) => t.featured).slice(0, 6);
 
   return (
     <>
@@ -62,101 +63,84 @@ export default function HomePage() {
       />
 
       {/* ── Hero ── */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 py-14 px-4">
-        <div className="max-w-2xl mx-auto text-center space-y-5">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight">
-            Free Online<br className="hidden sm:block" /> Calculators &amp; Tools
+      <section className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-12 px-4">
+        <div className="max-w-3xl mx-auto text-center space-y-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-xs font-medium text-blue-700 dark:text-blue-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shrink-0" />
+            {TOOLS.length} free tools — no sign-up required
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight">
+            Free Online Calculators<br className="hidden sm:block" />&amp; Utility Tools
           </h1>
-          <p className="text-blue-200 text-base">
-            {TOOLS.length} free tools — no sign-up, no fees, instant results in your browser.
+          <p className="text-gray-500 dark:text-gray-400 text-base max-w-xl mx-auto">
+            Instant, accurate results across {CATEGORIES.length} categories. Finance, health, home, and more — all free, all in your browser.
           </p>
           <div className="max-w-lg mx-auto">
-            <SearchBar placeholder={`Search ${TOOLS.length} tools — mortgage, TDEE, retirement…`} />
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-            {(['82 Free Tools', 'No Account Needed', 'Works Offline', 'Mobile-Ready'] as const).map((badge) => (
-              <span
-                key={badge}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-medium border border-white/20"
-              >
-                <svg className="w-3 h-3 text-green-300 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                {badge}
-              </span>
-            ))}
+            <SearchBar placeholder={`Search ${TOOLS.length} tools…`} />
           </div>
         </div>
+
+        {/* Featured tools — visible above fold */}
+        {featuredTools.length > 0 && (
+          <div className="max-w-4xl mx-auto mt-8">
+            <p className="text-xs text-center font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-4">
+              Popular right now
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {featuredTools.map(({ compute: _c, ...tool }) => (
+                <ToolCard key={tool.slug} tool={tool} size="sm" showFavorite={false} />
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
-      {/* ── Stats bar ── */}
-      <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-200 dark:divide-gray-700">
-            {[
-              { value: TOOLS.length.toString(), label: 'Free Tools' },
-              { value: CATEGORIES.length.toString(), label: 'Categories' },
-              { value: '0', label: 'Sign-ups Required' },
-              { value: '100%', label: 'Browser-Based' },
-            ].map((stat) => (
-              <div key={stat.label} className="py-4 px-6 text-center">
-                <div className="text-2xl font-extrabold text-blue-600 dark:text-blue-400">{stat.value}</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ── Main content ── */}
-      <div className="container-custom py-10 space-y-12">
+      <div className="container-custom py-8 space-y-8">
 
-        {/* Ad Slot */}
         <AdPlaceholder format="leaderboard" slot="homepage-top" />
 
-        {/* Saved Tools — shows only when user has favorites */}
         <SavedToolsSection />
 
-        {/* Category sections — reference site pattern */}
+        {/* Category sections */}
         {CATEGORIES.map((cat, idx) => {
           const allTools = getToolsByCategory(cat.slug);
-          const previewTools = allTools.slice(0, 4);
+          const previewTools = allTools.slice(0, 3);
           return (
-            <section key={cat.slug} className="space-y-4">
+            <section key={cat.slug} className="space-y-3">
               {/* Section header */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl shrink-0">{cat.icon}</span>
+                <div className="flex items-center gap-2.5">
+                  <span className="text-xl shrink-0">{cat.icon}</span>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                    <h2 className="text-base font-semibold text-gray-900 dark:text-white leading-tight">
                       {cat.name}
                     </h2>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{allTools.length} tools</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500">{allTools.length} tools</p>
                   </div>
                 </div>
                 <Link
                   href={`/categories/${cat.slug}`}
-                  className="shrink-0 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                  className="shrink-0 text-xs font-medium text-blue-700 dark:text-blue-400 hover:underline"
                 >
-                  View all {allTools.length} →
+                  View all →
                 </Link>
               </div>
 
-              {/* Tool grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {/* Tool grid — 3 col max, matches reference site density */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {previewTools.map(({ compute: _c, ...tool }) => (
                   <ToolCard key={tool.slug} tool={tool} size="sm" />
                 ))}
               </div>
 
-              {/* Inline ads at intervals */}
               {idx === 1 && (
-                <div className="pt-2">
+                <div className="pt-1">
                   <AdPlaceholder format="rectangle" slot="homepage-mid1" />
                 </div>
               )}
               {idx === 3 && (
-                <div className="pt-2">
+                <div className="pt-1">
                   <AdPlaceholder format="rectangle" slot="homepage-mid2" />
                 </div>
               )}
@@ -165,29 +149,33 @@ export default function HomePage() {
         })}
 
         {/* Browse all CTA */}
-        <div className="text-center py-4 border-t border-gray-100 dark:border-gray-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-5 border-t border-gray-100 dark:border-gray-800">
+          <div>
+            <p className="font-semibold text-gray-900 dark:text-white text-sm">
+              Looking for something else?
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+              {TOOLS.length} tools across {CATEGORIES.length} categories — all free
+            </p>
+          </div>
           <Link
             href="/calculators"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-medium text-sm transition-colors shadow-sm"
           >
-            Browse All {TOOLS.length} Tools →
+            Browse all {TOOLS.length} tools →
           </Link>
-          <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
-            Filter by category · Search by name · Free, always
-          </p>
         </div>
 
-        {/* Recently Viewed — conditional */}
         <RecentlyViewedSection />
 
         {/* FAQ */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
+        <section className="space-y-3">
+          <h2 className="text-base font-semibold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
           <div className="space-y-2 max-w-2xl">
             {HOMEPAGE_FAQS.map((faq, i) => (
               <details
                 key={i}
-                className="group rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+                className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
               >
                 <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
                   <span className="font-medium text-sm text-gray-900 dark:text-white">{faq.q}</span>
@@ -216,8 +204,7 @@ export default function HomePage() {
           <p>
             ToolNest is a free collection of online calculators and utility tools covering finance,
             health, home improvement, everyday utilities, pets, and business. Every tool runs entirely
-            in your browser — there&apos;s nothing to install, no account needed, and your data is never
-            sent to any server.
+            in your browser — nothing to install, no account needed, your data never sent to any server.
           </p>
           <p>
             Whether you&apos;re calculating mortgage payments before buying a house, checking your TDEE,
