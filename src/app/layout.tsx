@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CookieConsent } from '@/components/common/CookieConsent';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <div className="min-h-screen">{children}</div>
           <Footer />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>
