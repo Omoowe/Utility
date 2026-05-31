@@ -108,6 +108,7 @@ export function InputGroup({
             max={max}
             step={step}
             disabled={disabled}
+            inputMode={type === 'number' ? 'decimal' : undefined}
             className={inputClasses}
           />
         )}

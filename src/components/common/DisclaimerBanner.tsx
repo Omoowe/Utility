@@ -20,9 +20,14 @@ export function DisclaimerBanner({ category }: DisclaimerBannerProps): React.JSX
   if (!disclaimer) return null;
 
   return (
-    <div className="flex gap-3 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
-      <span className="shrink-0 text-base leading-5" aria-hidden="true">{disclaimer.icon}</span>
-      <p>{disclaimer.text}</p>
+    <div className="space-y-2">
+      <div className="flex gap-3 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 text-sm text-amber-800 dark:text-amber-300">
+        <span className="shrink-0 text-base leading-5" aria-hidden="true">{disclaimer.icon}</span>
+        <p>{disclaimer.text}</p>
+      </div>
+      <p className="text-xs text-gray-400 dark:text-gray-500 px-1">
+        Reviewed for accuracy. For professional advice, consult a licensed expert.
+      </p>
     </div>
   );
 }
