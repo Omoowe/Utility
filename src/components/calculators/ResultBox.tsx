@@ -50,23 +50,23 @@ export function ResultBox({
 
   if (primary) {
     return (
-      <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 dark:from-blue-700 dark:to-indigo-800 p-6 text-white shadow-lg">
-        <p className="text-sm font-medium text-blue-100 uppercase tracking-wide">{label}</p>
-        <p className="text-5xl font-extrabold mt-2 break-words leading-none">
+      <div className="rounded-xl bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 p-5">
+        <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest">{label}</p>
+        <p className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-2 break-words leading-none">
           {formattedValue}
-          {unit && <span className="text-2xl font-semibold ml-2 text-blue-200">{unit}</span>}
+          {unit && <span className="text-xl font-semibold ml-2 text-blue-500 dark:text-blue-400">{unit}</span>}
         </p>
         {copyable && (
           <button
             onClick={handleCopy}
             className={clsx(
-              'mt-4 px-4 py-1.5 rounded-full text-xs font-semibold transition-all',
+              'mt-3 text-xs font-medium transition-colors',
               copied
-                ? 'bg-white text-blue-700'
-                : 'bg-white/20 text-white hover:bg-white/30'
+                ? 'text-green-600 dark:text-green-400'
+                : 'text-blue-600 dark:text-blue-400 hover:underline'
             )}
           >
-            {copied ? '✓ Copied' : 'Copy result'}
+            {copied ? '✓ Copied' : 'Copy'}
           </button>
         )}
       </div>

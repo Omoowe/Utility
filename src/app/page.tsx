@@ -63,76 +63,35 @@ export default function HomePage() {
       />
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        {/* Hero — subtle gradient, stats as large numbers (utilitybillcalculator.quest pattern) */}
-        <section className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700 py-16 px-4">
-          <div className="container-custom text-center space-y-8 max-w-3xl mx-auto">
-            <div className="space-y-4">
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-                Free Online Calculators<br className="hidden sm:block" /> &amp; Utility Tools
+        {/* Hero */}
+        <section className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700 py-14 px-4">
+          <div className="max-w-2xl mx-auto text-center space-y-6">
+            <div className="space-y-3">
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight">
+                Free Online Calculators<br className="hidden sm:block" /> &amp; Tools
               </h1>
-
-              {/* Stats as large numbers */}
-              <div className="flex items-center justify-center gap-8 pt-2">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">{TOOLS.length}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-0.5">tools</div>
-                </div>
-                <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">{CATEGORIES.length}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-0.5">categories</div>
-                </div>
-                <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">Free</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-0.5">forever</div>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center gap-5 text-xs text-gray-400 dark:text-gray-500 pt-1">
-                <span>🔒 No Sign-Up</span>
-                <span>·</span>
-                <span>🖥️ Browser-Only</span>
-                <span>·</span>
-                <span>📱 Works on Mobile</span>
-              </div>
-            </div>
-
-            <div className="max-w-xl mx-auto">
-              <SearchBar placeholder="Search mortgage, BMI, age calculator…" />
-            </div>
-
-            <div className="flex flex-wrap gap-2 justify-center">
-              {CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/categories/${cat.slug}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm text-gray-700 dark:text-gray-200 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm"
-                >
-                  <span>{cat.icon}</span>
-                  <span>{cat.name}</span>
-                </Link>
-              ))}
+              <p className="text-gray-500 dark:text-gray-400 text-base">
+                {TOOLS.length} tools across {CATEGORIES.length} categories — no sign-up, instant results.
+              </p>
             </div>
 
             <div>
-              <Link
-                href="/calculators"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors shadow-sm"
-              >
-                Browse All Tools
-                <span aria-hidden="true">→</span>
-              </Link>
+              <SearchBar placeholder="Search 77 tools — mortgage, BMI, GPA…" />
             </div>
+
+            <Link
+              href="/calculators"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors shadow-sm"
+            >
+              Browse All {TOOLS.length} Tools
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </section>
 
-        {/* Ad Slot 1 */}
-        <div className="container-custom pt-8">
+        <div className="container-custom py-10 space-y-10">
+          {/* Ad Slot 1 */}
           <AdPlaceholder format="leaderboard" slot="homepage-top" />
-        </div>
-
-        <div className="container-custom py-12 space-y-12">
           {/* Saved Tools — conditional */}
           <SavedToolsSection />
 
