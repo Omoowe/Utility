@@ -26,12 +26,15 @@ export function CalculatorPageClient({
   relatedTools,
 }: CalculatorPageClientProps) {
   const [inputs, setInputs] = useState<Record<string, unknown>>(() => {
-    // Pre-populate select defaults
     const defaults: Record<string, unknown> = {};
     if (tool.kind === 'calculator') {
       tool.inputs.forEach((input) => {
         if (input.type === 'select' && input.options?.[0]) {
           defaults[input.name] = input.options[0].value;
+        }
+        // Pre-fill number inputs from placeholder for instant results on load (time.is pattern)
+        if (input.type === 'number' && input.placeholder && !isNaN(Number(input.placeholder))) {
+          defaults[input.name] = Number(input.placeholder);
         }
       });
     }
@@ -107,6 +110,7 @@ export function CalculatorPageClient({
         tool={tool as any}
         intro={content?.intro}
         howItWorks={content?.howItWorks}
+        interpretationGuide={content?.interpretationGuide}
         faqs={content?.faqs}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         relatedTools={relatedTools as any}
@@ -205,6 +209,7 @@ export function CalculatorPageClient({
       intro={content?.intro}
       results={renderResults()}
       howItWorks={content?.howItWorks}
+      interpretationGuide={content?.interpretationGuide}
       faqs={content?.faqs}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       relatedTools={relatedTools as any}

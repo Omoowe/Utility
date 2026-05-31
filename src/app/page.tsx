@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/lib/data/categories';
 import { getCategoryColors } from '@/lib/data/categoryColors';
-import { getPopularTools, getRecentTools, getToolsByCategory, TOOLS } from '@/lib/data/tools';
+import { getPopularTools, getToolsByCategory, TOOLS } from '@/lib/data/tools';
 import { AdPlaceholder } from '@/components/common/AdPlaceholder';
 import { SearchBar } from '@/components/common/SearchBar';
 import { ToolCard } from '@/components/common/ToolCard';
@@ -51,16 +51,8 @@ const HOMEPAGE_FAQS = [
   },
 ];
 
-const TRUST_BADGES = [
-  { icon: '🔒', label: 'No Sign-Up Required' },
-  { icon: '🖥️', label: 'Runs in Your Browser' },
-  { icon: '∞', label: 'Free Forever' },
-  { icon: '📱', label: 'Works on Mobile' },
-];
-
 export default function HomePage() {
   const popularTools = getPopularTools(6);
-  const recentTools = getRecentTools(6);
   const websiteSchema = generateWebsiteSchema();
 
   return (
@@ -71,21 +63,38 @@ export default function HomePage() {
       />
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 border-b border-blue-100 dark:border-gray-700 py-16 px-4">
-          <div className="container-custom text-center space-y-6 max-w-3xl mx-auto">
-            <div className="space-y-3">
-              <h1 className="text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-                Free Online{' '}
-                <span className="text-blue-600 dark:text-blue-400">Calculators</span>
-                <br />& Utility Tools
+        {/* Hero — subtle gradient, stats as large numbers (utilitybillcalculator.quest pattern) */}
+        <section className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700 py-16 px-4">
+          <div className="container-custom text-center space-y-8 max-w-3xl mx-auto">
+            <div className="space-y-4">
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+                Free Online Calculators<br className="hidden sm:block" /> &amp; Utility Tools
               </h1>
-              <div className="flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
-                <span className="font-semibold text-gray-700 dark:text-gray-300">{TOOLS.length} tools</span>
-                <span className="text-gray-300 dark:text-gray-600">·</span>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">{CATEGORIES.length} categories</span>
-                <span className="text-gray-300 dark:text-gray-600">·</span>
-                <span className="font-semibold text-gray-700 dark:text-gray-300">100% free</span>
+
+              {/* Stats as large numbers */}
+              <div className="flex items-center justify-center gap-8 pt-2">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white">{TOOLS.length}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-0.5">tools</div>
+                </div>
+                <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white">{CATEGORIES.length}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-0.5">categories</div>
+                </div>
+                <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">Free</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mt-0.5">forever</div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center gap-5 text-xs text-gray-400 dark:text-gray-500 pt-1">
+                <span>🔒 No Sign-Up</span>
+                <span>·</span>
+                <span>🖥️ Browser-Only</span>
+                <span>·</span>
+                <span>📱 Works on Mobile</span>
               </div>
             </div>
 
@@ -93,7 +102,7 @@ export default function HomePage() {
               <SearchBar placeholder="Search mortgage, BMI, age calculator…" />
             </div>
 
-            <div className="flex flex-wrap gap-2 justify-center pt-2">
+            <div className="flex flex-wrap gap-2 justify-center">
               {CATEGORIES.map((cat) => (
                 <Link
                   key={cat.slug}
@@ -118,43 +127,19 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Trust strip */}
-        <div className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700">
-          <div className="container-custom py-3">
-            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-              {TRUST_BADGES.map((badge) => (
-                <li key={badge.label} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <span className="text-base">{badge.icon}</span>
-                  <span>{badge.label}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Ad Slot 1 */}
+        <div className="container-custom pt-8">
+          <AdPlaceholder format="leaderboard" slot="homepage-top" />
         </div>
 
-        <div className="container-custom py-14 space-y-16">
-          {/* Saved Tools — conditional, hidden until first save */}
+        <div className="container-custom py-12 space-y-12">
+          {/* Saved Tools — conditional */}
           <SavedToolsSection />
 
-          {/* Popular Tools */}
-          <section className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Popular Tools</h2>
-              <Link href="/calculators" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                View all →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {popularTools.map(({ compute: _c, ...tool }) => (
-                <ToolCard key={tool.slug} tool={tool} size="md" />
-              ))}
-            </div>
-          </section>
-
-          {/* Categories */}
-          <section className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Browse by Category</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Categories — compact row cards (calculator.net pattern) */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Browse by Category</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {CATEGORIES.map((cat) => {
                 const count = getToolsByCategory(cat.slug).length;
                 const colors = getCategoryColors(cat.slug);
@@ -162,62 +147,58 @@ export default function HomePage() {
                   <Link
                     key={cat.slug}
                     href={`/categories/${cat.slug}`}
-                    className="group p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-lg transition-all space-y-3"
+                    className="group flex items-center gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md hover:-translate-y-0.5 transition-all"
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <span className={`text-2xl w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${colors.iconBg}`}>
-                          {cat.icon}
-                        </span>
-                        <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-lg">
-                          {cat.name}
-                        </h3>
-                      </div>
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 ${colors.badge}`}>
-                        {count} tools
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{cat.description}</p>
-                    <span className="text-xs text-blue-600 dark:text-blue-400 font-medium group-hover:underline">
-                      Browse tools →
+                    <span className={`text-xl w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${colors.iconBg}`}>
+                      {cat.icon}
                     </span>
+                    <span className="flex-1 font-semibold text-sm text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {cat.name}
+                    </span>
+                    <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">{count} tools →</span>
                   </Link>
                 );
               })}
             </div>
           </section>
 
-          {/* Recently Viewed — conditional, hidden until first tool visit */}
-          <RecentlyViewedSection />
+          {/* Ad Slot 2 */}
+          <AdPlaceholder format="rectangle" slot="homepage-mid1" />
 
-          {/* New Additions */}
-          <section className="space-y-6">
+          {/* Popular Tools */}
+          <section className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">New Additions</h2>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Popular Tools</h2>
               <Link href="/calculators" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
                 View all →
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {recentTools.map(({ compute: _c, ...tool }) => (
-                <ToolCard key={tool.slug} tool={tool} size="sm" />
+              {popularTools.map(({ compute: _c, ...tool }) => (
+                <ToolCard key={tool.slug} tool={tool} size="md" />
               ))}
             </div>
           </section>
 
+          {/* Ad Slot 3 */}
+          <AdPlaceholder format="rectangle" slot="homepage-mid2" />
+
+          {/* Recently Viewed — conditional */}
+          <RecentlyViewedSection />
+
           {/* FAQ */}
-          <section className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
-            <div className="space-y-3 max-w-2xl">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
+            <div className="space-y-2 max-w-2xl">
               {HOMEPAGE_FAQS.map((faq, i) => (
                 <details
                   key={i}
                   className="group rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
                 >
-                  <summary className="flex items-center justify-between p-5 cursor-pointer list-none">
-                    <span className="font-medium text-gray-900 dark:text-white">{faq.q}</span>
+                  <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
+                    <span className="font-medium text-sm text-gray-900 dark:text-white">{faq.q}</span>
                     <svg
-                      className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-3"
+                      className="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-3"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -225,17 +206,18 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </summary>
-                  <div className="px-5 pb-5 text-sm text-gray-600 dark:text-gray-400">{faq.a}</div>
+                  <div className="px-4 pb-4 text-sm text-gray-600 dark:text-gray-400">{faq.a}</div>
                 </details>
               ))}
             </div>
           </section>
 
-          <AdPlaceholder />
+          {/* Ad Slot 4 */}
+          <AdPlaceholder format="leaderboard" slot="homepage-prefooter1" />
 
           {/* SEO text */}
-          <section className="space-y-4 prose dark:prose-invert max-w-none text-sm text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-10">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          <section className="space-y-3 max-w-none text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-8">
+            <h2 className="text-base font-semibold text-gray-700 dark:text-gray-300">
               Your Free Online Calculator Hub
             </h2>
             <p>
@@ -249,11 +231,10 @@ export default function HomePage() {
               estimating how much paint you need for a room, or converting text to binary, ToolNest has
               you covered with accurate, easy-to-use tools that work on any device.
             </p>
-            <p>
-              New tools are added regularly across all six categories. Bookmark this page or follow us on
-              social media to stay updated with the latest additions.
-            </p>
           </section>
+
+          {/* Ad Slot 5 */}
+          <AdPlaceholder format="leaderboard" slot="homepage-prefooter2" />
         </div>
       </div>
     </>

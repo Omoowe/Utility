@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { TOOLS } from '@/lib/data/tools';
 import { CATEGORIES } from '@/lib/data/categories';
 import { ToolCard } from '@/components/common/ToolCard';
+import { AdPlaceholder } from '@/components/common/AdPlaceholder';
 
 const SERIALIZABLE_TOOLS = TOOLS.map(({ compute: _c, ...t }) => t);
 
@@ -93,6 +94,9 @@ export function CalculatorsPageClient(): React.JSX.Element {
         )}
       </div>
 
+      {/* Ad Slot 2 — between filter controls and results */}
+      <AdPlaceholder format="leaderboard" slot="tools-filter-mid" />
+
       {/* Empty state */}
       {filtered.length === 0 && (
         <div className="text-center py-16 space-y-3">
@@ -111,39 +115,47 @@ export function CalculatorsPageClient(): React.JSX.Element {
 
       {/* Flat grid when any filter active */}
       {filtered.length > 0 && isFiltered && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filtered.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} size="sm" />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {filtered.map((tool) => (
+              <ToolCard key={tool.slug} tool={tool} size="sm" />
+            ))}
+          </div>
+          {/* Ad Slot 3 — after flat grid */}
+          <AdPlaceholder format="rectangle" slot="tools-mid-grid" />
+        </>
       )}
 
       {/* Grouped by category when showing all with no query */}
       {filtered.length > 0 && !isFiltered && (
         <div className="space-y-14">
-          {groupedByCategory.map((cat) => (
-            <section key={cat.slug} className="space-y-5">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-xl">{cat.icon}</span>
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">{cat.name}</h2>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{cat.tools.length} tools</p>
+          {groupedByCategory.map((cat, idx) => (
+            <React.Fragment key={cat.slug}>
+              <section className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">{cat.icon}</span>
+                    <div>
+                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">{cat.name}</h2>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{cat.tools.length} tools</p>
+                    </div>
                   </div>
+                  <button
+                    onClick={() => setActiveCategory(cat.slug)}
+                    className="text-sm text-blue-600 dark:text-blue-400 hover:underline shrink-0"
+                  >
+                    Filter →
+                  </button>
                 </div>
-                <button
-                  onClick={() => setActiveCategory(cat.slug)}
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline shrink-0"
-                >
-                  Filter →
-                </button>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {cat.tools.map((tool) => (
-                  <ToolCard key={tool.slug} tool={tool} size="sm" />
-                ))}
-              </div>
-            </section>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {cat.tools.map((tool) => (
+                    <ToolCard key={tool.slug} tool={tool} size="sm" />
+                  ))}
+                </div>
+              </section>
+              {/* Ad Slot 3 — after first category group */}
+              {idx === 0 && <AdPlaceholder format="rectangle" slot="tools-mid-grid" />}
+            </React.Fragment>
           ))}
         </div>
       )}

@@ -36,21 +36,25 @@ export default function CalculatorsPage() {
       </div>
 
       <main className="container-custom py-10 space-y-8">
-        <section className="space-y-3 text-center max-w-2xl mx-auto">
+        <section className="space-y-2 max-w-2xl">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-            Free Online Calculators & Tools
+            All Free Online Tools
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            {TOOLS.length}+ free tools across 6 categories. No sign-up, no fees — instant results.
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {TOOLS.length} tools across 6 categories — no sign-up, no fees, instant results.
           </p>
         </section>
 
+        {/* Ad Slot 1 */}
+        <AdPlaceholder format="leaderboard" slot="tools-top" />
+
         <CalculatorsPageClient />
 
-        <AdPlaceholder />
+        {/* Ad Slot 4 — after grid */}
+        <AdPlaceholder format="rectangle" slot="tools-post-grid" />
 
-        <section className="prose dark:prose-invert max-w-none text-sm text-gray-600 dark:text-gray-400 space-y-3 border-t border-gray-200 dark:border-gray-700 pt-10">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+        <section className="text-sm text-gray-500 dark:text-gray-400 space-y-3 border-t border-gray-200 dark:border-gray-700 pt-8">
+          <h2 className="text-base font-semibold text-gray-700 dark:text-gray-300">
             About ToolNest&apos;s Free Calculators
           </h2>
           <p>
@@ -63,6 +67,9 @@ export default function CalculatorsPage() {
             tool is designed for mobile and desktop use, with results updating instantly as you type.
           </p>
         </section>
+
+        {/* Ad Slot 5 */}
+        <AdPlaceholder format="leaderboard" slot="tools-bottom" />
       </main>
     </div>
   );

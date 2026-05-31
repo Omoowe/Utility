@@ -15,6 +15,7 @@ interface CalculatorLayoutProps {
   results?: React.ReactNode;
   intro?: string;
   howItWorks?: string;
+  interpretationGuide?: string;
   faqs?: Array<{ question: string; answer: string }>;
   relatedTools?: ToolConfig[];
   contentHtml?: string;
@@ -26,6 +27,7 @@ export function CalculatorLayout({
   results,
   intro,
   howItWorks,
+  interpretationGuide,
   faqs = [],
   relatedTools = [],
   contentHtml,
@@ -52,6 +54,9 @@ export function CalculatorLayout({
       </div>
 
       <main className="container-custom py-10 space-y-10">
+        {/* Ad Slot 1 — above tool header */}
+        <AdPlaceholder format="leaderboard" slot="calc-top" />
+
         {/* Header */}
         <section className="space-y-3">
           <div className="flex items-start justify-between gap-4">
@@ -113,13 +118,13 @@ export function CalculatorLayout({
           )}
         </section>
 
-        {/* Ad */}
-        <AdPlaceholder />
+        {/* Ad Slot 2 — after calculator widget */}
+        <AdPlaceholder format="rectangle" slot="calc-mid" />
 
         {/* How It Works */}
         {howItWorks && (
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">How It Works</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">How It Works</h2>
             <div className="prose dark:prose-invert prose-sm max-w-none text-gray-700 dark:text-gray-300">
               {contentHtml ? (
                 <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
@@ -130,23 +135,42 @@ export function CalculatorLayout({
           </section>
         )}
 
+        {/* Ad Slot 3 — after How It Works */}
+        <AdPlaceholder format="rectangle" slot="calc-content" />
+
+        {/* How to Interpret Results */}
+        {interpretationGuide && (
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">How to Interpret Your Results</h2>
+            <div className="prose dark:prose-invert prose-sm max-w-none text-gray-700 dark:text-gray-300">
+              <p>{interpretationGuide}</p>
+            </div>
+          </section>
+        )}
+
         {/* FAQ */}
         {faqs.length > 0 && (
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
               Frequently Asked Questions
             </h2>
             <FAQAccordion faqs={faqs} />
           </section>
         )}
 
+        {/* Ad Slot 4 — above Related Tools */}
+        <AdPlaceholder format="leaderboard" slot="calc-pre-related" />
+
         {/* Related Tools */}
         {relatedTools.length > 0 && (
           <section className="space-y-4">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Related Tools</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Related Tools</h2>
             <RelatedTools tools={relatedTools} />
           </section>
         )}
+
+        {/* Ad Slot 5 — page bottom */}
+        <AdPlaceholder format="leaderboard" slot="calc-bottom" />
       </main>
     </div>
   );

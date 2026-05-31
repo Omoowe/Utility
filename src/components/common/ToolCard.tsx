@@ -29,7 +29,7 @@ export function ToolCard({ tool, size = 'md', showFavorite = true }: ToolCardPro
   return (
     <Link
       href={`/calculators/${tool.slug}`}
-      className={`group relative flex items-start gap-3 p-4 rounded-xl border-l-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md transition-all ${colors.border}`}
+      className="group relative flex items-start gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md hover:-translate-y-0.5 transition-all"
     >
       <span className={`shrink-0 flex items-center justify-center ${iconSize} ${colors.iconBg}`}>
         {tool.icon ?? '🔧'}

@@ -46,46 +46,76 @@ export default async function CategoryPage({ params }: PageProps) {
   );
 
   const colors = getCategoryColors(cat.slug);
+  const firstHalf = tools.slice(0, 6);
+  const secondHalf = tools.slice(6);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      {/* Breadcrumb */}
       <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="container-custom py-3">
           <BreadcrumbNav items={breadcrumbs} />
         </div>
       </div>
 
-      {/* Category banner */}
-      <div className={`bg-gradient-to-br ${colors.banner} border-b`}>
-        <div className="container-custom py-10">
+      {/* Ad Slot 1 — below breadcrumb */}
+      <div className="container-custom pt-6">
+        <AdPlaceholder format="leaderboard" slot="cat-top" />
+      </div>
+
+      {/* Category header — clean, no gradient */}
+      <div className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700 mt-6">
+        <div className="container-custom py-8">
           <div className="flex items-center gap-4">
-            <span className={`text-4xl w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${colors.iconBg} shadow-sm`}>
+            <span className={`text-3xl w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${colors.iconBg}`}>
               {cat.icon}
             </span>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{cat.name} Tools</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{tools.length} free tools · No sign-up required</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+                {tools.length} free tools · No sign-up required
+              </p>
             </div>
           </div>
-          <p className="text-base text-gray-700 dark:text-gray-300 max-w-2xl mt-4">{cat.seoBlurb}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mt-4">{cat.seoBlurb}</p>
         </div>
       </div>
 
       <main className="container-custom py-10 space-y-10">
-        {/* Tools grid */}
+        {/* Ad Slot 2 — above grid */}
+        <AdPlaceholder format="leaderboard" slot="cat-above-grid" />
+
+        {/* First 6 tools */}
         <section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tools.map(({ compute: _c, ...tool }) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {firstHalf.map(({ compute: _c, ...tool }) => (
               <ToolCard key={tool.slug} tool={tool} size="sm" />
             ))}
           </div>
         </section>
 
-        <AdPlaceholder />
+        {/* Ad Slot 3 — mid-grid (only if more than 6 tools) */}
+        {secondHalf.length > 0 && (
+          <AdPlaceholder format="rectangle" slot="cat-mid-grid" />
+        )}
+
+        {/* Remaining tools */}
+        {secondHalf.length > 0 && (
+          <section>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {secondHalf.map(({ compute: _c, ...tool }) => (
+                <ToolCard key={tool.slug} tool={tool} size="sm" />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Ad Slot 4 — after grid */}
+        <AdPlaceholder format="rectangle" slot="cat-post-grid" />
 
         {/* Other categories */}
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Browse Other Categories</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Browse Other Categories</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {otherCategories.map((c) => {
               const otherColors = getCategoryColors(c.slug);
@@ -107,6 +137,9 @@ export default async function CategoryPage({ params }: PageProps) {
             })}
           </div>
         </section>
+
+        {/* Ad Slot 5 — page bottom */}
+        <AdPlaceholder format="leaderboard" slot="cat-bottom" />
       </main>
     </div>
   );
@@ -141,4 +174,3 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 }
-
