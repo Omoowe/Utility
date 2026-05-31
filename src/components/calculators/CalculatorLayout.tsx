@@ -8,6 +8,7 @@ import { BreadcrumbNav } from '../common/BreadcrumbNav';
 import { RelatedTools } from '../common/RelatedTools';
 import { AdPlaceholder } from '../common/AdPlaceholder';
 import { ShareButton } from '../common/ShareButton';
+import { DisclaimerBanner } from '../common/DisclaimerBanner';
 
 interface CalculatorLayoutProps {
   tool: ToolConfig;
@@ -80,6 +81,9 @@ export function CalculatorLayout({
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-300 max-w-2xl">{tool.description}</p>
           </section>
+
+          {/* YMYL disclaimer for finance / health */}
+          <DisclaimerBanner category={tool.category} />
 
           {/* Calculator widget */}
           <section className="rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">

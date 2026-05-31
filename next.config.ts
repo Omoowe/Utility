@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000,
     remotePatterns: [],
   },
   headers: async () => {
@@ -24,6 +25,12 @@ const nextConfig: NextConfig = {
           {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
+          },
+          {
+            key: 'Link',
+            value:
+              '<https://pagead2.googlesyndication.com>; rel=preconnect; crossorigin, ' +
+              '<https://www.google-analytics.com>; rel=preconnect',
           },
         ],
       },
