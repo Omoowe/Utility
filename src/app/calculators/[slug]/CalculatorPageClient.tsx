@@ -9,6 +9,8 @@ import { ResultBox } from '@/components/calculators/ResultBox';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRecentTools } from '@/hooks/useRecentTools';
 import { CUSTOM_COMPONENTS } from '@/lib/data/customComponents';
+import { CopyResultButton } from '@/components/common/CopyResultButton';
+import { ExportCSVButton } from '@/components/common/ExportCSVButton';
 
 type SerializableTool = Omit<ToolConfig, 'compute'>;
 
@@ -196,6 +198,12 @@ export function CalculatorPageClient({
             />
           );
         })}
+
+        {/* Action row — copy all + export CSV */}
+        <div className="flex items-center gap-2 pt-1">
+          <CopyResultButton toolName={tool.name} results={results} outputs={outputs} />
+          <ExportCSVButton toolName={tool.name} results={results} outputs={outputs} />
+        </div>
       </div>
     );
   };
