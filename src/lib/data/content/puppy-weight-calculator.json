@@ -1,0 +1,56 @@
+{
+  "slug": "puppy-weight-calculator",
+  "intro": "One of the most common questions new puppy owners have is 'how big will my dog get?' Adult size affects everything from food costs to apartment suitability. This calculator uses your puppy's current weight, age in weeks, and breed size category to estimate projected adult weight and the approximate age at full growth. Results are projections based on typical growth curves — actual size depends on genetics, nutrition, and health.",
+  "howItWorks": "Adult weight is estimated using growth rate extrapolation: weekly growth rate = current weight ÷ current age in weeks. Projected adult weight = growth rate × maturity age in weeks, where maturity age varies by size class: Toy breeds reach full size around 26 weeks; Small breeds around 26 weeks; Medium breeds around 36 weeks; Large breeds around 52 weeks; Giant breeds around 78 weeks. This formula is most accurate for puppies between 8–16 weeks old. Results are less reliable outside that window.",
+  "interpretationGuide": "Growth rate projections carry inherent uncertainty because growth is not linear — puppies grow fastest early and taper off as they approach maturity. Toy and small breeds grow quickly and are near adult size by 6 months; large and giant breeds continue growing for 12–24 months. The projection is most useful as a rough guide for size planning, not a precise number. For the most accurate adult size estimate, ask your vet at the 8-week wellness visit — they can assess bone structure and compare to breed standards. Mixed-breed puppies are harder to predict without DNA breed information.",
+  "faqs": [
+    {
+      "question": "How can I predict how big my puppy will get?",
+      "answer": "The most common method is the growth rate formula: take the puppy's current weight, divide by current age in weeks, and multiply by the expected maturity age in weeks for the breed size. For example, a 4 kg puppy at 12 weeks of a medium breed (maturity at 36 weeks) → projected adult weight = (4 ÷ 12) × 36 = 12 kg. DNA breed tests can help for mixed-breed dogs. Your vet can also estimate adult size by assessing paw size and bone structure."
+    },
+    {
+      "question": "When are dogs fully grown?",
+      "answer": "Full size depends on breed: Toy breeds (under 5 kg adult): 6–8 months. Small breeds (5–10 kg): 8–12 months. Medium breeds (10–25 kg): 12–15 months. Large breeds (25–45 kg): 15–18 months. Giant breeds (45+ kg): 18–24 months, with some breeds continuing muscular development up to 3 years. Smaller dogs mature faster; giant breeds continue filling out long after reaching full height."
+    },
+    {
+      "question": "How much should a puppy weigh at 8 weeks?",
+      "answer": "This varies enormously by breed. A Chihuahua at 8 weeks may weigh 0.5–0.8 kg; a Labrador Retriever 3–5 kg; a Great Dane 5–10 kg. What matters more than a specific weight is a consistent growth trajectory. A puppy should gain weight steadily every day in the first weeks. Compare your puppy's weight to breed-specific growth charts, which are available from breed clubs and veterinary resources."
+    },
+    {
+      "question": "Is it accurate to predict adult weight by doubling 16-week weight?",
+      "answer": "Doubling the weight at 16 weeks is a rough rule of thumb for medium breeds only. It tends to underestimate large breeds and overestimate toy breeds. The formula works better for medium dogs because they hit roughly half their adult weight around 4 months. For more accuracy, use the formula: (16-week weight ÷ 16 weeks) × maturity age in weeks, where maturity age depends on the breed size category."
+    },
+    {
+      "question": "Why are giant breed puppies so difficult to predict?",
+      "answer": "Giant breeds (Great Danes, Saint Bernards, Mastiffs) have a growth period of 18–24 months and continue to fill out muscularly for up to 3 years. Growth rates are non-linear — they grow very fast early, then slow significantly. Additionally, giant breed individuals within a breed vary considerably in adult size. Genetics (particularly the size of the parents) is the most reliable predictor — if both parents are large for the breed, the puppy likely will be too."
+    },
+    {
+      "question": "How do I weigh a puppy at home?",
+      "answer": "Use a kitchen scale (digital postal scale) for small puppies — accuracy to 5–10 grams is ideal for the first few weeks. For larger puppies, step on a bathroom scale while holding the puppy, then weigh yourself alone, and subtract. Weigh at the same time each day (morning before feeding is consistent) for meaningful tracking. Record weights in a log or app — a growth curve matters more than any single reading."
+    },
+    {
+      "question": "What size category is my breed?",
+      "answer": "General categories by expected adult weight: Toy (under 5 kg): Chihuahua, Maltese, Yorkshire Terrier, Pomeranian. Small (5–10 kg): Beagle, Pug, Cocker Spaniel, Boston Terrier. Medium (10–25 kg): Labrador Retriever, Golden Retriever, Border Collie, Bulldog. Large (25–45 kg): German Shepherd, Doberman, Rottweiler, Husky. Giant (45+ kg): Great Dane, Saint Bernard, Mastiff, Irish Wolfhound. Mixed breeds are harder to classify — use DNA test results or vet assessment."
+    },
+    {
+      "question": "Should I be concerned if my puppy is smaller than expected?",
+      "answer": "Some variation from growth charts is normal, especially for mixed breeds. A puppy consistently gaining weight (even if at the lower end of the breed range) is generally healthy. Concern is warranted if the puppy loses weight, fails to gain weight for more than 2–3 days, or falls significantly below breed norms. These could signal parasites, infection, poor nutrition, or a congenital issue. Have a vet evaluate any puppy that seems to be falling behind the expected growth curve."
+    },
+    {
+      "question": "How does nutrition affect adult size?",
+      "answer": "Nutrition affects development but not fundamental genetic size potential. Puppies fed appropriate, balanced food reach their genetic potential. Undernutrition can stunt growth and delay maturity; overnutrition (especially overfeeding large and giant breeds) can cause excessively rapid growth, which stresses developing bones and joints and is linked to orthopedic problems like hip dysplasia. Feed large and giant breed puppies a food specifically formulated for large breeds — it has controlled calcium and calorie content."
+    },
+    {
+      "question": "At what age do puppies stop growing taller?",
+      "answer": "Height (skeletal length) usually finalizes before overall growth completes. Small dogs are at full height by 6–9 months; medium dogs by 9–12 months; large dogs by 12–15 months; giant breeds by 18 months. Muscle mass and body weight continue increasing after height stabilizes. This is why a 14-month Great Dane may look lanky but will fill out considerably over the following year."
+    },
+    {
+      "question": "What is the runt of the litter?",
+      "answer": "The 'runt' is the smallest puppy in a litter at birth. Runts may be smaller due to placental placement, birth order, or feeding competition, but many grow to normal adult size with proper nutrition and veterinary care. A true runt that had intrauterine growth restriction may remain smaller than littermates throughout life. Do not select or reject a puppy based solely on being the smallest — assess overall health, energy, and development."
+    },
+    {
+      "question": "Is a puppy's paw size a good indicator of adult size?",
+      "answer": "Paw size is a popular folk indicator but is unreliable as a precise predictor. It works as a rough guide — puppies with noticeably large paws relative to their body (disproportionately large and 'clunky') often grow into large adult dogs. But proportions vary by breed and individual, and paw-to-body ratio does not scale linearly across sizes. Breed, parent size, and growth curve analysis are more reliable predictors than paw inspection."
+    }
+  ]
+}

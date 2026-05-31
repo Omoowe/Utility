@@ -1,0 +1,56 @@
+{
+  "slug": "dog-pregnancy-calculator",
+  "intro": "A dog's pregnancy lasts approximately 63 days from conception — but tracking exact timing from the mating date helps you prepare for whelping, schedule vet visits, and recognize the signs of approaching labor. Enter the mating date to instantly see the estimated due date, current pregnancy stage, and key milestone dates across the three trimesters.",
+  "howItWorks": "Canine gestation is approximately 63 days from the date of mating (ovulation may vary by 1–5 days, so 58–68 days is the full normal range). The due date is calculated as mating date + 63 days. Days since mating and days remaining are calculated from today's date. Pregnancy is divided into three trimesters: First (days 1–21), Second (days 22–42), and Third (days 43–63). These stages correspond to distinct developmental milestones: implantation, organ development, and final growth with colostrum production.",
+  "interpretationGuide": "The projected due date assumes conception occurred on the mating date. Dogs can conceive on multiple days around ovulation, so the actual due date may vary by 3–5 days from the calculated estimate. First-litter dogs and giant breeds sometimes deliver closer to day 65–67. If this is your dog's first pregnancy or you are a first-time breeder, a vet confirmation via ultrasound (around day 25–28) or X-ray (after day 55) is recommended to confirm pregnancy, count puppies, and confirm timing.",
+  "faqs": [
+    {
+      "question": "How long is a dog pregnant?",
+      "answer": "Dogs are pregnant for approximately 63 days from the date of mating, though the full normal range is 58–68 days from mating. The variation is due to the timing of ovulation relative to mating — sperm can survive in the reproductive tract for several days, so conception may not occur on the exact mating date. Large and giant breed dogs tend toward the longer end of the range."
+    },
+    {
+      "question": "What are the signs a dog is pregnant?",
+      "answer": "Early signs (weeks 1–3): subtle behavioral changes, possible mild morning sickness, slight nipple enlargement. Weeks 3–4: appetite changes, abdominal swelling begins. Weeks 5–7: significant abdominal enlargement, more pronounced nipple development with possible milk production. Week 8+: nesting behavior, restlessness, body temperature drop 12–24 hours before labor (below 38°C / 100°F). Ultrasound can confirm pregnancy as early as day 25."
+    },
+    {
+      "question": "When should I take my pregnant dog to the vet?",
+      "answer": "Schedule a vet visit around day 25–28 for ultrasound confirmation of pregnancy and to assess puppy count and viability. A second visit around day 55–60 is recommended for an X-ray, which gives a more accurate puppy count (ultrasound is less precise for counting later in pregnancy). Your vet can also advise on nutrition, deworming protocols, and what to prepare for whelping."
+    },
+    {
+      "question": "How many puppies will my dog have?",
+      "answer": "Litter size varies significantly by breed, age, and health. Small breeds typically have 2–5 puppies; medium breeds 4–8; large breeds 6–10; giant breeds may have 10–15. First litters are often smaller. An X-ray after day 55 provides the most accurate puppy count and is strongly recommended so you know when whelping is complete — retained puppies are a serious emergency."
+    },
+    {
+      "question": "What should I feed a pregnant dog?",
+      "answer": "In the first half of pregnancy, maintain the dog's normal diet. From about week 5 onwards, gradually transition to a high-quality puppy food (which is calorie-dense and higher in calcium and protein). By week 7–8, the dog should be eating puppy food exclusively. Avoid calcium supplementation during pregnancy (it can cause hypocalcemia/eclampsia after birth). Provide free-choice food access in the last 2 weeks as appetite fluctuates."
+    },
+    {
+      "question": "What is the nesting stage?",
+      "answer": "The nesting stage begins roughly 1–2 weeks before delivery (around day 50–56). The dog will start scratching, rearranging bedding, seeking secluded spots, and showing restlessness. This is the time to set up a whelping box in a quiet, warm area and let the dog become comfortable with it. The nesting instinct intensifies in the 24–48 hours before labor begins."
+    },
+    {
+      "question": "What are the signs of labor in dogs?",
+      "answer": "Stage 1 labor (cervix dilation, lasts 6–12 hours): restlessness, panting, shivering, refusing food, vomiting. Core body temperature drops below 38°C (100.4°F) 12–24 hours before active labor — take temperature twice daily in the last week. Stage 2 (active delivery): contractions visible, puppies delivered 20–60 minutes apart. Stage 3: placenta delivered after each puppy. Contact a vet if more than 2–4 hours pass between puppies or if the dog strains for 30+ minutes with no delivery."
+    },
+    {
+      "question": "Can a dog be pregnant without mating?",
+      "answer": "No — pregnancy requires fertilization. However, dogs experience a phenomenon called 'false pregnancy' (pseudocyesis) 6–12 weeks after a heat cycle, where they display pregnancy-like symptoms (swollen mammary glands, nesting, behavioral changes, even milk production) without being pregnant. False pregnancy resolves on its own within 2–3 weeks but should be confirmed by a vet to rule out an actual pregnancy or pyometra."
+    },
+    {
+      "question": "When can I feel puppies moving?",
+      "answer": "Fetal movement can usually be felt by placing a hand on the abdomen from about day 49–55 onwards. Movement is often most noticeable when the dog is lying still and relaxed. Earlier movements (day 35–45) may be detectable by a vet via palpation but are too subtle to feel externally. Reduced movement near the end of pregnancy is normal as the puppies run out of room."
+    },
+    {
+      "question": "Is it safe to breed a dog on every heat cycle?",
+      "answer": "Most responsible breeding guidelines recommend breeding no more than once every 18–24 months, or every other heat cycle. Back-to-back breedings deplete the dam's nutritional reserves and increase health risks. Most kennel clubs and breed registries have guidelines limiting the number of litters per female over her lifetime. Age also matters: breeding before 2 years of age (before full physical maturity) increases complication risk."
+    },
+    {
+      "question": "What complications can occur during dog pregnancy?",
+      "answer": "Reabsorption or miscarriage (especially in first trimester), brucellosis (bacterial infection causing infertility), pyometra risk if pregnancy fails, uterine inertia during labor, eclampsia (milk fever / hypocalcemia, especially in small breeds with large litters), retained puppies or placentas, mastitis (mammary infection), and puppy fading syndrome in neonates. Working with an experienced vet significantly reduces the risk of serious complications."
+    },
+    {
+      "question": "How accurate is this due date calculator?",
+      "answer": "The calculator estimates the due date as 63 days from the mating date, which is the accepted gestation midpoint. Accuracy depends on two factors: whether the mating date is known precisely, and when conception actually occurred relative to mating (sperm can survive 3–7 days, so conception may not align exactly with mating). A vet ultrasound at day 25–28 provides a developmental-stage confirmation that narrows the range, and an X-ray after day 55 confirms how close to term the puppies are."
+    }
+  ]
+}

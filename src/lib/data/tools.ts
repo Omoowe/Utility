@@ -55,6 +55,12 @@ import { calculateRunningPace } from '../calculators/running-pace-calculator';
 import { calculateTip } from '../calculators/tip-calculator';
 import { calculatePercentage } from '../calculators/percentage-calculator';
 import { calculateGpa } from '../calculators/gpa-calculator';
+import { calculateDogPregnancy } from '../calculators/dog-pregnancy-calculator';
+import { calculateCatPregnancy } from '../calculators/cat-pregnancy-calculator';
+import { calculatePuppyWeight } from '../calculators/puppy-weight-calculator';
+import { calculateEngagementRate } from '../calculators/engagement-rate-calculator';
+import { calculateConversionRate } from '../calculators/conversion-rate-calculator';
+import { calculateAdRevenue } from '../calculators/ad-revenue-calculator';
 
 export interface CalculatorInput {
   name: string;
@@ -1945,6 +1951,159 @@ export const TOOLS: ToolConfig[] = [
     ],
     contentFile: 'gpa-calculator.json',
     compute: calculateGpa,
+  },
+  {
+    slug: 'dog-pregnancy-calculator',
+    name: 'Dog Pregnancy Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Dog Pregnancy Calculator — Due Date & Gestation Tracker',
+    description: 'Calculate your dog\'s due date and track pregnancy stages from mating date. See days remaining, trimester, and key milestone dates for a 63-day canine gestation.',
+    keywords: ['dog pregnancy calculator', 'canine gestation calculator', 'dog due date calculator', 'how long are dogs pregnant', 'dog whelping date'],
+    icon: '🐕',
+    featured: false,
+    inputs: [
+      { name: 'matingDate', label: 'Mating Date', type: 'date', required: true },
+    ],
+    outputs: [
+      { name: 'dueDate',       label: 'Estimated Due Date',       type: 'text' },
+      { name: 'daysRemaining', label: 'Days Remaining',           type: 'number', decimals: 0 },
+      { name: 'daysSinceMating', label: 'Days Since Mating',      type: 'number', decimals: 0 },
+      { name: 'stage',         label: 'Current Stage',            type: 'text' },
+      { name: 'trimester1End', label: 'First Trimester Ends',     type: 'text' },
+      { name: 'trimester2End', label: 'Second Trimester Ends',    type: 'text' },
+    ],
+    contentFile: 'dog-pregnancy-calculator.json',
+    compute: calculateDogPregnancy,
+  },
+  {
+    slug: 'cat-pregnancy-calculator',
+    name: 'Cat Pregnancy Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Cat Pregnancy Calculator — Kitten Due Date & Gestation Tracker',
+    description: 'Calculate your cat\'s due date and track pregnancy stages from mating date. See days remaining, current stage, and recommended vet visit timing for a 65-day feline gestation.',
+    keywords: ['cat pregnancy calculator', 'feline gestation calculator', 'cat due date calculator', 'how long are cats pregnant', 'kitten due date'],
+    icon: '🐈',
+    featured: false,
+    inputs: [
+      { name: 'matingDate', label: 'Mating Date', type: 'date', required: true },
+    ],
+    outputs: [
+      { name: 'dueDate',               label: 'Estimated Due Date',        type: 'text' },
+      { name: 'daysRemaining',         label: 'Days Remaining',            type: 'number', decimals: 0 },
+      { name: 'daysSinceMating',       label: 'Days Since Mating',         type: 'number', decimals: 0 },
+      { name: 'stage',                 label: 'Current Stage',             type: 'text' },
+      { name: 'recommendedVetVisit',   label: 'Recommended Vet Visit',     type: 'text' },
+      { name: 'nestingStartDate',      label: 'Nesting Start (Day 57)',     type: 'text' },
+    ],
+    contentFile: 'cat-pregnancy-calculator.json',
+    compute: calculateCatPregnancy,
+  },
+  {
+    slug: 'puppy-weight-calculator',
+    name: 'Puppy Weight Calculator',
+    category: 'pets',
+    kind: 'calculator',
+    title: 'Puppy Weight Calculator — Predict Adult Dog Size',
+    description: 'Predict your puppy\'s adult weight based on current weight, age, and breed size. Get projected adult weight in kg and lbs and weeks until full maturity.',
+    keywords: ['puppy weight calculator', 'how big will my dog get', 'puppy adult size predictor', 'dog growth calculator', 'predicted adult dog weight'],
+    icon: '🐶',
+    featured: false,
+    inputs: [
+      { name: 'currentWeightKg', label: 'Current Weight (kg)', type: 'number', placeholder: '5', min: 0.1, max: 60, step: 0.1, required: true },
+      { name: 'currentAgeWeeks', label: 'Current Age (weeks)', type: 'number', placeholder: '12', min: 1, max: 52, step: 1, required: true },
+      { name: 'sizeCategory',    label: 'Breed Size Category', type: 'select', required: true, options: [
+        { value: 'toy',    label: 'Toy (adult < 5 kg)' },
+        { value: 'small',  label: 'Small (adult 5–10 kg)' },
+        { value: 'medium', label: 'Medium (adult 10–25 kg)' },
+        { value: 'large',  label: 'Large (adult 25–45 kg)' },
+        { value: 'giant',  label: 'Giant (adult 45+ kg)' },
+      ]},
+    ],
+    outputs: [
+      { name: 'projectedWeightKg',  label: 'Projected Adult Weight (kg)',  type: 'number', decimals: 1 },
+      { name: 'projectedWeightLbs', label: 'Projected Adult Weight (lbs)', type: 'number', decimals: 1 },
+      { name: 'weeksToMaturity',    label: 'Weeks Until Full Growth',       type: 'number', decimals: 0 },
+      { name: 'maturityWeeks',      label: 'Full Maturity At (weeks)',      type: 'number', decimals: 0 },
+    ],
+    contentFile: 'puppy-weight-calculator.json',
+    compute: calculatePuppyWeight,
+  },
+  {
+    slug: 'engagement-rate-calculator',
+    name: 'Engagement Rate Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Engagement Rate Calculator — Instagram, TikTok & Social Media',
+    description: 'Calculate your social media engagement rate from likes, comments, shares, and follower count. Get engagement by followers and by reach with a quality benchmark.',
+    keywords: ['engagement rate calculator', 'instagram engagement rate', 'social media engagement rate', 'how to calculate engagement rate', 'tiktok engagement rate'],
+    icon: '📊',
+    featured: false,
+    inputs: [
+      { name: 'followers', label: 'Followers',          type: 'number', placeholder: '10000', min: 1, step: 1, required: true },
+      { name: 'likes',     label: 'Likes',              type: 'number', placeholder: '350',   min: 0, step: 1, required: false },
+      { name: 'comments',  label: 'Comments',           type: 'number', placeholder: '40',    min: 0, step: 1, required: false },
+      { name: 'shares',    label: 'Shares / Saves',     type: 'number', placeholder: '10',    min: 0, step: 1, required: false },
+      { name: 'reach',     label: 'Post Reach (optional)', type: 'number', placeholder: '5000', min: 0, step: 1, required: false },
+    ],
+    outputs: [
+      { name: 'engagementRateByFollowers', label: 'Engagement Rate (by followers)', type: 'number', decimals: 2, unit: '%' },
+      { name: 'engagementRateByReach',     label: 'Engagement Rate (by reach)',     type: 'number', decimals: 2, unit: '%' },
+      { name: 'totalEngagements',          label: 'Total Engagements',              type: 'number', decimals: 0 },
+      { name: 'qualityLabel',              label: 'Rate Quality',                   type: 'text' },
+    ],
+    contentFile: 'engagement-rate-calculator.json',
+    compute: calculateEngagementRate,
+  },
+  {
+    slug: 'conversion-rate-calculator',
+    name: 'Conversion Rate Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Conversion Rate Calculator — Website & eCommerce CRO',
+    description: 'Calculate your website or landing page conversion rate from visitors and conversions. Add revenue per conversion to see total revenue, daily earnings, and RPV.',
+    keywords: ['conversion rate calculator', 'cro calculator', 'website conversion rate', 'landing page conversion rate', 'ecommerce conversion rate'],
+    icon: '🎯',
+    featured: false,
+    inputs: [
+      { name: 'visitors',             label: 'Visitors',                 type: 'number', placeholder: '5000',  min: 1,    step: 1,    required: true },
+      { name: 'conversions',          label: 'Conversions',              type: 'number', placeholder: '75',    min: 0,    step: 1,    required: true },
+      { name: 'revenuePerConversion', label: 'Revenue per Conversion ($)', type: 'number', placeholder: '49', min: 0, step: 0.01, required: false },
+    ],
+    outputs: [
+      { name: 'conversionRate',    label: 'Conversion Rate (%)',      type: 'number',   decimals: 2, unit: '%' },
+      { name: 'totalRevenue',      label: 'Total Revenue',            type: 'currency', decimals: 2 },
+      { name: 'revenuePerVisitor', label: 'Revenue Per Visitor (RPV)', type: 'currency', decimals: 2 },
+      { name: 'qualityLabel',      label: 'Rate Benchmark',           type: 'text' },
+    ],
+    contentFile: 'conversion-rate-calculator.json',
+    compute: calculateConversionRate,
+  },
+  {
+    slug: 'ad-revenue-calculator',
+    name: 'Ad Revenue Calculator',
+    category: 'business-creator',
+    kind: 'calculator',
+    title: 'Ad Revenue Calculator — Website & Blog Earnings Estimator',
+    description: 'Estimate your website ad revenue from monthly pageviews, CPM rate, and number of ad slots per page. See daily, monthly, and annual earnings projections.',
+    keywords: ['ad revenue calculator', 'website earnings calculator', 'blog revenue calculator', 'adsense revenue estimator', 'cpm revenue calculator'],
+    icon: '💰',
+    featured: false,
+    inputs: [
+      { name: 'monthlyPageviews', label: 'Monthly Pageviews',     type: 'number', placeholder: '50000', min: 1,   step: 100,  required: true },
+      { name: 'cpm',              label: 'CPM Rate ($)',          type: 'number', placeholder: '3',     min: 0.1, step: 0.1,  required: false },
+      { name: 'adSlotsPerPage',   label: 'Ad Slots Per Page',    type: 'number', placeholder: '3',     min: 1,   max: 10, step: 1, required: false },
+    ],
+    outputs: [
+      { name: 'monthlyRevenue',      label: 'Monthly Revenue',      type: 'currency', decimals: 2 },
+      { name: 'annualRevenue',       label: 'Annual Revenue',       type: 'currency', decimals: 2 },
+      { name: 'dailyRevenue',        label: 'Daily Revenue',        type: 'currency', decimals: 2 },
+      { name: 'monthlyImpressions',  label: 'Monthly Impressions',  type: 'number',   decimals: 0 },
+      { name: 'rpmPageviews',        label: 'RPM (per 1K pageviews)', type: 'currency', decimals: 2 },
+    ],
+    contentFile: 'ad-revenue-calculator.json',
+    compute: calculateAdRevenue,
   },
 ];
 

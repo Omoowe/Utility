@@ -1,0 +1,56 @@
+{
+  "slug": "ad-revenue-calculator",
+  "intro": "Understanding how much your website or blog can earn from display advertising starts with three numbers: monthly pageviews, your CPM rate (cost per thousand impressions), and how many ad slots you serve per page. This calculator uses those inputs to project daily, monthly, and annual ad revenue, total monthly impressions, and your effective RPM (revenue per thousand pageviews) — the metric ad networks use to compare publisher performance.",
+  "howItWorks": "Monthly impressions = monthly pageviews × ad slots per page. Monthly revenue = (monthly impressions ÷ 1,000) × CPM. Annual revenue = monthly revenue × 12. Daily revenue = monthly revenue ÷ 30. RPM per pageview = (monthly revenue ÷ monthly pageviews) × 1,000. For example: 50,000 pageviews/month × 3 ad slots = 150,000 impressions. At $3 CPM: revenue = (150,000 ÷ 1,000) × $3 = $450/month. RPM = ($450 ÷ 50,000) × 1,000 = $9.00 per 1,000 pageviews.",
+  "interpretationGuide": "CPM rates vary dramatically by niche, audience geography, traffic source, and ad network. Google AdSense CPMs range from $0.50–$3 for general content to $5–$15 for finance, legal, or health niches. Premium ad networks (Mediavine, AdThrive/Raptive) achieve $10–$30+ RPM through better advertiser access, but require minimum traffic thresholds (Mediavine: 50K sessions/month; Raptive: 100K pageviews/month). RPM is the best benchmark — a site earning $12 RPM through 3 ad slots at $4 CPM is comparable to one earning $12 RPM through 2 slots at $6 CPM.",
+  "faqs": [
+    {
+      "question": "What is CPM in advertising?",
+      "answer": "CPM stands for 'Cost Per Mille' (mille = Latin for thousand) — it is the price advertisers pay per 1,000 ad impressions. From a publisher's perspective, CPM is the revenue earned per 1,000 times an ad is shown. A $3 CPM means advertisers pay (or you earn) $3 for every 1,000 ad views. CPM is the primary pricing model for display advertising networks like Google AdSense and programmatic ad exchanges."
+    },
+    {
+      "question": "What is RPM in website advertising?",
+      "answer": "RPM (Revenue Per Mille / Revenue Per Thousand) is your effective earnings per 1,000 pageviews, accounting for the number of ad slots and their fill rate. RPM = (total estimated earnings ÷ total pageviews) × 1,000. RPM is more useful than CPM for comparing publisher performance because it accounts for how many ads show per page and the actual fill rate. A site with a $2 CPM but 5 ad slots per page has a higher effective RPM than a site with a $3 CPM and 2 slots."
+    },
+    {
+      "question": "What is a good CPM rate for Google AdSense?",
+      "answer": "AdSense CPM ranges by niche: General content / entertainment: $0.50–$2. Lifestyle / food / travel: $1–$4. Technology: $2–$6. Health and wellness: $3–$8. Personal finance: $5–$15. Legal / insurance: $8–$20. B2B / software: $5–$15. Geography also matters significantly — US, UK, Canada, and Australia audiences command 3–5x higher CPMs than traffic from developing markets. Q4 (October–December) sees CPMs spike 30–50% due to holiday advertiser spending."
+    },
+    {
+      "question": "How much can a website with 100,000 pageviews per month earn?",
+      "answer": "Revenue depends entirely on niche and ad strategy: AdSense (general content, 3 slots, $1.50 CPM): ~$450/month ($5,400/year). AdSense (finance niche, 3 slots, $6 CPM): ~$1,800/month ($21,600/year). Premium ad network (Mediavine, $15 RPM): ~$1,500/month ($18,000/year). Premium ad network (Raptive, $25 RPM in a strong niche): ~$2,500/month ($30,000/year). These are order-of-magnitude estimates — actual results vary based on content quality, audience geography, device split, and seasonal fluctuations."
+    },
+    {
+      "question": "What are the best ad networks for bloggers?",
+      "answer": "By traffic tier: Under 10K sessions/month: Google AdSense (no minimum), Ezoic (no minimum with AI optimization). 10K–50K sessions: Ezoic, SHE Media, AdThrive beta. 50K+ sessions/month: Mediavine (50K sessions/month minimum), AdThrive/Raptive (100K pageviews/month minimum). Premium networks (Mediavine, Raptive) consistently outperform AdSense by 3–5x in RPM because they access premium programmatic demand and use sophisticated yield optimization. The traffic threshold requirement is the main barrier."
+    },
+    {
+      "question": "How many ad slots should I have on my website?",
+      "answer": "Google's guidance recommends no more than ads per page that maintain a good user experience — there is no hard cap, but excessive ads reduce time-on-site and return visits. Typical high-performing configurations: 3–4 ads for article content (header, in-content at mid-point, bottom, sidebar). Long-form content (2,000+ words) can support 4–6 in-content slots without significant UX penalty. Sticky/anchor ads (fixed at bottom of screen) add impressions without occupying scroll space. Diminishing returns set in above 6–8 slots as ad placement quality falls."
+    },
+    {
+      "question": "What is Google AdSense's cut of ad revenue?",
+      "answer": "Google AdSense pays publishers 68% of the revenue generated by ads on their content (Google keeps 32%). For AdSense for Search, publishers receive 51%. These splits are standard across all AdSense publishers — there is no individual negotiation. Premium ad network revenue shares vary: Mediavine's exact split is not publicly disclosed but publishers report 65–75% effective revenue share. Ezoic operates differently, taking a percentage through ad mediation management rather than a direct split."
+    },
+    {
+      "question": "How does ad revenue compare to affiliate marketing?",
+      "answer": "Display advertising produces predictable revenue tied to traffic; affiliate marketing produces variable revenue tied to conversions. Display ads earn $5–$25 RPM at scale (premium networks); affiliate commissions can earn $50–$500+ per conversion depending on product. For the same 100,000 monthly pageviews: display ads might earn $1,500–$2,500/month passively; a well-optimized affiliate site in the same niche might earn $5,000–$20,000/month with the right products. Many publishers use both — ads for base income, affiliates for upside."
+    },
+    {
+      "question": "Does traffic source affect ad revenue?",
+      "answer": "Significantly. Organic search traffic converts highest and commands premium CPMs because search intent indicates active interest. Direct traffic is second. Social media traffic (especially from viral posts or Pinterest) tends to have high bounce rates and lower CPMs. Email traffic converts well but is limited volume. Paid traffic for ad arbitrage (buying traffic to monetize with ads) is generally unprofitable — ad revenue from display ads almost never exceeds cost-per-click ad spend. Traffic from tier-1 countries (US, UK, AU, CA) earns 3–5x more per pageview than global average traffic."
+    },
+    {
+      "question": "Why does ad revenue drop in January and February?",
+      "answer": "Q4 (October–December) sees peak advertiser spending due to Black Friday, Cyber Monday, and holiday season campaigns. CPMs spike 30–70% in Q4 as advertisers compete for impressions. January and February see a dramatic pullback — advertisers have exhausted Q4 budgets and Q1 marketing budgets are just being set. RPM typically drops 40–60% from December to January. This is normal and expected — plan annual revenue projections to account for this seasonality by weighting Q4 heavily."
+    },
+    {
+      "question": "What is page RPM vs. impression RPM?",
+      "answer": "Page RPM = (total earnings ÷ total pageviews) × 1,000. Impression RPM = (total earnings ÷ total impressions) × 1,000. Impression RPM is always lower than page RPM when you run multiple ads per page (since impressions = pageviews × slots per page). AdSense reports both metrics. Page RPM is the most useful for evaluating traffic monetization efficiency because it normalizes across different ad slot configurations. Impression RPM is more useful for evaluating individual ad unit performance."
+    },
+    {
+      "question": "How can I increase my ad revenue without more traffic?",
+      "answer": "Proven methods: Switch from AdSense to a premium network (Mediavine, Raptive) for 3–5x RPM increase once traffic qualifies. Enable all available ad types (auto ads, anchor ads, vignette ads). Improve page speed (faster pages have lower bounce rates and more ad impressions per session). Test ad placement with heatmaps (above-the-fold placements earn 2–3x more than below-the-fold). Target higher-CPM niches (finance, health, legal) in content strategy. Build US/UK audience share through localized content and SEO targeting those markets."
+    }
+  ]
+}

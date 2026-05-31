@@ -1,0 +1,56 @@
+{
+  "slug": "engagement-rate-calculator",
+  "intro": "Follower count is a vanity metric — engagement rate is what tells brands and creators whether an audience is active. This calculator takes your total engagements (likes, comments, shares/saves) and follower count to produce your engagement rate as a percentage, with an optional reach-based rate if you know your post reach. Results include a quality benchmark so you can see how your rate compares to platform averages.",
+  "howItWorks": "Engagement rate by followers = (total engagements ÷ followers) × 100. Total engagements = likes + comments + shares/saves. Engagement rate by reach = (total engagements ÷ reach) × 100 (only calculated if reach is entered). Reach-based engagement rate is generally higher than follower-based rate because reach is typically lower than follower count. Quality benchmarks: below 1% = low; 1–3% = average; 3–6% = good; 6%+ = excellent. These benchmarks apply to Instagram; TikTok averages are higher (5–9%), LinkedIn lower (2%).",
+  "interpretationGuide": "Engagement rates vary significantly by platform, niche, and account size. Smaller accounts typically have higher engagement rates (the 'micro-influencer effect') — accounts under 10K followers often see 5–10%, while accounts over 1M may see 1–2% and still be considered healthy. For brand partnership negotiations, engagement rate matters more than follower count: a 50K account at 5% engagement (2,500 engagements/post) drives more action than a 500K account at 0.5% (2,500 engagements/post at the same absolute level, but with very different conversion implications).",
+  "faqs": [
+    {
+      "question": "What is a good engagement rate on Instagram?",
+      "answer": "Instagram engagement rate benchmarks by follower count: Nano influencers (1K–10K): 5–10%. Micro influencers (10K–100K): 3–6%. Mid-tier (100K–500K): 2–4%. Macro (500K–1M): 1.5–3%. Mega (1M+): 1–2%. A rate above 3% is generally considered strong at any tier. Rates below 1% may signal a disengaged or purchased audience, which brands treat as a red flag."
+    },
+    {
+      "question": "What is a good engagement rate on TikTok?",
+      "answer": "TikTok engagement rates are significantly higher than Instagram because the algorithm shows content to non-followers via the For You Page: Average: 5–9%. Good: 10–15%. Excellent: 15%+. TikTok's engagement is driven more by views than followers since follower count is less relevant when most views come from the FYP. Using a reach or views denominator is more meaningful on TikTok than a follower denominator."
+    },
+    {
+      "question": "What is a good engagement rate on LinkedIn?",
+      "answer": "LinkedIn engagement rates are lower than visual platforms because the content format is more passive: Below average: under 1%. Average: 1–2%. Good: 2–5%. Excellent: 5%+. LinkedIn impressions are often used as the denominator rather than connections/followers, since LinkedIn surfaces content to non-connections. A 2–3% post engagement rate on LinkedIn is considered strong for a corporate brand or creator."
+    },
+    {
+      "question": "How do I calculate engagement rate for a YouTube video?",
+      "answer": "YouTube engagement rate = (likes + comments) ÷ views × 100. Shares are harder to track on YouTube as they often happen off-platform. A 4–8% engagement rate on YouTube (likes + comments vs. views) is considered good. Note that YouTube's primary metric is typically watch time and click-through rate — engagement rate has less weight in the YouTube algorithm than on Instagram or TikTok."
+    },
+    {
+      "question": "What counts as an engagement on Instagram?",
+      "answer": "Primary engagements: likes, comments, shares (sent to DMs or stories), and saves. Instagram Insights also tracks profile visits, link clicks, website taps, and story replies — though these are not universally included in engagement rate calculations. Most marketers use (likes + comments + saves + shares) ÷ reach for post-level engagement. For brand partnership metrics, always clarify which engagements are included in the agreed calculation."
+    },
+    {
+      "question": "Why does engagement rate drop as follower count grows?",
+      "answer": "Several reasons: audience dilution (not all followers see every post due to algorithm throttling); purchased or inactive followers; the natural variance of a large audience (not every follower is equally interested); and algorithm behavior (posts are often shown to a test sample of followers before wider distribution based on initial engagement). This is why micro-influencers often outperform macro accounts for brands seeking genuine audience connection."
+    },
+    {
+      "question": "What is the difference between engagement rate by followers vs. by reach?",
+      "answer": "Engagement rate by followers uses total follower count as the denominator. Engagement rate by reach uses the actual people who saw the post. Reach-based rate is higher (since reach < followers on most posts due to algorithm throttling) and more accurately reflects how engaging the content was to the people who actually saw it. For paid content where reach is known, reach-based rate is the preferred metric. Follower-based rate is used when reach is not available."
+    },
+    {
+      "question": "How do brands use engagement rate to evaluate influencers?",
+      "answer": "Brands typically look for influencers with genuine, active audiences. A minimum engagement rate threshold (commonly 2–3% for Instagram) filters out accounts with inflated follower counts. Brands also look at comment quality (real responses vs. generic emoji comments), audience demographics (age, location, interests), and niche relevance. For large campaigns, brands use third-party analytics tools to audit historical engagement data and detect artificial inflation."
+    },
+    {
+      "question": "Does buying followers affect engagement rate?",
+      "answer": "Yes — drastically. Purchased followers are bot or inactive accounts that never engage with content. If you buy 10,000 followers, your engagement rate falls proportionally: an account with 1,000 real followers and 100 engagements has a 10% rate; add 10,000 fake followers and the rate drops to under 1%. Brands and analytics tools can detect this pattern (sudden follower spikes with flat or declining engagement) and it severely damages credibility in brand negotiations."
+    },
+    {
+      "question": "What is a good engagement rate for an email newsletter?",
+      "answer": "Email engagement metrics are different from social media: Open rate benchmarks (varies by industry): average 20–40%. Click-through rate (CTR): average 2–5%. Click-to-open rate (CTOR): average 10–20%. For newsletters, a 30%+ open rate and 3%+ CTR is considered strong. These rates are measured differently from social engagement rate but serve the same purpose: indicating active, interested subscribers vs. a disengaged list."
+    },
+    {
+      "question": "How can I improve my engagement rate?",
+      "answer": "Proven methods: post at times when your audience is most active (check your platform's Insights); write captions with a clear question or call-to-action; respond to every comment promptly (this signals activity to the algorithm); use relevant hashtags (2–5 well-chosen ones, not 30 generic ones); create content that invites saving and sharing (educational, inspiring, or highly relatable); avoid engagement bait (follow/unfollow, like-for-like); and post consistently rather than sporadically."
+    },
+    {
+      "question": "Should I focus on growing followers or improving engagement rate?",
+      "answer": "Engagement rate first, then scale followers. A 5% engagement rate with 2,000 followers (100 engagements per post) is more valuable to brands and demonstrates a healthier audience than 20,000 followers with 0.5% engagement (100 engagements per post at scale). Quality content that generates genuine engagement will grow followers organically over time. Chasing follower count at the expense of engagement often creates an audience that looks impressive but converts poorly."
+    }
+  ]
+}

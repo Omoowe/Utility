@@ -1,0 +1,56 @@
+{
+  "slug": "cat-pregnancy-calculator",
+  "intro": "A cat's pregnancy lasts approximately 63–67 days from mating, with 65 days as the typical midpoint. Knowing the mating date lets you project the due date, track the current stage, and prepare the nesting area well in advance. Enter the mating date to see your cat's estimated delivery date, days remaining, and key milestones including recommended vet visit timing.",
+  "howItWorks": "Feline gestation averages 65 days from the mating date (full normal range: 63–67 days). The due date is mating date + 65 days. Days since mating and days remaining are calculated from today. Pregnancy progresses through early pregnancy (days 1–28, implantation and organ development), late pregnancy (days 29–56, rapid growth), and nesting phase (days 57–65, colostrum production and imminent delivery). A vet confirmation by ultrasound is recommended around day 21 to confirm pregnancy and assess litter size.",
+  "interpretationGuide": "Cat pregnancies are fairly consistent but can vary by 2–4 days in either direction. First-time queens (female cats having their first litter) sometimes carry slightly longer. Stress, poor nutrition, or health issues can affect timing. If your cat has not delivered by day 70, contact a vet immediately — post-term pregnancies risk complications. The nesting phase calculator output (day 57) indicates when to have the kittening box prepared and to monitor your cat closely.",
+  "faqs": [
+    {
+      "question": "How long is a cat pregnant?",
+      "answer": "Cats are pregnant for approximately 63–67 days from mating, with an average of 65 days. The range is slightly longer than dogs due to variation in when conception occurs relative to mating. Siamese and related Oriental breeds sometimes have slightly shorter gestation periods (around 63 days). If a cat has not delivered by day 70, veterinary attention is needed to rule out dystocia or fetal complications."
+    },
+    {
+      "question": "What are the signs a cat is pregnant?",
+      "answer": "Week 1–2: No visible signs; possible subtle behavioral changes. Week 3: Nipples 'pink up' (turn rosy pink and enlarge) — this is one of the earliest reliable signs. Week 4: Mild morning sickness may occur, appetite may decrease temporarily. Week 5+: Abdominal swelling becomes visible; weight gain accelerates. Week 7–8: Mammary glands enlarge and begin producing colostrum; nesting behavior begins. Week 9: Restlessness, loss of appetite, and temperature drop signal imminent labor."
+    },
+    {
+      "question": "How many kittens will my cat have?",
+      "answer": "Average litter size is 3–6 kittens, though litters of 1–9 are possible. First litters tend to be smaller (2–4 kittens). Older queens may also have smaller litters. Breed matters — some breeds average larger or smaller litters. An ultrasound at day 25–30 can confirm pregnancy; an X-ray after day 55 provides the most accurate kitten count. Knowing the expected number is important to recognize when delivery is complete."
+    },
+    {
+      "question": "When should I take my pregnant cat to the vet?",
+      "answer": "A vet visit around day 21 is recommended to confirm pregnancy by ultrasound and get an initial health assessment. A second visit around day 55–58 for an X-ray will give an accurate kitten count and confirm the kittens' skeletal development. If your cat is a first-time mother, has any health issues, or is over 5 years old, more frequent monitoring is advisable. Report any discharge, lethargy, or prolonged straining immediately."
+    },
+    {
+      "question": "What should I feed a pregnant cat?",
+      "answer": "From around week 4, transition gradually to high-quality kitten food, which is calorie-dense and higher in protein and essential fatty acids. By week 6, the cat should be eating kitten food exclusively. Pregnant cats typically increase food intake by 25–50% by the end of pregnancy. Do not restrict food — allow free-choice access. Avoid raw diets during pregnancy due to pathogen risk. Do not supplement calcium (can cause eclampsia/milk fever post-delivery)."
+    },
+    {
+      "question": "What is a kittening box and when should I prepare it?",
+      "answer": "A kittening box (also called a queening box) is a warm, enclosed, quiet space where your cat can deliver and nurse. Use a cardboard box or plastic storage container lined with clean towels or puppy pads. Make it accessible but in a quiet, low-traffic area. Introduce the box to your cat around day 50 so she becomes familiar with it. Place food, water, and a litter tray nearby. Cats often choose their own delivery spot — if she prefers another location, accommodate her by lining it with absorbent material."
+    },
+    {
+      "question": "What are the signs of labor in cats?",
+      "answer": "Stage 1 (6–12 hours before delivery): restlessness, panting, hiding, loss of appetite, grooming of the genital area. Core body temperature drops below 38°C (100°F) about 12–24 hours before delivery — taking a rectal temperature twice daily in the last week helps predict timing. Stage 2 (active delivery): visible straining, fluid discharge, kittens born 10–60 minutes apart, membranes usually eaten by the mother. Delivery can pause for up to 24–36 hours between kittens (interrupted labor) and resume. Call a vet if straining exceeds 30 minutes without delivery."
+    },
+    {
+      "question": "Can a cat get pregnant while nursing?",
+      "answer": "Yes. Cats can come into heat as early as 4 weeks after giving birth, even while still nursing. This is why queens can produce 3 or more litters per year if not spayed. For the health of the mother and to avoid overpopulation, veterinarians strongly recommend spaying after the kittens are weaned. Most vets recommend waiting until the kittens are 8 weeks old before spaying the queen."
+    },
+    {
+      "question": "What is false pregnancy in cats?",
+      "answer": "False pregnancy (pseudopregnancy) in cats is rare compared to dogs. Cats are induced ovulators — they typically only ovulate after mating or a strong stimulus. If mating occurred with an infertile male or if ovulation was triggered without fertilization, a cat may display mild pregnancy-like signs (nipple changes, behavioral shifts) but these are usually subtle and short-lived. If you suspect false pregnancy but are uncertain, a vet examination can confirm whether a real pregnancy is present."
+    },
+    {
+      "question": "What complications can occur during cat pregnancy?",
+      "answer": "Fetal reabsorption (early pregnancy loss, often undetected), miscarriage, pyometra (uterine infection if pregnancy fails), dystocia (difficult delivery), eclampsia/milk fever, stillborn kittens, fading kitten syndrome (neonates that decline in the first 1–2 weeks), and mastitis. Feline herpesvirus and calicivirus infections can cause pregnancy losses. Keeping vaccines current before breeding and maintaining good nutrition throughout pregnancy significantly reduces complication rates."
+    },
+    {
+      "question": "How do I care for newborn kittens?",
+      "answer": "Newborn kittens are unable to regulate body temperature — keep the nesting area at 29–32°C (85–90°F) for the first week, reducing by a few degrees each week. Kittens should nurse within 2 hours of birth to receive colostrum (passive immunity from the mother). A healthy kitten gains weight daily from day one — weigh them on a kitchen scale daily for the first 2 weeks. If a kitten fails to nurse, loses weight, or is rejected by the mother, contact a vet immediately about tube feeding and supplemental care."
+    },
+    {
+      "question": "How accurate is this due date calculator for cats?",
+      "answer": "The calculator estimates the due date at mating date + 65 days, which is the commonly accepted feline gestation midpoint. Accuracy depends on knowing the exact mating date and normal variation in conception timing. The actual delivery may occur 2–4 days earlier or later than calculated. A vet ultrasound around day 21 confirms pregnancy; kitten skull ossification visible on X-ray after day 55 is the most reliable indicator of how close to term the kittens are."
+    }
+  ]
+}
