@@ -52,6 +52,9 @@ import { calculateHeartRateZones } from '../calculators/heart-rate-zones-calcula
 import { calculateSleep } from '../calculators/sleep-calculator';
 import { calculateIdealWeight } from '../calculators/ideal-weight-calculator';
 import { calculateRunningPace } from '../calculators/running-pace-calculator';
+import { calculateTip } from '../calculators/tip-calculator';
+import { calculatePercentage } from '../calculators/percentage-calculator';
+import { calculateGpa } from '../calculators/gpa-calculator';
 
 export interface CalculatorInput {
   name: string;
@@ -200,7 +203,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Calculate ROI percentage, annualized returns, and final investment value.',
     keywords: ['roi calculator', 'return on investment', 'investment return calculator', 'profit calculator'],
     icon: '📈',
-    featured: true,
     inputs: [
       {
         name: 'initialInvestment',
@@ -399,7 +401,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Generate random numbers instantly within any range you specify.',
     keywords: ['random number generator', 'random number', 'random integer', 'number randomizer'],
     icon: '🎲',
-    featured: true,
     inputs: [
       {
         name: 'min',
@@ -449,7 +450,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Calculate compound interest growth with the formula A = P(1+r/n)^(nt). See final amount and total interest earned.',
     keywords: ['compound interest calculator', 'interest calculator', 'investment growth calculator'],
     icon: '📈',
-    featured: true,
     inputs: [
       { name: 'principal', label: 'Principal Amount', prefix: '$', type: 'number', placeholder: '10000', min: 1, max: 10000000, step: 100, required: true },
       { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '7', min: 0, max: 50, step: 0.1, required: true },
@@ -549,7 +549,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Calculate exactly when you will be debt-free and how much interest you will pay based on your monthly payment.',
     keywords: ['debt payoff calculator', 'credit card payoff calculator', 'loan payoff calculator'],
     icon: '💳',
-    featured: true,
     inputs: [
       { name: 'balance', label: 'Current Balance', prefix: '$', type: 'number', placeholder: '5000', min: 1, max: 1000000, step: 100, required: true },
       { name: 'annualRate', label: 'Annual Interest Rate', unit: '%', type: 'number', placeholder: '20', min: 0, max: 50, step: 0.1, required: true },
@@ -1094,7 +1093,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Estimate YouTube ad revenue based on monthly views and RPM. See monthly and annual earnings potential.',
     keywords: ['YouTube money calculator', 'YouTube earnings calculator', 'YouTube RPM calculator'],
     icon: '📺',
-    featured: true,
     inputs: [
       { name: 'monthlyViews', label: 'Monthly Views', type: 'number', placeholder: '100000', min: 1, max: 1000000000, step: 1000, required: true },
       { name: 'rpm', label: 'RPM (Revenue Per 1,000 Views, $)', type: 'number', placeholder: '5', min: 0.1, max: 100, step: 0.1, required: true },
@@ -1375,7 +1373,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Generate QR codes from any URL or text. Download as PNG for free.',
     keywords: ['qr code generator', 'create qr code', 'free qr code', 'qr code maker'],
     icon: '📱',
-    featured: true,
     inputs: [],
     outputs: [],
     contentFile: 'qr-code-generator.json',
@@ -1405,7 +1402,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Generate secure random passwords with custom length and character sets.',
     keywords: ['password generator', 'random password', 'strong password', 'secure password'],
     icon: '🔐',
-    featured: true,
     inputs: [],
     outputs: [],
     contentFile: 'password-generator.json',
@@ -1450,7 +1446,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Count words, characters, sentences, and estimate reading time instantly.',
     keywords: ['word counter', 'character counter', 'word count tool', 'text counter'],
     icon: '📝',
-    featured: true,
     inputs: [],
     outputs: [],
     contentFile: 'word-counter.json',
@@ -1655,7 +1650,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Calculate the selling price, gross profit, and gross margin from a cost price and markup percentage. Essential for pricing products and services.',
     keywords: ['markup calculator', 'selling price calculator', 'profit margin', 'gross margin'],
     icon: '💰',
-    featured: true,
     inputs: [
       { name: 'costPrice',     label: 'Cost Price ($)',    type: 'number', placeholder: '50',  min: 0.01, step: 0.01, required: true },
       { name: 'markupPercent', label: 'Markup (%)',        type: 'number', placeholder: '50',  min: 0,    step: 0.1,  required: true },
@@ -1677,7 +1671,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Find out how many units you need to sell to cover costs. Enter fixed costs, variable cost per unit, and selling price to calculate your break-even point.',
     keywords: ['break even calculator', 'break even point', 'break even analysis', 'fixed costs'],
     icon: '⚖️',
-    featured: true,
     inputs: [
       { name: 'fixedCosts',          label: 'Fixed Costs ($)',              type: 'number', placeholder: '10000', min: 0,    step: 1,    required: true },
       { name: 'variableCostPerUnit', label: 'Variable Cost per Unit ($)',   type: 'number', placeholder: '20',    min: 0,    step: 0.01, required: true },
@@ -1776,7 +1769,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Calculate the water volume of your aquarium in liters, US gallons, and UK gallons from tank dimensions. Supports both metric (cm) and imperial (inches) measurements.',
     keywords: ['aquarium calculator', 'fish tank volume calculator', 'tank size calculator', 'aquarium liters gallons'],
     icon: '🐠',
-    featured: true,
     inputs: [
       { name: 'length', label: 'Length',       type: 'number', placeholder: '60',  min: 1, step: 0.1, required: true },
       { name: 'width',  label: 'Width',        type: 'number', placeholder: '30',  min: 1, step: 0.1, required: true },
@@ -1804,7 +1796,6 @@ export const TOOLS: ToolConfig[] = [
     description: 'Calculate how much to feed your dog per day based on weight, life stage, and food calorie density. Uses veterinary RER formula for accurate portions.',
     keywords: ['dog food calculator', 'how much to feed my dog', 'dog daily food amount', 'dog calorie calculator'],
     icon: '🐕',
-    featured: true,
     inputs: [
       { name: 'weightKg',       label: 'Dog Weight (kg)',          type: 'number', placeholder: '15',  min: 0.5, max: 100, step: 0.5, required: true },
       { name: 'lifeStage',      label: 'Life Stage',               type: 'select', required: true, options: [
@@ -1853,6 +1844,107 @@ export const TOOLS: ToolConfig[] = [
     ],
     contentFile: 'cat-food-calculator.json',
     compute: calculateCatFood,
+  },
+  {
+    slug: 'tip-calculator',
+    name: 'Tip Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Tip Calculator — Split Bills & Calculate Tips Instantly',
+    description: 'Calculate the tip amount and total bill for any restaurant or service. Enter bill amount, tip percentage, and number of people to split the bill instantly.',
+    keywords: ['tip calculator', 'how much to tip', 'bill splitter', 'restaurant tip calculator', 'split bill calculator'],
+    icon: '🍽️',
+    featured: false,
+    inputs: [
+      { name: 'billAmount', label: 'Bill Amount ($)', type: 'number', placeholder: '50', min: 0.01, step: 0.01, required: true },
+      { name: 'tipPercent', label: 'Tip Percentage (%)', type: 'number', placeholder: '18', min: 0, max: 100, step: 1, required: false },
+      { name: 'people',     label: 'Number of People', type: 'number', placeholder: '2', min: 1, max: 100, step: 1, required: false },
+    ],
+    outputs: [
+      { name: 'tipAmount',    label: 'Tip Amount',        type: 'currency', decimals: 2 },
+      { name: 'totalAmount',  label: 'Total Bill',        type: 'currency', decimals: 2 },
+      { name: 'perPerson',    label: 'Per Person (total)', type: 'currency', decimals: 2 },
+      { name: 'tipPerPerson', label: 'Per Person (tip)',   type: 'currency', decimals: 2 },
+    ],
+    contentFile: 'tip-calculator.json',
+    compute: calculateTip,
+  },
+  {
+    slug: 'percentage-calculator',
+    name: 'Percentage Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Percentage Calculator — What is X% of Y?',
+    description: 'Calculate what percentage of a number equals. Enter any percentage and value to instantly see the result, remainder, and decimal equivalent.',
+    keywords: ['percentage calculator', 'what is percent of', 'percent of number', 'calculate percentage', 'percentage of amount'],
+    icon: '%',
+    featured: false,
+    inputs: [
+      { name: 'percent', label: 'Percentage (%)', type: 'number', placeholder: '20', min: 0, max: 100000, step: 0.01, required: true },
+      { name: 'value',   label: 'Value',          type: 'number', placeholder: '250', min: 0.01, step: 0.01, required: true },
+    ],
+    outputs: [
+      { name: 'result',           label: 'Result (X% of Y)',   type: 'number',  decimals: 2 },
+      { name: 'remaining',        label: 'Remaining (Y − result)', type: 'number', decimals: 2 },
+      { name: 'asDecimal',        label: 'As Decimal',         type: 'number',  decimals: 6 },
+      { name: 'percentOfResult',  label: 'Percentage Used (%)', type: 'number', decimals: 2 },
+    ],
+    contentFile: 'percentage-calculator.json',
+    compute: calculatePercentage,
+  },
+  {
+    slug: 'gpa-calculator',
+    name: 'GPA Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'GPA Calculator — Calculate Your Grade Point Average',
+    description: 'Calculate your GPA from letter grades and credit hours. Enter up to 4 courses to get your weighted GPA, total quality points, and academic standing.',
+    keywords: ['gpa calculator', 'grade point average', 'college gpa calculator', 'how to calculate gpa', 'weighted gpa'],
+    icon: '🎓',
+    featured: false,
+    inputs: [
+      { name: 'grade1',   label: 'Course 1 Grade',   type: 'select', required: true, options: [
+        { value: 'A+', label: 'A+' }, { value: 'A', label: 'A' }, { value: 'A-', label: 'A-' },
+        { value: 'B+', label: 'B+' }, { value: 'B', label: 'B' }, { value: 'B-', label: 'B-' },
+        { value: 'C+', label: 'C+' }, { value: 'C', label: 'C' }, { value: 'C-', label: 'C-' },
+        { value: 'D+', label: 'D+' }, { value: 'D', label: 'D' }, { value: 'D-', label: 'D-' },
+        { value: 'F',  label: 'F'  },
+      ]},
+      { name: 'credits1', label: 'Course 1 Credits', type: 'number', placeholder: '3', min: 0.5, max: 12, step: 0.5, required: true },
+      { name: 'grade2',   label: 'Course 2 Grade',   type: 'select', required: true, options: [
+        { value: 'A+', label: 'A+' }, { value: 'A', label: 'A' }, { value: 'A-', label: 'A-' },
+        { value: 'B+', label: 'B+' }, { value: 'B', label: 'B' }, { value: 'B-', label: 'B-' },
+        { value: 'C+', label: 'C+' }, { value: 'C', label: 'C' }, { value: 'C-', label: 'C-' },
+        { value: 'D+', label: 'D+' }, { value: 'D', label: 'D' }, { value: 'D-', label: 'D-' },
+        { value: 'F',  label: 'F'  },
+      ]},
+      { name: 'credits2', label: 'Course 2 Credits', type: 'number', placeholder: '3', min: 0.5, max: 12, step: 0.5, required: true },
+      { name: 'grade3',   label: 'Course 3 Grade',   type: 'select', required: true, options: [
+        { value: 'A+', label: 'A+' }, { value: 'A', label: 'A' }, { value: 'A-', label: 'A-' },
+        { value: 'B+', label: 'B+' }, { value: 'B', label: 'B' }, { value: 'B-', label: 'B-' },
+        { value: 'C+', label: 'C+' }, { value: 'C', label: 'C' }, { value: 'C-', label: 'C-' },
+        { value: 'D+', label: 'D+' }, { value: 'D', label: 'D' }, { value: 'D-', label: 'D-' },
+        { value: 'F',  label: 'F'  },
+      ]},
+      { name: 'credits3', label: 'Course 3 Credits', type: 'number', placeholder: '3', min: 0.5, max: 12, step: 0.5, required: true },
+      { name: 'grade4',   label: 'Course 4 Grade',   type: 'select', required: true, options: [
+        { value: 'A+', label: 'A+' }, { value: 'A', label: 'A' }, { value: 'A-', label: 'A-' },
+        { value: 'B+', label: 'B+' }, { value: 'B', label: 'B' }, { value: 'B-', label: 'B-' },
+        { value: 'C+', label: 'C+' }, { value: 'C', label: 'C' }, { value: 'C-', label: 'C-' },
+        { value: 'D+', label: 'D+' }, { value: 'D', label: 'D' }, { value: 'D-', label: 'D-' },
+        { value: 'F',  label: 'F'  },
+      ]},
+      { name: 'credits4', label: 'Course 4 Credits', type: 'number', placeholder: '3', min: 0.5, max: 12, step: 0.5, required: true },
+    ],
+    outputs: [
+      { name: 'gpa',               label: 'GPA',                type: 'number', decimals: 2 },
+      { name: 'totalCredits',      label: 'Total Credits',      type: 'number', decimals: 0 },
+      { name: 'totalQualityPoints',label: 'Total Quality Points', type: 'number', decimals: 1 },
+      { name: 'letterEquivalent',  label: 'Letter Equivalent',  type: 'text' },
+      { name: 'standing',          label: 'Academic Standing',  type: 'text' },
+    ],
+    contentFile: 'gpa-calculator.json',
+    compute: calculateGpa,
   },
 ];
 

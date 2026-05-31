@@ -1,0 +1,56 @@
+{
+  "slug": "tip-calculator",
+  "intro": "Tipping can be awkward — nobody wants to undertip or overpay, and splitting a bill between multiple people adds a layer of arithmetic that kills the mood. This tip calculator handles all of it instantly: enter your bill, choose a tip percentage, and set the number of diners to see the exact tip amount, total bill, and per-person split. No mental math required.",
+  "howItWorks": "Tip amount = bill amount × (tip percentage ÷ 100). Total bill = bill amount + tip amount. Per-person total = total bill ÷ number of people. Per-person tip = tip amount ÷ number of people. All values are rounded to the nearest cent. The default tip percentage is 18%, which is the current standard for sit-down restaurant service in the United States.",
+  "interpretationGuide": "Tipping norms vary by country and service type. In the United States: 15% is the historical standard and still acceptable for adequate service; 18–20% is the current standard for good service at sit-down restaurants; 20–25% is appropriate for exceptional service. For counter service, coffee shops, and takeout, tipping is optional (10% or rounding up is common). Outside the US, check local norms — in Japan, tipping is considered rude; in Europe, rounding up or 5–10% is typical; in Australia, tipping is appreciated but not required.",
+  "faqs": [
+    {
+      "question": "How much should I tip at a restaurant?",
+      "answer": "The current US standard for sit-down restaurant service is 18–20% of the pre-tax bill. 15% is acceptable for adequate service; 20–25% for excellent service. For buffets, counter service, or takeout, tipping is optional — 10% or a small amount is appreciated but not expected. Always tip on the pre-tax subtotal, not the total with tax."
+    },
+    {
+      "question": "Should I tip on the pre-tax or post-tax amount?",
+      "answer": "Etiquette guidance recommends tipping on the pre-tax subtotal, since the tax is a government charge and not a reflection of service quality. In practice, most people tip on the post-tax total as it is simpler — the difference is small (typically 2–5% of the tip on a normal bill). This calculator uses your total bill input as-is, so enter whichever amount you prefer."
+    },
+    {
+      "question": "How do I split a bill evenly between multiple people?",
+      "answer": "Enter the total bill, choose a tip percentage, and set the number of people. The calculator divides the full total (bill + tip) equally. This assumes all diners split evenly — if different people ordered different amounts, you will need to calculate individual shares manually or use the total per-person figure as a starting point."
+    },
+    {
+      "question": "What is the standard tip for food delivery?",
+      "answer": "For food delivery, a 15–20% tip is standard. For orders under $20, a minimum of $3–5 is considerate regardless of percentage. Delivery drivers typically receive a smaller base wage than sit-down servers and bear fuel and vehicle costs. During bad weather or for complex orders, tipping at the higher end (20–25%) is a common courtesy."
+    },
+    {
+      "question": "How much should I tip a hotel housekeeper?",
+      "answer": "Standard guidance is $2–5 per night, left daily (not just at checkout) since different staff may clean your room each day. For longer stays or suites requiring extra work, $5–10 per night is appropriate. Leave the tip in an envelope or with a note so it is clear the cash is intended for housekeeping."
+    },
+    {
+      "question": "Do I need to tip on alcohol?",
+      "answer": "Yes — tip on the full bill including drinks. If you are at a bar ordering directly from a bartender, $1–2 per drink or 15–20% of the tab is standard. At a restaurant where the server handles both food and drinks, tip on the combined total. High-end wine service may warrant an additional note of appreciation beyond standard percentage."
+    },
+    {
+      "question": "How much should I tip a taxi or rideshare driver?",
+      "answer": "For rideshare services (Uber, Lyft), 10–20% is common, with 15% as a typical default. Most apps prompt you to tip after the ride. For traditional taxis, 15–20% is standard. For excellent service — help with luggage, good conversation, safe driving — tipping at the higher end is appreciated. There is no obligation to tip if service was poor."
+    },
+    {
+      "question": "What tip percentage should I use for a haircut?",
+      "answer": "15–20% is standard for a haircut or salon service. For a color treatment or complex service, 20% or more is common. If the salon owner cuts your hair, tipping is optional by tradition — but many stylists who own their own shops appreciate it. Tip your stylist directly in cash when possible so it goes entirely to them."
+    },
+    {
+      "question": "Is it rude not to tip?",
+      "answer": "In the United States, where servers are paid a tipped minimum wage (often $2.13/hour federally), not tipping for adequate service is considered rude and leaves workers significantly underpaid. In other countries where workers receive full wages, not tipping carries less social weight. In Japan, tipping is considered an insult. Research local norms when traveling internationally."
+    },
+    {
+      "question": "Should I tip on coupons and discounts?",
+      "answer": "Yes — tip on the original pre-discount price. Your server provided the same service regardless of whether you used a coupon or discount code. Tipping on the discounted price underpays the server for work they already did. For example, if your bill was $80 before a $20 coupon brought it to $60, tip on $80."
+    },
+    {
+      "question": "What is a good tip for a massage therapist?",
+      "answer": "15–20% of the service price is standard for massage therapy. Spas and wellness centers typically operate on a similar tipping norm to restaurants. If the massage was at a medical setting or physical therapy clinic, tipping may not be expected or appropriate — the setting context matters. For exceptional service or a regular therapist, 20–25% is a generous and appreciated gesture."
+    },
+    {
+      "question": "Can I tip less if service was bad?",
+      "answer": "Yes — tipping is discretionary and reflects service quality. If service was genuinely poor (not due to kitchen delays or factors beyond the server's control), you can tip less. A 10% tip signals dissatisfaction while still being somewhat respectful; leaving no tip is a strong signal but may come across as forgetting rather than intentional feedback. If you experienced a real service failure, speaking to a manager is also an option."
+    }
+  ]
+}

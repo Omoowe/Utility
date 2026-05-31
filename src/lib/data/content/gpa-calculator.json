@@ -1,0 +1,56 @@
+{
+  "slug": "gpa-calculator",
+  "intro": "Your GPA is a weighted average of your grades — each course's letter grade converts to a grade point, then multiplied by its credit hours. This calculator takes up to 4 courses with letter grades and credit weights to produce your semester GPA, total quality points, and academic standing. Results update instantly as you change any input.",
+  "howItWorks": "Each letter grade maps to a grade point value: A/A+ = 4.0, A- = 3.7, B+ = 3.3, B = 3.0, B- = 2.7, C+ = 2.3, C = 2.0, C- = 1.7, D+ = 1.3, D = 1.0, D- = 0.7, F = 0.0. Quality points per course = grade points × credit hours. GPA = total quality points ÷ total credit hours. For example, an A (4.0) in a 3-credit course contributes 12.0 quality points. A B (3.0) in a 4-credit course contributes 12.0 quality points. GPA is typically reported to two decimal places.",
+  "interpretationGuide": "Academic standing thresholds vary by institution, but common benchmarks: 3.5–4.0 = Dean's List or honors; 3.0–3.49 = Good Standing; 2.0–2.99 = Satisfactory (minimum for most programs); below 2.0 = Academic Probation risk. Graduate school admissions typically require a 3.0 minimum; competitive programs often expect 3.5+. Most scholarships require a GPA between 2.5 and 3.5 depending on the award. This calculator computes semester GPA — cumulative GPA also incorporates all prior semesters.",
+  "faqs": [
+    {
+      "question": "How is GPA calculated?",
+      "answer": "GPA = total quality points ÷ total credit hours. Quality points = grade points × credit hours for each course. Grade points: A/A+ = 4.0, A- = 3.7, B+ = 3.3, B = 3.0, B- = 2.7, C+ = 2.3, C = 2.0, C- = 1.7, D+ = 1.3, D = 1.0, D- = 0.7, F = 0.0. Example: B in 3-credit course = 3.0 × 3 = 9 quality points. A- in 4-credit course = 3.7 × 4 = 14.8 quality points. Total quality points = 9 + 14.8 = 23.8. Total credits = 7. GPA = 23.8 ÷ 7 = 3.40."
+    },
+    {
+      "question": "What is the difference between semester GPA and cumulative GPA?",
+      "answer": "Semester GPA covers only the courses taken in a single term. Cumulative GPA is the weighted average of all courses taken across all semesters at an institution. Your transcript shows both. Cumulative GPA matters more for scholarships, academic standing, and graduate school applications. A strong semester GPA can improve a low cumulative GPA, but the effect is diluted by all prior semesters."
+    },
+    {
+      "question": "What GPA do I need for the Dean's List?",
+      "answer": "Dean's List thresholds vary by school, but 3.5 is the most common minimum. Some institutions require a 3.7 or 3.8 for high honors. Dean's List typically requires full-time enrollment (12+ credit hours) and no incomplete or withdrawn grades. Check your school's specific criteria — some also exclude repeated courses from eligibility calculations."
+    },
+    {
+      "question": "What GPA do I need for graduate school?",
+      "answer": "Most graduate programs require a minimum 3.0 GPA for admission. Competitive master's programs in business, law, medicine, and STEM often expect 3.5+. PhD programs at top institutions may effectively require 3.7+. A GPA below the minimum can sometimes be offset by strong GRE/GMAT scores, research experience, or letters of recommendation. Check each program's stated requirements."
+    },
+    {
+      "question": "How do I calculate my GPA after getting a new grade?",
+      "answer": "Add the new course's quality points to your existing total quality points, and add its credit hours to your total credit hours. Recalculate: new GPA = (old quality points + new quality points) ÷ (old credits + new credits). Example: current cumulative 3.20 over 60 credits (192 quality points). New A- in 3 credits adds 11.1 quality points. New GPA = (192 + 11.1) ÷ (60 + 3) = 203.1 ÷ 63 = 3.22."
+    },
+    {
+      "question": "What is a 4.0 GPA scale?",
+      "answer": "The 4.0 scale is the standard US grading scale where A = 4.0 is the highest and F = 0.0 is failing. Some schools use a 4.3 or 4.5 scale to accommodate A+ grades above 4.0. Others use a 100-point scale (percentage scores). When comparing GPAs across institutions, verify which scale was used. International transcripts use different scales (7.0 in Australia, 10.0 in India, 20.0 in France)."
+    },
+    {
+      "question": "Does a W (withdrawal) affect my GPA?",
+      "answer": "A W (withdrawal) typically does not affect GPA — it has no grade point value and is not counted in the GPA calculation. However, excessive withdrawals can raise flags for financial aid and academic standing reviews. WF (Withdrawal Failing) at some institutions does count as an F. A medical withdrawal (MX) usually has no academic penalty. Check your school's specific withdrawal grading policies."
+    },
+    {
+      "question": "How does repeating a course affect GPA?",
+      "answer": "Policies vary significantly by institution. Grade replacement: the new grade replaces the old in the GPA calculation; the old grade may still show on the transcript. Grade averaging: both grades count in the GPA. Some schools allow grade replacement only once per course and only up to a certain number of total course repeats. Always check your registrar's repeat policy before repeating a course."
+    },
+    {
+      "question": "What GPA do I need to keep a scholarship?",
+      "answer": "Scholarship GPA requirements vary widely: need-based scholarships often require 2.0–2.5; merit-based scholarships typically require 3.0–3.5; honor scholarships may require 3.5+. Athletic scholarships often require a minimum 2.0. Check your specific scholarship's renewal criteria — some require maintaining GPA each semester, others require meeting it cumulatively by year-end."
+    },
+    {
+      "question": "How many credits do I need to change my GPA significantly?",
+      "answer": "The more credits you have accumulated, the harder it is to move your GPA. After 30 credits, each new semester changes your cumulative GPA by less than you might expect. After 90 credits, getting straight A's in a 15-credit semester will only raise your GPA by about 0.1–0.2 points if you started at 3.0. Early semester performance has disproportionate impact on your final cumulative GPA."
+    },
+    {
+      "question": "What is a weighted GPA?",
+      "answer": "Weighted GPA accounts for course difficulty. In high school, honors courses may add 0.5 points and AP/IB courses may add 1.0 point to the grade point value. Example: a B in an AP class counts as 4.0 instead of 3.0 on a weighted scale. College GPA is typically unweighted — a B in any 3-credit course contributes the same quality points regardless of course difficulty."
+    },
+    {
+      "question": "How do plus and minus grades affect GPA?",
+      "answer": "Plus/minus grading creates more grade point granularity: A- = 3.7, B+ = 3.3, B- = 2.7. An A- instead of an A costs 0.3 grade points per credit. For a 3-credit course: A = 12.0 quality points, A- = 11.1 quality points — a difference of 0.9 quality points, which translates to roughly 0.015 GPA points per credit hour taken. Over a semester, the cumulative impact of plus/minus grades can meaningfully shift final GPA."
+    }
+  ]
+}
