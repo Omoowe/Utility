@@ -94,9 +94,6 @@ export function CalculatorsPageClient(): React.JSX.Element {
         )}
       </div>
 
-      {/* Ad Slot 2 — between filter controls and results */}
-      <AdPlaceholder format="leaderboard" slot="tools-filter-mid" />
-
       {/* Empty state */}
       {filtered.length === 0 && (
         <div className="text-center py-16 space-y-3">
@@ -116,7 +113,7 @@ export function CalculatorsPageClient(): React.JSX.Element {
       {/* Flat grid when any filter active */}
       {filtered.length > 0 && isFiltered && (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
             {filtered.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} size="sm" />
             ))}
@@ -128,7 +125,7 @@ export function CalculatorsPageClient(): React.JSX.Element {
 
       {/* Grouped by category when showing all with no query */}
       {filtered.length > 0 && !isFiltered && (
-        <div className="space-y-14">
+        <div className="space-y-10">
           {groupedByCategory.map((cat, idx) => (
             <React.Fragment key={cat.slug}>
               <section className="space-y-5">
@@ -147,7 +144,7 @@ export function CalculatorsPageClient(): React.JSX.Element {
                     Filter →
                   </button>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
                   {cat.tools.map((tool) => (
                     <ToolCard key={tool.slug} tool={tool} size="sm" />
                   ))}

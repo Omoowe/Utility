@@ -58,32 +58,25 @@ export default async function CategoryPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Ad Slot 1 — below breadcrumb */}
-      <div className="container-custom pt-6">
-        <AdPlaceholder format="leaderboard" slot="cat-top" />
-      </div>
-
-      {/* Category header — clean, no gradient */}
-      <div className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700 mt-6">
-        <div className="container-custom py-8">
-          <div className="flex items-center gap-4">
-            <span className={`text-3xl w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${colors.iconBg}`}>
-              {cat.icon}
-            </span>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{cat.name} Tools</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
-                {tools.length} free tools · No sign-up required
-              </p>
-            </div>
+      {/* Category header */}
+      <div className="container-custom py-8">
+        <div className="flex items-center gap-4">
+          <span className={`text-3xl w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${colors.iconBg}`}>
+            {cat.icon}
+          </span>
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{cat.name} Tools</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+              {tools.length} free tools · No sign-up required
+            </p>
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mt-4">{cat.seoBlurb}</p>
         </div>
+        <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mt-3">{cat.seoBlurb}</p>
       </div>
 
-      <main className="container-custom py-10 space-y-10">
-        {/* Ad Slot 2 — above grid */}
-        <AdPlaceholder format="leaderboard" slot="cat-above-grid" />
+      <main className="container-custom pb-10 space-y-8">
+        {/* Ad Slot 1 — above grid */}
+        <AdPlaceholder format="leaderboard" slot="cat-top" />
 
         {/* First 6 tools */}
         <section>
@@ -110,12 +103,9 @@ export default async function CategoryPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* Ad Slot 4 — after grid */}
-        <AdPlaceholder format="rectangle" slot="cat-post-grid" />
-
         {/* Other categories */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Browse Other Categories</h2>
+        <section className="space-y-4 border-t border-gray-100 dark:border-gray-800 pt-8">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Browse Other Categories</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {otherCategories.map((c) => {
               const otherColors = getCategoryColors(c.slug);
@@ -138,7 +128,6 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Ad Slot 5 — page bottom */}
         <AdPlaceholder format="leaderboard" slot="cat-bottom" />
       </main>
     </div>

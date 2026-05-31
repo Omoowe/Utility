@@ -1,0 +1,20 @@
+{
+  "slug": "pregnancy-calculator",
+  "intro": "Our pregnancy calculator estimates your due date, current trimester, weeks pregnant, and key milestones — all from the first day of your last menstrual period (LMP). Most healthcare providers use the same 280-day (40-week) Naegele's rule, so your results should closely match what your OB or midwife tells you at your first appointment.",
+  "howItWorks": "Enter the first day of your last menstrual period. The calculator adds 280 days (40 weeks) to get your estimated due date. It then counts forward from your LMP to determine how many weeks and days pregnant you currently are, which trimester you're in, and when major milestones like the heartbeat detection window and anatomy scan typically occur. Note: only an ultrasound can confirm gestational age with precision.",
+  "interpretationGuide": "Your due date is an estimate — only about 5% of babies arrive on their exact due date. Trimester boundaries are: first trimester weeks 1–13, second trimester weeks 14–27, third trimester weeks 28–40. If the calculator shows a past due date, you may have already delivered or the LMP date was entered incorrectly.",
+  "faqs": [
+    { "question": "How accurate is the due date calculator?", "answer": "The calculator uses Naegele's rule — the same method most OBs use — which is accurate to within 1–2 weeks for most pregnancies. An early ultrasound (before 12 weeks) is the most accurate way to confirm your due date." },
+    { "question": "What is Naegele's rule?", "answer": "Naegele's rule adds 280 days (40 weeks) to the first day of your last menstrual period to estimate the due date. It assumes a 28-day cycle with ovulation on day 14." },
+    { "question": "What if I have irregular periods?", "answer": "Irregular cycles affect accuracy since ovulation may not occur on day 14. An early ultrasound is the best option for accurate dating when cycles are unpredictable." },
+    { "question": "When does each trimester start and end?", "answer": "The first trimester spans weeks 1–13, the second trimester spans weeks 14–27, and the third trimester spans weeks 28–40 (delivery)." },
+    { "question": "How many weeks is a full-term pregnancy?", "answer": "Full-term is defined as 39–40 weeks. Early term is 37–38 weeks, and late term is 41–42 weeks. Pregnancies beyond 42 weeks are considered post-term." },
+    { "question": "When can a heartbeat be detected?", "answer": "A fetal heartbeat is typically detectable via transvaginal ultrasound around 6–7 weeks, and via abdominal ultrasound around 10–12 weeks." },
+    { "question": "What is the anatomy scan?", "answer": "The anatomy scan (or mid-pregnancy ultrasound) is a detailed ultrasound usually performed between weeks 18–22. It checks fetal development, organ formation, and — if desired — the baby's sex." },
+    { "question": "What is the conception date shown in results?", "answer": "The estimated conception date is calculated as LMP + 14 days, which represents the average ovulation window. This is an estimate and actual conception could vary by several days." },
+    { "question": "Can I use this calculator if I conceived via IVF?", "answer": "For IVF pregnancies, doctors typically calculate the due date from the egg retrieval date or embryo transfer date rather than LMP. Use the transfer date and add 38 weeks (266 days) instead." },
+    { "question": "What should I do after getting my due date?", "answer": "Schedule a prenatal appointment with your OB, midwife, or family doctor as soon as possible. Early prenatal care — ideally in the first trimester — is important for monitoring your health and the baby's development." },
+    { "question": "How many days are in a pregnancy?", "answer": "A full-term pregnancy is 280 days (40 weeks) from the last menstrual period, or approximately 266 days from conception." },
+    { "question": "Does the due date change after an ultrasound?", "answer": "Yes, your healthcare provider may adjust your due date after an early ultrasound if the baby's size doesn't match the LMP-based estimate. The ultrasound date then becomes the official gestational age." }
+  ]
+}

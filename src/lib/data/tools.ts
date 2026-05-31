@@ -61,6 +61,12 @@ import { calculatePuppyWeight } from '../calculators/puppy-weight-calculator';
 import { calculateEngagementRate } from '../calculators/engagement-rate-calculator';
 import { calculateConversionRate } from '../calculators/conversion-rate-calculator';
 import { calculateAdRevenue } from '../calculators/ad-revenue-calculator';
+import { calculatePregnancy } from '../calculators/pregnancy-calculator';
+import { calculateRetirement } from '../calculators/retirement-calculator';
+import { calculateTdee } from '../calculators/tdee-calculator';
+import { calculateGrade } from '../calculators/grade-calculator';
+import { calculateTimeDuration } from '../calculators/time-duration-calculator';
+import { calculateFraction } from '../calculators/fraction-calculator';
 
 export interface CalculatorInput {
   name: string;
@@ -2104,6 +2110,198 @@ export const TOOLS: ToolConfig[] = [
     ],
     contentFile: 'ad-revenue-calculator.json',
     compute: calculateAdRevenue,
+  },
+
+  // ── HIGH-TRAFFIC ADDITIONS ────────────────────────────────────────────────
+  {
+    slug: 'pregnancy-calculator',
+    name: 'Pregnancy Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Pregnancy Due Date Calculator',
+    description: 'Calculate your due date, current trimester, weeks pregnant, and key milestones from your last menstrual period.',
+    keywords: ['pregnancy calculator', 'due date calculator', 'weeks pregnant calculator', 'pregnancy due date', 'pregnancy milestone calculator'],
+    icon: '🤰',
+    featured: true,
+    inputs: [
+      { name: 'lmpDate', label: 'First Day of Last Period', type: 'date', required: true },
+    ],
+    outputs: [
+      { name: 'dueDate',          label: 'Due Date',              type: 'text' },
+      { name: 'pregnancyStatus',  label: 'Pregnancy Progress',    type: 'text' },
+      { name: 'trimester',        label: 'Current Trimester',     type: 'text' },
+      { name: 'daysRemaining',    label: 'Days Until Due Date',   type: 'number', decimals: 0 },
+      { name: 'conceptionDate',   label: 'Est. Conception Date',  type: 'text' },
+    ],
+    contentFile: 'pregnancy-calculator.json',
+    compute: calculatePregnancy,
+  },
+  {
+    slug: 'retirement-calculator',
+    name: 'Retirement Calculator',
+    category: 'finance',
+    kind: 'calculator',
+    title: 'Retirement Savings Calculator',
+    description: 'Calculate how much you\'ll have at retirement, monthly income, and whether you\'re on track with your savings.',
+    keywords: ['retirement calculator', 'retirement savings calculator', '401k calculator', 'retirement planning calculator', 'nest egg calculator'],
+    icon: '🏖️',
+    featured: true,
+    inputs: [
+      { name: 'currentAge',          label: 'Current Age',                   type: 'number', placeholder: '30',    min: 18, max: 99, step: 1,    required: true },
+      { name: 'retirementAge',       label: 'Retirement Age',                type: 'number', placeholder: '65',    min: 20, max: 99, step: 1,    required: false },
+      { name: 'currentSavings',      label: 'Current Savings',  prefix: '$', type: 'number', placeholder: '25000', min: 0,           step: 1000, required: false },
+      { name: 'monthlyContribution', label: 'Monthly Contribution', prefix: '$', type: 'number', placeholder: '500', min: 0,          step: 50,   required: false },
+      { name: 'annualReturn',        label: 'Annual Return Rate', unit: '%',  type: 'number', placeholder: '7',     min: 0, max: 30,  step: 0.5,  required: false },
+      { name: 'withdrawalRate',      label: 'Safe Withdrawal Rate', unit: '%', type: 'number', placeholder: '4',   min: 1, max: 10,  step: 0.5,  required: false },
+    ],
+    outputs: [
+      { name: 'totalAtRetirement', label: 'Retirement Balance',      type: 'currency', decimals: 0 },
+      { name: 'monthlyIncome',     label: 'Monthly Retirement Income', type: 'currency', decimals: 0 },
+      { name: 'yearsToRetirement', label: 'Years to Retirement',      type: 'number',   decimals: 0 },
+      { name: 'totalContributed',  label: 'Total Contributed',        type: 'currency', decimals: 0 },
+      { name: 'investmentGrowth',  label: 'Investment Growth',        type: 'currency', decimals: 0 },
+    ],
+    contentFile: 'retirement-calculator.json',
+    compute: calculateRetirement,
+  },
+  {
+    slug: 'tdee-calculator',
+    name: 'TDEE Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'TDEE Calculator — Total Daily Energy Expenditure',
+    description: 'Calculate your total daily energy expenditure, BMR, and ideal calorie targets for weight loss, maintenance, or muscle gain.',
+    keywords: ['tdee calculator', 'total daily energy expenditure', 'calorie calculator', 'bmr calculator', 'maintenance calories calculator'],
+    icon: '🔥',
+    featured: true,
+    inputs: [
+      { name: 'weightKg',      label: 'Weight', unit: 'kg',         type: 'number', placeholder: '70',  min: 20, max: 300, step: 0.5, required: true },
+      { name: 'heightCm',      label: 'Height', unit: 'cm',         type: 'number', placeholder: '175', min: 50, max: 280, step: 1,   required: true },
+      { name: 'age',           label: 'Age',                        type: 'number', placeholder: '30',  min: 1,  max: 120, step: 1,   required: true },
+      {
+        name: 'sex', label: 'Biological Sex', type: 'select', required: true,
+        options: [{ value: 'male', label: 'Male' }, { value: 'female', label: 'Female' }],
+      },
+      {
+        name: 'activityLevel', label: 'Activity Level', type: 'select', required: true,
+        options: [
+          { value: 'sedentary',   label: 'Sedentary (desk job, no exercise)' },
+          { value: 'light',       label: 'Light (1-3 days/week exercise)' },
+          { value: 'moderate',    label: 'Moderate (3-5 days/week exercise)' },
+          { value: 'active',      label: 'Active (6-7 days/week hard exercise)' },
+          { value: 'very-active', label: 'Very Active (athlete / physical job)' },
+        ],
+      },
+      {
+        name: 'goal', label: 'Goal', type: 'select', required: false,
+        options: [
+          { value: 'lose',     label: 'Lose Weight' },
+          { value: 'maintain', label: 'Maintain Weight' },
+          { value: 'gain',     label: 'Build Muscle / Gain Weight' },
+        ],
+      },
+    ],
+    outputs: [
+      { name: 'tdee',                  label: 'Daily Maintenance Calories',  type: 'number', decimals: 0 },
+      { name: 'targetCalories',        label: 'Target Calories (Your Goal)', type: 'number', decimals: 0 },
+      { name: 'bmr',                   label: 'Basal Metabolic Rate (BMR)',  type: 'number', decimals: 0 },
+      { name: 'weightLossCalories',    label: 'Weight Loss (-500 cal)',      type: 'number', decimals: 0 },
+      { name: 'weightGainCalories',    label: 'Weight Gain (+300 cal)',      type: 'number', decimals: 0 },
+      { name: 'proteinG',              label: 'Protein Target',              type: 'number', decimals: 0, unit: 'g' },
+      { name: 'carbsG',                label: 'Carbs Target',                type: 'number', decimals: 0, unit: 'g' },
+      { name: 'fatG',                  label: 'Fat Target',                  type: 'number', decimals: 0, unit: 'g' },
+    ],
+    contentFile: 'tdee-calculator.json',
+    compute: calculateTdee,
+  },
+  {
+    slug: 'grade-calculator',
+    name: 'Grade Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Grade Calculator — Points to Percentage & Letter Grade',
+    description: 'Convert points scored to percentage and letter grade instantly. See weighted scores and what you need to get an A.',
+    keywords: ['grade calculator', 'grade percentage calculator', 'letter grade calculator', 'weighted grade calculator', 'points to grade calculator'],
+    icon: '📊',
+    featured: false,
+    inputs: [
+      { name: 'scored',   label: 'Points Scored',    type: 'number', placeholder: '87',  min: 0,    step: 0.5, required: true },
+      { name: 'possible', label: 'Total Points',     type: 'number', placeholder: '100', min: 1,    step: 0.5, required: true },
+      { name: 'weight',   label: 'Assignment Weight', unit: '%', type: 'number', placeholder: '100', min: 0, max: 100, step: 1, required: false },
+    ],
+    outputs: [
+      { name: 'percentage',    label: 'Percentage',          type: 'percent',  decimals: 1 },
+      { name: 'letterGrade',   label: 'Letter Grade',        type: 'text' },
+      { name: 'weightedScore', label: 'Weighted Score',      type: 'percent',  decimals: 2 },
+      { name: 'pointsMissed',  label: 'Points Missed',       type: 'number',   decimals: 1 },
+      { name: 'pointsForA',    label: 'Points Needed for A', type: 'number',   decimals: 1 },
+    ],
+    contentFile: 'grade-calculator.json',
+    compute: calculateGrade,
+  },
+  {
+    slug: 'time-duration-calculator',
+    name: 'Time Duration Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Time Duration Calculator — Add or Subtract Time',
+    description: 'Add or subtract two time durations. Get total hours, minutes, and seconds in HH:MM:SS format.',
+    keywords: ['time duration calculator', 'add time calculator', 'subtract time calculator', 'time calculator hours minutes seconds', 'elapsed time calculator'],
+    icon: '⏱️',
+    featured: false,
+    inputs: [
+      { name: 'hours1',   label: 'Hours (Time 1)',   type: 'number', placeholder: '2', min: 0, step: 1, required: false },
+      { name: 'minutes1', label: 'Minutes (Time 1)', type: 'number', placeholder: '30', min: 0, max: 59, step: 1, required: false },
+      { name: 'seconds1', label: 'Seconds (Time 1)', type: 'number', placeholder: '0', min: 0, max: 59, step: 1, required: false },
+      {
+        name: 'operation', label: 'Operation', type: 'select', required: false,
+        options: [{ value: 'add', label: 'Add (+)' }, { value: 'subtract', label: 'Subtract (−)' }],
+      },
+      { name: 'hours2',   label: 'Hours (Time 2)',   type: 'number', placeholder: '1', min: 0, step: 1, required: false },
+      { name: 'minutes2', label: 'Minutes (Time 2)', type: 'number', placeholder: '15', min: 0, max: 59, step: 1, required: false },
+      { name: 'seconds2', label: 'Seconds (Time 2)', type: 'number', placeholder: '0', min: 0, max: 59, step: 1, required: false },
+    ],
+    outputs: [
+      { name: 'formatted',         label: 'Result (HH:MM:SS)',  type: 'text' },
+      { name: 'totalHours',        label: 'Total Hours',        type: 'number', decimals: 4 },
+      { name: 'totalMinutes',      label: 'Total Minutes',      type: 'number', decimals: 2 },
+      { name: 'totalSeconds',      label: 'Total Seconds',      type: 'number', decimals: 0 },
+    ],
+    contentFile: 'time-duration-calculator.json',
+    compute: calculateTimeDuration,
+  },
+  {
+    slug: 'fraction-calculator',
+    name: 'Fraction Calculator',
+    category: 'everyday-utilities',
+    kind: 'calculator',
+    title: 'Fraction Calculator — Add, Subtract, Multiply, Divide',
+    description: 'Add, subtract, multiply, or divide two fractions. Get simplified results, mixed numbers, and decimal equivalents.',
+    keywords: ['fraction calculator', 'add fractions calculator', 'fraction simplifier', 'mixed number calculator', 'fraction math calculator'],
+    icon: '½',
+    featured: false,
+    inputs: [
+      { name: 'num1', label: 'Numerator 1',   type: 'number', placeholder: '1', step: 1, required: true },
+      { name: 'den1', label: 'Denominator 1', type: 'number', placeholder: '2', step: 1, required: true },
+      {
+        name: 'operation', label: 'Operation', type: 'select', required: false,
+        options: [
+          { value: 'add',      label: 'Add (+)' },
+          { value: 'subtract', label: 'Subtract (−)' },
+          { value: 'multiply', label: 'Multiply (×)' },
+          { value: 'divide',   label: 'Divide (÷)' },
+        ],
+      },
+      { name: 'num2', label: 'Numerator 2',   type: 'number', placeholder: '1', step: 1, required: true },
+      { name: 'den2', label: 'Denominator 2', type: 'number', placeholder: '4', step: 1, required: true },
+    ],
+    outputs: [
+      { name: 'fraction',    label: 'Result (Fraction)',     type: 'text' },
+      { name: 'mixedNumber', label: 'Mixed Number',          type: 'text' },
+      { name: 'decimal',     label: 'Decimal Equivalent',    type: 'number', decimals: 6 },
+    ],
+    contentFile: 'fraction-calculator.json',
+    compute: calculateFraction,
   },
 ];
 
