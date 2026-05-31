@@ -48,6 +48,10 @@ import { calculateInvoice } from '../calculators/invoice-calculator';
 import { calculateAquariumVolume } from '../calculators/aquarium-volume-calculator';
 import { calculateDogFood } from '../calculators/dog-food-calculator';
 import { calculateCatFood } from '../calculators/cat-food-calculator';
+import { calculateHeartRateZones } from '../calculators/heart-rate-zones-calculator';
+import { calculateSleep } from '../calculators/sleep-calculator';
+import { calculateIdealWeight } from '../calculators/ideal-weight-calculator';
+import { calculateRunningPace } from '../calculators/running-pace-calculator';
 
 export interface CalculatorInput {
   name: string;
@@ -878,6 +882,107 @@ export const TOOLS: ToolConfig[] = [
     ],
     contentFile: 'protein-intake-calculator.json',
     compute: calculateProteinIntake,
+  },
+  {
+    slug: 'heart-rate-zones-calculator',
+    name: 'Heart Rate Zones Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Heart Rate Zones Calculator — Target HR for Every Workout',
+    description: 'Calculate your 5 heart rate training zones and Karvonen target range based on age and resting heart rate.',
+    keywords: ['heart rate zones calculator', 'target heart rate calculator', 'cardio zones', 'karvonen formula', 'max heart rate'],
+    icon: '❤️',
+    inputs: [
+      { name: 'age', label: 'Age', type: 'number', placeholder: '30', min: 1, max: 120, step: 1, unit: 'years', required: true },
+      { name: 'restingHR', label: 'Resting Heart Rate', type: 'number', placeholder: '60', min: 30, max: 120, step: 1, unit: 'bpm', required: false },
+    ],
+    outputs: [
+      { name: 'maxHR', label: 'Estimated Max Heart Rate', type: 'number', unit: 'bpm' },
+      { name: 'zone1', label: 'Zone 1 — Warm-Up (50–60%)', type: 'text' },
+      { name: 'zone2', label: 'Zone 2 — Fat Burn (60–70%)', type: 'text' },
+      { name: 'zone3', label: 'Zone 3 — Aerobic (70–80%)', type: 'text' },
+      { name: 'zone4', label: 'Zone 4 — Threshold (80–90%)', type: 'text' },
+      { name: 'zone5', label: 'Zone 5 — VO₂ Max (90–100%)', type: 'text' },
+      { name: 'karvonenTarget', label: 'Karvonen Aerobic Target (60–70% HRR)', type: 'text' },
+    ],
+    contentFile: 'heart-rate-zones-calculator.json',
+    compute: calculateHeartRateZones,
+  },
+  {
+    slug: 'sleep-calculator',
+    name: 'Sleep Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Sleep Calculator — Best Bedtimes Based on Sleep Cycles',
+    description: 'Calculate the ideal bedtime to wake up refreshed. Based on 90-minute sleep cycles and your chosen wake-up time.',
+    keywords: ['sleep calculator', 'bedtime calculator', 'sleep cycle calculator', 'when to go to sleep', 'wake up refreshed'],
+    icon: '😴',
+    featured: true,
+    inputs: [
+      { name: 'wakeHour', label: 'Wake-Up Hour', type: 'number', placeholder: '7', min: 0, max: 23, step: 1, required: true },
+      { name: 'wakeMin', label: 'Wake-Up Minute', type: 'number', placeholder: '0', min: 0, max: 59, step: 1, required: false },
+      { name: 'sleepLatency', label: 'Minutes to Fall Asleep', type: 'number', placeholder: '14', min: 0, max: 60, step: 1, required: false },
+    ],
+    outputs: [
+      { name: 'bedtime6Cycles', label: 'Bedtime for 9h (6 cycles)', type: 'text' },
+      { name: 'bedtime5Cycles', label: 'Bedtime for 7.5h (5 cycles)', type: 'text' },
+      { name: 'bedtime4Cycles', label: 'Bedtime for 6h (4 cycles)', type: 'text' },
+      { name: 'sleep6Duration', label: 'Sleep Duration (6 cycles)', type: 'text' },
+      { name: 'sleep5Duration', label: 'Sleep Duration (5 cycles)', type: 'text' },
+      { name: 'sleep4Duration', label: 'Sleep Duration (4 cycles)', type: 'text' },
+    ],
+    contentFile: 'sleep-calculator.json',
+    compute: calculateSleep,
+  },
+  {
+    slug: 'ideal-weight-calculator',
+    name: 'Ideal Weight Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Ideal Weight Calculator — Devine, Hamwi & Broca Formulas',
+    description: 'Find your ideal body weight using three medical formulas (Devine, Hamwi, Broca). Get a range, not just a number.',
+    keywords: ['ideal weight calculator', 'healthy weight calculator', 'devine formula', 'hamwi formula', 'ideal body weight'],
+    icon: '⚖️',
+    inputs: [
+      { name: 'heightCm', label: 'Height', type: 'number', placeholder: '170', min: 100, max: 250, step: 1, unit: 'cm', required: true },
+      { name: 'sex', label: 'Sex', type: 'select', required: true, options: [{ value: 'male', label: 'Male' }, { value: 'female', label: 'Female' }] },
+    ],
+    outputs: [
+      { name: 'idealWeightKg', label: 'Ideal Weight (Average)', type: 'number', decimals: 1, unit: 'kg' },
+      { name: 'idealWeightLbs', label: 'Ideal Weight (Average)', type: 'number', decimals: 1, unit: 'lbs' },
+      { name: 'lowerRangeKg', label: 'Lower Range (−5%)', type: 'number', decimals: 1, unit: 'kg' },
+      { name: 'upperRangeKg', label: 'Upper Range (+5%)', type: 'number', decimals: 1, unit: 'kg' },
+      { name: 'devineKg', label: 'Devine Formula', type: 'number', decimals: 1, unit: 'kg' },
+      { name: 'hamwiKg', label: 'Hamwi Formula', type: 'number', decimals: 1, unit: 'kg' },
+    ],
+    contentFile: 'ideal-weight-calculator.json',
+    compute: calculateIdealWeight,
+  },
+  {
+    slug: 'running-pace-calculator',
+    name: 'Running Pace Calculator',
+    category: 'health-fitness',
+    kind: 'calculator',
+    title: 'Running Pace Calculator — Pace, Speed & Race Projections',
+    description: 'Calculate your running pace per km and per mile, speed in km/h and mph, plus projected race times for 5K, 10K, half and full marathon.',
+    keywords: ['running pace calculator', 'pace calculator', 'race time predictor', '5k pace calculator', 'marathon pace calculator'],
+    icon: '🏃',
+    inputs: [
+      { name: 'distanceKm', label: 'Distance', type: 'number', placeholder: '10', min: 0.1, max: 1000, step: 0.1, unit: 'km', required: true },
+      { name: 'totalMinutes', label: 'Total Time', type: 'number', placeholder: '50', min: 1, max: 10000, step: 1, unit: 'minutes', required: true },
+    ],
+    outputs: [
+      { name: 'pacePerKm', label: 'Pace per km', type: 'text' },
+      { name: 'pacePerMile', label: 'Pace per mile', type: 'text' },
+      { name: 'speedKmh', label: 'Speed', type: 'number', decimals: 2, unit: 'km/h' },
+      { name: 'speedMph', label: 'Speed', type: 'number', decimals: 2, unit: 'mph' },
+      { name: 'projected5k', label: 'Projected 5K Time', type: 'text' },
+      { name: 'projected10k', label: 'Projected 10K Time', type: 'text' },
+      { name: 'projectedHalfMarathon', label: 'Projected Half Marathon', type: 'text' },
+      { name: 'projectedMarathon', label: 'Projected Marathon', type: 'text' },
+    ],
+    contentFile: 'running-pace-calculator.json',
+    compute: calculateRunningPace,
   },
   {
     slug: 'budget-calculator',

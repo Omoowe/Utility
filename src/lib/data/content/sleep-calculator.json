@@ -1,0 +1,56 @@
+{
+  "slug": "sleep-calculator",
+  "intro": "Waking up exhausted despite a full night in bed often comes down to timing, not duration. Sleep is structured in 90-minute cycles — each cycle moves through light sleep, deep slow-wave sleep, and REM. Waking in the middle of deep sleep triggers sleep inertia: that groggy, disoriented feeling that can last hours. This calculator works backwards from your wake-up time to find the ideal bedtimes that align with cycle completions, so you surface from lighter sleep stages ready to go.",
+  "howItWorks": "A complete sleep cycle is approximately 90 minutes. The calculator subtracts multiples of 90 minutes from your wake-up time, then subtracts your sleep latency (the time it takes you to fall asleep after lying down). The default latency is 14 minutes, which is the population average for healthy sleepers. The result is the clock time at which you should get into bed. Six cycles (9 hours) is ideal for recovery days; five cycles (7.5 hours) is the standard adult recommendation; four cycles (6 hours) is a minimum that some people can sustain short-term.",
+  "interpretationGuide": "Choose the bedtime that gives you the most complete sleep cycles before your required wake time. If you must choose between a 7.5-hour option and a 9-hour option, pick 7.5 hours — waking after 5 complete cycles is far better than waking mid-cycle after 8 hours. Consistent bedtimes matter as much as duration: irregular sleep timing disrupts your circadian rhythm even when total hours are adequate.",
+  "faqs": [
+    {
+      "question": "Why are sleep cycles 90 minutes?",
+      "answer": "A typical sleep cycle lasts 90–110 minutes and progresses through: N1 (light sleep), N2 (light sleep with sleep spindles), N3 (deep slow-wave sleep), and REM. Early cycles contain more N3 deep sleep; later cycles contain more REM. The 90-minute average is well-established in sleep research, though individual cycles vary by 15–20 minutes."
+    },
+    {
+      "question": "What is sleep inertia?",
+      "answer": "Sleep inertia is the grogginess, impaired cognitive function, and disorientation experienced immediately after waking. It is most severe when you wake from deep slow-wave sleep (N3). It can last 15 minutes to over an hour. Waking at the end of a light sleep stage — as this calculator targets — minimises sleep inertia."
+    },
+    {
+      "question": "How long does it actually take to fall asleep?",
+      "answer": "The average sleep onset latency for healthy adults is 10–20 minutes. Falling asleep in under 5 minutes indicates sleep deprivation. Taking over 30 minutes regularly may indicate insomnia or high stress. The calculator defaults to 14 minutes but you can adjust it to your personal average."
+    },
+    {
+      "question": "How many sleep cycles do I need per night?",
+      "answer": "Most adults need 5–6 complete cycles (7.5–9 hours). The National Sleep Foundation recommends 7–9 hours for adults 18–64 and 7–8 hours for adults 65+. Short sleepers (under 6 hours) are a rare genetic variant — most people who think they function fine on 5–6 hours are chronically sleep-deprived and have lost awareness of their own impairment."
+    },
+    {
+      "question": "What is REM sleep and why does it matter?",
+      "answer": "REM (Rapid Eye Movement) sleep is when most dreaming occurs. It is critical for memory consolidation, emotional regulation, creativity, and learning. REM-deprived individuals show impaired problem-solving and increased emotional reactivity. Later sleep cycles contain progressively more REM, which is why cutting sleep short preferentially eliminates REM."
+    },
+    {
+      "question": "Can I catch up on lost sleep on weekends?",
+      "answer": "Partially. Acute sleep debt can be recovered somewhat, but chronic sleep deprivation causes lasting changes to cognitive performance and metabolism that a single recovery night does not reverse. 'Social jetlag' — shifting sleep timing on weekends — also disrupts circadian rhythm. Consistent sleep timing across all 7 days is healthier than weekday deprivation plus weekend recovery."
+    },
+    {
+      "question": "Why do I feel tired even after 8 hours of sleep?",
+      "answer": "Common causes include: poor sleep quality (fragmented cycles from noise, light, or sleep disorders), timing misalignment (sleeping when your circadian clock says daytime), sleep apnoea (causes micro-arousals throughout the night), nutritional deficiencies (iron, B12, vitamin D), or waking mid-cycle. A sleep tracker or PSG study can identify the cause."
+    },
+    {
+      "question": "What is the best time to go to sleep?",
+      "answer": "Sleep quality is best when aligned with your circadian rhythm. For most people, melatonin rises around 9–10 PM and body temperature drops between 11 PM and 3 AM — this is the biological sleep window. Going to bed before 10 PM or after midnight may reduce sleep quality even if total hours are adequate."
+    },
+    {
+      "question": "Does blue light from screens affect sleep?",
+      "answer": "Yes. Blue light (wavelength 450–490 nm) suppresses melatonin production more than other light wavelengths. Using screens within 1–2 hours of bedtime can delay sleep onset by 30–60 minutes and reduce REM. Blue light filters and night mode reduce (but do not eliminate) this effect."
+    },
+    {
+      "question": "Should I nap, and if so, how long?",
+      "answer": "Short naps of 10–20 minutes restore alertness without triggering deep sleep, so you wake refreshed. A 30-minute nap risks waking from N3. A 90-minute nap completes one full cycle and is restorative but may impair nighttime sleep if taken late in the day. Naps after 3 PM can delay nighttime sleep onset."
+    },
+    {
+      "question": "What temperature is best for sleep?",
+      "answer": "Core body temperature must drop 1–2°F (0.5–1°C) to initiate sleep. Room temperature of 65–68°F (18–20°C) is optimal for most people. Cooler environments facilitate this drop. Excessively warm rooms fragment sleep by preventing the necessary temperature decline."
+    },
+    {
+      "question": "How does caffeine affect sleep?",
+      "answer": "Caffeine blocks adenosine receptors, preventing sleepiness signals from reaching your brain. Its half-life is 5–6 hours — a 200mg coffee at 2 PM still has 100mg active at 8 PM. Even if you fall asleep normally, caffeine reduces deep N3 sleep and impairs recovery. Most sleep researchers recommend stopping caffeine by noon for optimal sleep quality."
+    }
+  ]
+}

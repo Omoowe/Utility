@@ -1,0 +1,56 @@
+{
+  "slug": "running-pace-calculator",
+  "intro": "Running pace is the fundamental metric every runner tracks — it tells you how fast you're covering ground and predicts what you'll finish in over any distance. Enter your run distance and total time to instantly see your pace per km and per mile, your speed in km/h and mph, and projected race finish times across four standard distances: 5K, 10K, half marathon, and full marathon.",
+  "howItWorks": "Pace per km = total minutes ÷ distance in km. Pace per mile = pace per km × 1.60934 (the km-to-mile conversion factor). Speed in km/h = (distance ÷ total minutes) × 60. Speed in mph = speed in km/h ÷ 1.60934. Race projections assume you maintain the same pace across the projected distance — pace per km × race distance in km. The result is formatted as h:mm:ss for times over an hour, or m:ss for times under an hour.",
+  "interpretationGuide": "Race projections assume even pace throughout — no fade, no negative split, no course terrain variation. In reality, most runners slow 5–15% in the second half of a race compared to training pace, especially at marathon distance. Use the projected marathon time as an optimistic baseline and add 5–10% for a realistic race target. A 5:00 /km training pace typically translates to a 5:15–5:30 /km marathon race pace for most recreational runners.",
+  "faqs": [
+    {
+      "question": "What is running pace?",
+      "answer": "Running pace is the time it takes to cover one unit of distance — usually expressed as minutes per kilometre (min/km) or minutes per mile (min/mi). A pace of 5:00 /km means you cover one kilometre in exactly 5 minutes. Pace is the inverse of speed: slower pace = higher number, faster pace = lower number."
+    },
+    {
+      "question": "What is a good running pace for beginners?",
+      "answer": "A comfortable beginner pace is typically 7:00–9:00 /km (11:00–14:30 /mi). This is a pace where you can hold a conversation without gasping. Most beginner 5K programs aim for completion in 35–45 minutes, which corresponds to a 7:00–9:00 /km pace."
+    },
+    {
+      "question": "What is a good 5K pace?",
+      "answer": "5K pace benchmarks: elite runners: under 3:00 /km (<15 min finish). Competitive club runners: 3:30–4:30 /km (17:30–22:30 finish). Recreational runners: 5:00–7:00 /km (25:00–35:00 finish). Beginners: 7:00–9:00 /km (35:00–45:00 finish). A sub-25 minute 5K is considered a strong recreational standard."
+    },
+    {
+      "question": "What pace do I need to run a sub-4-hour marathon?",
+      "answer": "A sub-4-hour marathon requires a pace of 5:41 /km (9:09 /mi) or faster, sustained for 42.195 km. In practice, most runners targeting 4 hours train at 5:20–5:30 /km and budget for some slowdown in the final 10 km."
+    },
+    {
+      "question": "How do I convert pace to speed?",
+      "answer": "Speed (km/h) = 60 ÷ pace (min/km). Example: 5:00 /km pace = 60 ÷ 5 = 12 km/h. In reverse: pace (min/km) = 60 ÷ speed (km/h). Example: 10 km/h = 60 ÷ 10 = 6:00 /km pace."
+    },
+    {
+      "question": "Why are my race times slower than training pace projections?",
+      "answer": "Several factors slow race pace relative to training: race course elevation gain, heat and humidity, start-line congestion, inadequate taper or over-tapering, adrenaline causing too-fast start (positive split), and accumulated fatigue in longer races. Marathon-specific physiology (glycogen depletion, muscle damage) causes significant slowdown after km 30–35 for undertrained runners."
+    },
+    {
+      "question": "What is negative splitting?",
+      "answer": "A negative split is running the second half of a race faster than the first. It is the optimal race strategy for distance events — starting conservatively conserves glycogen and avoids early lactic acid accumulation. Most world records are set with negative or even splits. Most recreational runners run positive splits (slower second half) due to going out too fast."
+    },
+    {
+      "question": "How accurate are race time predictions based on training pace?",
+      "answer": "Short distance predictions (5K, 10K) are reasonably accurate within 2–5% if the training run was at a sustainable effort. Half marathon predictions carry 3–8% error for most runners. Marathon predictions are least accurate — the difficulty scaling is non-linear, and many runners slow 10–20% in miles 20–26. The Riegel formula (T2 = T1 × (D2/D1)^1.06) is slightly more accurate than simple pace projection for longer distances."
+    },
+    {
+      "question": "What pace should I train at for a 10K race?",
+      "answer": "Most training plans use a mix of paces: Easy/recovery runs: 60–90 seconds slower than 10K race pace. Tempo runs: 10K race pace or slightly faster. Interval workouts: faster than 10K race pace (800m–1000m repeats). If your 10K goal pace is 5:00 /km, easy runs should be around 6:00–6:30 /km, and intervals around 4:30–4:45 /km."
+    },
+    {
+      "question": "How does heat affect running pace?",
+      "answer": "Heat significantly impairs performance. Research shows a 1–2% performance decline per 1°C above 12°C (54°F). At 25°C (77°F), expect pace to be 5–10% slower than cool-weather performance. At 32°C (90°F), 12–15% slower. Humidity compounds this effect by reducing sweat evaporation (the primary cooling mechanism). Adjust expectations and effort by feel, not pace, in hot conditions."
+    },
+    {
+      "question": "What is treadmill pace versus outdoor pace?",
+      "answer": "Treadmill running at 0% incline is slightly easier than outdoor running due to the absence of wind resistance and the belt assisting foot turnover. Setting treadmill incline to 1–2% better simulates outdoor running effort. A 5:00 /km treadmill pace corresponds to approximately 5:05–5:10 /km outdoor effort on flat terrain."
+    },
+    {
+      "question": "How do I use this calculator to set a race goal?",
+      "answer": "Enter the distance and time from a recent training run or race effort. The projected race times assume you can sustain that pace. For realistic marathon projections, add 5–10% to the projected time. For 5K and 10K, the projection is more reliable. If you have recent race results, use a pace converter to find your current fitness baseline, then set a target 2–5% faster for your next race."
+    }
+  ]
+}

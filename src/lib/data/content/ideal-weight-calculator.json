@@ -1,0 +1,56 @@
+{
+  "slug": "ideal-weight-calculator",
+  "intro": "Ideal body weight formulas were developed by physicians to estimate healthy target weights for clinical purposes — primarily for drug dosing and nutritional planning. This calculator runs three of the most widely used formulas (Devine, Hamwi, Broca) and returns an average with a ±5% healthy range. Enter your height and biological sex to get a medically-grounded target range, not just a single number.",
+  "howItWorks": "Three formulas are calculated and averaged. The Devine formula (1974) is the most commonly cited in clinical settings: for men, 50 kg + 2.3 kg per inch over 5 feet; for women, 45.5 kg + 2.3 kg per inch over 5 feet. The Hamwi formula (1964) uses slightly different base weights (48 kg men / 45.4 kg women) and 2.7 kg / 2.2 kg per inch respectively. The Broca index (modified) takes height in cm minus 100, multiplied by 0.9 for men or 0.85 for women. The three results are averaged, then a ±5% range is applied to account for natural variation in frame size and body composition.",
+  "interpretationGuide": "Your ideal weight range is a clinical guideline, not a fitness target. Athletes with high muscle mass will often sit above the range — this is healthy. People with small frames may sit at the lower bound. The formulas were derived from average body proportions and do not account for age-related muscle loss, ethnicity-based differences, or body composition. If your current weight is within 10–15% of the calculated range, your weight is unlikely to be a health concern. Significant deviations warrant a conversation with a healthcare provider.",
+  "faqs": [
+    {
+      "question": "What is the Devine formula for ideal body weight?",
+      "answer": "The Devine formula (1974) estimates ideal weight as: Men: 50 kg + 2.3 kg for each inch over 5 feet. Women: 45.5 kg + 2.3 kg for each inch over 5 feet. It was originally developed to calculate drug doses based on body size and remains the most widely used formula in clinical medicine."
+    },
+    {
+      "question": "What is the Hamwi formula?",
+      "answer": "The Hamwi formula (1964) uses: Men: 48 kg + 2.7 kg per inch over 5 feet. Women: 45.4 kg + 2.2 kg per inch over 5 feet. It tends to give slightly higher estimates than Devine for men and similar estimates for women. It was developed for use in nutrition planning."
+    },
+    {
+      "question": "What is the Broca index?",
+      "answer": "The original Broca index from the 19th century simply used height in cm minus 100 as the ideal weight in kg. The modified Broca index adjusts this by multiplying by 0.9 for men and 0.85 for women, reducing the estimate to account for average body composition. It is less accurate than Devine or Hamwi at heights significantly different from 170 cm."
+    },
+    {
+      "question": "Why does the calculator show a range rather than one number?",
+      "answer": "No single number can represent the ideal weight for everyone of the same height. Frame size, muscle mass, bone density, and age all affect what is healthy. A ±5% range around the average of three formulas better reflects biological variation. A person with a large bone structure may be healthier at the upper end; a small-framed person at the lower end."
+    },
+    {
+      "question": "How is ideal weight different from BMI?",
+      "answer": "BMI (Body Mass Index) calculates weight relative to height but does not define a single ideal weight. Ideal weight formulas produce a specific target or range. BMI is a screening tool (underweight: <18.5, normal: 18.5–24.9, overweight: 25–29.9). The ideal weight from these formulas typically corresponds to a BMI of 22–23 for average frames — within the normal BMI range."
+    },
+    {
+      "question": "Are these formulas accurate for athletes?",
+      "answer": "No. These formulas were developed using average body composition data. Athletes with high muscle mass are often 10–20% above the calculated ideal weight while having very low body fat. Muscle is denser than fat, so a muscular person will weigh more than a sedentary person of the same height and size. For athletes, body fat percentage is a more useful metric."
+    },
+    {
+      "question": "Do these formulas apply to children and teenagers?",
+      "answer": "No. These formulas were validated for adults. Children and teenagers should use age- and sex-specific growth charts (such as CDC or WHO percentile charts). Pediatric ideal weight depends on growth stage, not just height."
+    },
+    {
+      "question": "What is a healthy body weight range for my height?",
+      "answer": "A healthy BMI of 18.5–24.9 corresponds to a weight range that varies by height. For a 170 cm (5'7\") person: approximately 53–72 kg. Ideal weight formula results typically fall near the midpoint of this BMI range. Use the ±5% range from this calculator as a practical target zone."
+    },
+    {
+      "question": "How much can I weigh above my ideal weight and still be healthy?",
+      "answer": "Clinical thresholds vary, but a weight within 10% above ideal is generally considered acceptable. 10–20% above is considered overweight. More than 20% above is typically classified as obese by ideal weight criteria. These thresholds are less commonly used now — BMI and waist circumference are more often used in clinical practice."
+    },
+    {
+      "question": "Does ethnicity affect ideal body weight?",
+      "answer": "Yes. Research shows that health risks associated with excess weight differ by ethnicity. Asian populations have higher metabolic risk at lower BMI values (some guidelines suggest lower BMI cutoffs for Asian adults). The standard Devine/Hamwi formulas were derived from predominantly Western populations and may underestimate healthy weight for some groups."
+    },
+    {
+      "question": "Is ideal weight the same as my goal weight for weight loss?",
+      "answer": "Not necessarily. Ideal weight formulas define a clinically healthy target based on height and sex. Your personal goal weight should account for your body composition, fitness goals, and how you feel at different weights. For most people, reaching within 10% of the calculated ideal is a reasonable health goal — reaching the exact calculated number is not required."
+    },
+    {
+      "question": "What is the most accurate way to determine my ideal weight?",
+      "answer": "These formulas provide useful estimates but the most accurate approach uses body composition testing (DEXA scan, hydrostatic weighing, or air displacement plethysmography) to measure fat mass vs. lean mass directly. A healthcare provider can then set a target that reflects your actual body composition rather than just height and sex."
+    }
+  ]
+}

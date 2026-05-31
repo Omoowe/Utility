@@ -29,7 +29,8 @@ export function ResultBox({
     if (typeof value === 'string') return value;
     switch (format) {
       case 'currency': return formatCurrency(value, decimals);
-      case 'percent':  return formatPercent(value, decimals);
+      // false = value is already a percentage (e.g. 33.33), not a decimal (0.3333)
+      case 'percent':  return formatPercent(value, decimals, false);
       case 'number':   return formatNumber(value, decimals);
       default:         return String(value);
     }

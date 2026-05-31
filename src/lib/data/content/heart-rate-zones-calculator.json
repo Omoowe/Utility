@@ -1,0 +1,56 @@
+{
+  "slug": "heart-rate-zones-calculator",
+  "intro": "Your heart rate zones are specific intensity ranges that determine what your body is burning and how it adapts to exercise. Training in the right zone for the right duration is the difference between efficient fitness progress and spinning your wheels. This calculator uses the Fox formula (220 − age) to estimate your maximum heart rate, then maps five zones as percentages. Enter your resting heart rate for the more accurate Karvonen target range, which accounts for your current cardiovascular fitness.",
+  "howItWorks": "Maximum heart rate is estimated with the Fox formula: max HR = 220 − age. Each zone is then defined as a percentage band of that maximum. Zone 1 (50–60%) is active recovery — light walking or cool-down. Zone 2 (60–70%) is aerobic fat-burning, ideal for long slow runs. Zone 3 (70–80%) builds aerobic capacity. Zone 4 (80–90%) is the anaerobic threshold — hard efforts that build speed. Zone 5 (90–100%) is maximum intensity, sustainable for only short bursts. The Karvonen target (heart rate reserve method) refines Zone 2–3 by factoring in your resting heart rate: target = resting HR + (HRR × intensity %), where HRR = max HR − resting HR.",
+  "interpretationGuide": "For fat loss and aerobic base building, spend most of your time in Zone 2. For race performance, add Zone 4 threshold work. Zone 5 is for short intervals only — it cannot be sustained and should make up no more than 10% of weekly training volume. If your resting HR is below 60, your Karvonen target zone will be noticeably higher than the simple percentage method, reflecting your superior cardiovascular efficiency.",
+  "faqs": [
+    {
+      "question": "What is the most accurate formula for maximum heart rate?",
+      "answer": "The Fox formula (220 − age) is the most widely used but has a standard deviation of ±10–12 bpm. More accurate alternatives include the Tanaka formula (208 − 0.7 × age) and the Gulati formula for women (206 − 0.88 × age). The only truly accurate measurement is a maximal exercise test under medical supervision."
+    },
+    {
+      "question": "What is Zone 2 training and why is it popular?",
+      "answer": "Zone 2 (60–70% of max HR) is a conversational aerobic pace that primarily burns fat as fuel. Research shows it maximises mitochondrial density over time, improving endurance and metabolic health. Elite endurance athletes perform 80% of their weekly volume in Zone 2."
+    },
+    {
+      "question": "What is the Karvonen formula?",
+      "answer": "The Karvonen method calculates target heart rate as: resting HR + (heart rate reserve × intensity%). Heart rate reserve = max HR − resting HR. It is more personalised than simple max HR percentages because it accounts for cardiovascular fitness (lower resting HR = higher fitness)."
+    },
+    {
+      "question": "What is a healthy resting heart rate?",
+      "answer": "Normal resting heart rate for adults is 60–100 bpm. Athletes commonly have resting HRs of 40–60 bpm. A lower resting HR generally indicates better cardiovascular fitness. Values consistently above 100 bpm (tachycardia) warrant medical evaluation."
+    },
+    {
+      "question": "How do I measure my resting heart rate accurately?",
+      "answer": "Measure in the morning before getting out of bed. Place two fingers on your wrist (radial artery) or neck (carotid artery) and count beats for 60 seconds. Take readings on 3 consecutive days and average them. Avoid caffeine, stress, or exercise in the hours before measuring."
+    },
+    {
+      "question": "Should I use a heart rate monitor for zone training?",
+      "answer": "Yes. A chest strap monitor is the most accurate option, measuring electrical activity directly. Optical wrist monitors (Apple Watch, Garmin) are convenient but can lag 5–10 seconds during interval efforts. For steady-state Zone 2 work, wrist monitors are sufficient."
+    },
+    {
+      "question": "What happens if I always train in Zone 3?",
+      "answer": "Zone 3 (70–80%) is sometimes called the 'grey zone' — too hard to build aerobic base efficiently, not hard enough to develop anaerobic capacity. Staying in Zone 3 too much leads to accumulated fatigue without the adaptation benefits of true Zone 2 or Zone 4–5 work."
+    },
+    {
+      "question": "How many days a week should I do high-intensity Zone 4–5 work?",
+      "answer": "Most experts recommend 1–2 days per week of high-intensity training. More than that leads to overtraining, elevated cortisol, and diminishing returns. Hard efforts need 48–72 hours of recovery. The majority of weekly training should be Zone 1–2."
+    },
+    {
+      "question": "Does my max heart rate decline with age?",
+      "answer": "Yes. Maximum heart rate declines roughly 1 bpm per year after age 20. This is why the formula subtracts age. However, your cardiovascular fitness (VO₂ max, resting HR) can improve at any age with consistent aerobic training regardless of max HR decline."
+    },
+    {
+      "question": "Can medications affect my heart rate zones?",
+      "answer": "Yes. Beta-blockers (used for high blood pressure and anxiety) significantly lower both resting and maximum heart rate, making standard formulas unreliable. If you take beta-blockers or other heart-affecting medications, consult your doctor before using heart rate zone training."
+    },
+    {
+      "question": "Is Zone 2 training good for weight loss?",
+      "answer": "Zone 2 burns a higher percentage of fat as fuel compared to higher intensities. However, total calorie burn (deficit) determines weight loss. Higher-intensity intervals burn more calories per minute. Both approaches work — Zone 2 is sustainable for longer durations, making it excellent for consistent caloric expenditure."
+    },
+    {
+      "question": "How is this different from the talk test for intensity?",
+      "answer": "The talk test is a practical approximation. Zone 1–2: you can hold a full conversation comfortably. Zone 3: you can speak in short sentences. Zone 4: you can only say a few words. Zone 5: you cannot speak. The talk test correlates well with heart rate zones for most people."
+    }
+  ]
+}

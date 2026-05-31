@@ -1,7 +1,8 @@
 import { getToolBySlug, getRelatedTools, TOOLS } from '@/lib/data/tools';
 import { getContent } from '@/lib/data/content/types';
+import { getCategoryBySlug } from '@/lib/data/categories';
 import { CalculatorPageClient } from './CalculatorPageClient';
-import { generateCalculatorSchema, generateFAQSchema } from '@/lib/utils/seo';
+import { generateCalculatorSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/utils/seo';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -39,8 +40,15 @@ export default async function CalculatorPage({ params }: PageProps) {
 
   const { compute: _compute, ...toolWithoutCompute } = tool;
 
+  const category = getCategoryBySlug(tool.category);
   const calculatorSchema = generateCalculatorSchema(toolWithoutCompute);
   const faqSchema = content?.faqs ? generateFAQSchema(content.faqs) : null;
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { label: 'Home', href: '/' },
+    { label: 'All Tools', href: '/calculators' },
+    { label: category?.name ?? tool.category, href: `/categories/${tool.category}` },
+    { label: tool.name, href: `/calculators/${tool.slug}` },
+  ]);
 
   return (
     <>
@@ -54,6 +62,10 @@ export default async function CalculatorPage({ params }: PageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <CalculatorPageClient
         tool={toolWithoutCompute}
         toolSlug={slug}
