@@ -9,6 +9,7 @@ interface SearchBarProps {
   placeholder?: string;
   className?: string;
   onSelect?: () => void;
+  autoFocus?: boolean;
 }
 
 function scoreMatch(tool: ToolConfig, query: string): number {
@@ -20,7 +21,7 @@ function scoreMatch(tool: ToolConfig, query: string): number {
   return 0;
 }
 
-export function SearchBar({ placeholder = 'Search calculators and tools…', className = '', onSelect }: SearchBarProps): React.JSX.Element {
+export function SearchBar({ placeholder = 'Search calculators and tools…', className = '', onSelect, autoFocus = false }: SearchBarProps): React.JSX.Element {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<ToolConfig[]>([]);
   const [open, setOpen] = useState(false);
@@ -75,6 +76,7 @@ export function SearchBar({ placeholder = 'Search calculators and tools…', cla
           className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors min-h-[44px]"
           aria-label="Search tools"
           autoComplete="off"
+          autoFocus={autoFocus}
         />
         {query && (
           <button

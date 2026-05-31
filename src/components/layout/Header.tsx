@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
@@ -13,26 +13,41 @@ export function Header(): React.JSX.Element {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const searchWrapperRef = useRef<HTMLDivElement>(null);
+
+  const handleSearchBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    if (!searchWrapperRef.current?.contains(e.relatedTarget as Node)) {
+      setSearchOpen(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+      {/* Skip to main content — visible on focus for keyboard/screen reader users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-blue-600 focus:text-white focus:text-sm focus:font-medium"
+      >
+        Skip to main content
+      </a>
+
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-xl text-gray-900 dark:text-white shrink-0"
+            className="flex items-center gap-2 font-bold text-xl text-gray-900 dark:text-white shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-md"
           >
             <span className="text-2xl">🧰</span>
             <span>{siteConfig.name}</span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
             <Link
               href="/"
               className={clsx(
-                'text-sm font-medium transition-colors',
+                'text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-sm',
                 pathname === '/'
                   ? 'text-blue-600 dark:text-blue-400'
                   : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
@@ -43,7 +58,7 @@ export function Header(): React.JSX.Element {
             <Link
               href="/calculators"
               className={clsx(
-                'text-sm font-medium transition-colors',
+                'text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-sm',
                 pathname?.startsWith('/calculators')
                   ? 'text-blue-600 dark:text-blue-400'
                   : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
@@ -53,13 +68,14 @@ export function Header(): React.JSX.Element {
             </Link>
             {/* Categories dropdown */}
             <div className="relative group">
-              <button className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <button className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-sm">
                 Categories
                 <svg
                   className="w-3.5 h-3.5 mt-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -81,18 +97,22 @@ export function Header(): React.JSX.Element {
 
           {/* Right side */}
           <div className="flex items-center gap-2">
-            {/* Desktop search */}
+            {/* Desktop search — closes on blur outside */}
             {searchOpen ? (
-              <div className="hidden md:block w-64">
-                <SearchBar onSelect={() => setSearchOpen(false)} />
+              <div
+                ref={searchWrapperRef}
+                className="hidden md:block w-64"
+                onBlur={handleSearchBlur}
+              >
+                <SearchBar onSelect={() => setSearchOpen(false)} autoFocus />
               </div>
             ) : (
               <button
                 onClick={() => setSearchOpen(true)}
-                className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 aria-label="Search"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -108,11 +128,12 @@ export function Header(): React.JSX.Element {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle menu"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
             >
               {mobileOpen ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -121,7 +142,7 @@ export function Header(): React.JSX.Element {
                   />
                 </svg>
               ) : (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -133,13 +154,12 @@ export function Header(): React.JSX.Element {
             </button>
           </div>
         </div>
-
       </div>
 
       {/* Mobile nav drawer */}
       {mobileOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-          <nav className="container-custom py-4 space-y-1">
+          <nav className="container-custom py-4 space-y-1" aria-label="Mobile navigation">
             <div className="pb-2">
               <SearchBar onSelect={() => setMobileOpen(false)} />
             </div>

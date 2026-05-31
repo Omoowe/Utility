@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useId } from 'react';
 import clsx from 'clsx';
 
 interface SelectOption {
@@ -43,6 +43,7 @@ export function InputGroup({
   prefix,
   options = [],
 }: InputGroupProps): React.JSX.Element {
+  const id = useId();
   const hasPrefix = Boolean(prefix);
   const hasUnit = Boolean(unit) && type !== 'select';
 
@@ -63,7 +64,7 @@ export function InputGroup({
 
   return (
     <div className="space-y-1.5">
-      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
+      <label htmlFor={id} className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
         {label}
         {required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
       </label>
@@ -78,6 +79,7 @@ export function InputGroup({
 
         {type === 'select' ? (
           <select
+            id={id}
             value={String(value)}
             onChange={handleSelectChange}
             disabled={disabled}
@@ -100,6 +102,7 @@ export function InputGroup({
           </select>
         ) : (
           <input
+            id={id}
             type={type}
             value={value}
             onChange={handleInputChange}

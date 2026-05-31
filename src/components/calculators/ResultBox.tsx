@@ -52,9 +52,9 @@ export function ResultBox({
     return (
       <div className="rounded-xl bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 p-5">
         <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest">{label}</p>
-        <p className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-2 break-words leading-none">
+        <p className="text-3xl sm:text-4xl font-bold text-blue-700 dark:text-blue-300 mt-2 break-all leading-none">
           {formattedValue}
-          {unit && <span className="text-xl font-semibold ml-2 text-blue-500 dark:text-blue-400">{unit}</span>}
+          {unit && <span className="text-lg sm:text-xl font-semibold ml-2 text-blue-500 dark:text-blue-400">{unit}</span>}
         </p>
         {copyable && (
           <button

@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased">
         <ThemeProvider>
           <Header />
-          <div className="min-h-screen">{children}</div>
+          <div id="main-content" className="min-h-screen">{children}</div>
           <Footer />
           <CookieConsent />
         </ThemeProvider>
